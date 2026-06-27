@@ -1,0 +1,7 @@
+node_modules
+dist
+*.local
+.DS_Store
+
+# kuromoji dictionary — regenerated from node_modules by `npm run prepare-dict` (postinstall)
+public/dict
