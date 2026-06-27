@@ -198,7 +198,13 @@ rt {
 }
 
 .lyrics-box { margin-top: 32px; }
-.lyrics-head { display: flex; align-items: baseline; justify-content: space-between; }
+.lyrics-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.lyrics-head-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.lyrics-edit:disabled { opacity: 0.4; cursor: default; border-color: var(--line); color: var(--ink-soft); }
+.lyrics-notice {
+  font-size: 12px; color: var(--indigo); background: var(--line-2);
+  border-radius: 8px; padding: 6px 10px; margin-top: 8px;
+}
 .lyrics-edit {
   font-size: 12px; color: var(--ink-soft);
   background: none; border: 1px solid var(--line);

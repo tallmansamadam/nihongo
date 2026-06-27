@@ -387,13 +387,66 @@ function FuriToggle({ on, set }: { on: boolean; set: (v: boolean) => void }) {
 
 /* Per-song lyrics you paste yourself: saved on this device and rendered with
    hoverable kanji (and auto-furigana when the toggle is on). */
-const lyricsKey = (songId: string) => `nihongo:lyrics:${songId}`
+const LYRICS_PREFIX = 'nihongo:lyrics:'
+const lyricsKey = (songId: string) => `${LYRICS_PREFIX}${songId}`
 function readLyrics(songId: string): string {
   try {
     return localStorage.getItem(lyricsKey(songId)) ?? ''
   } catch {
     return ''
   }
+}
+
+/** Collect every saved lyric (across all songs) into a plain object. */
+function collectAllLyrics(): Record<string, string> {
+  const out: Record<string, string> = {}
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i)
+      if (key && key.startsWith(LYRICS_PREFIX)) {
+        out[key.slice(LYRICS_PREFIX.length)] = localStorage.getItem(key) ?? ''
+      }
+    }
+  } catch {
+    /* storage unavailable */
+  }
+  return out
+}
+
+/** Download all saved lyrics as a JSON backup file. */
+function exportAllLyrics() {
+  const data = {
+    app: 'nihongo-reader',
+    type: 'lyrics-library',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    lyrics: collectAllLyrics(),
+  }
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `nihongo-lyrics-${new Date().toISOString().slice(0, 10)}.json`
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+/** Import a previously-exported backup. Returns the number of songs imported. */
+async function importLyricsFile(file: File): Promise<number> {
+  const text = await file.text()
+  const parsed = JSON.parse(text)
+  const lyrics: unknown = parsed?.lyrics
+  if (!lyrics || typeof lyrics !== 'object') {
+    throw new Error('Not a Nihongo lyrics backup file.')
+  }
+  let count = 0
+  for (const [songId, value] of Object.entries(lyrics as Record<string, unknown>)) {
+    if (typeof value === 'string') {
+      localStorage.setItem(lyricsKey(songId), value)
+      count++
+    }
+  }
+  return count
 }
 function LyricsBox({ songId, furigana }: { songId: string; furigana: boolean }) {
   const [saved, setSaved] = useState(() => readLyrics(songId))
@@ -416,15 +469,62 @@ function LyricsBox({ songId, furigana }: { songId: string; furigana: boolean }) 
     setSaved(draft)
     setEditing(false)
   }
+  const fileInput = useRef<HTMLInputElement>(null)
+  const [notice, setNotice] = useState('')
+
+  async function onImport(file: File) {
+    try {
+      const n = await importLyricsFile(file)
+      const next = readLyrics(songId)
+      setSaved(next)
+      setDraft(next)
+      setEditing(false)
+      setNotice(`Imported lyrics for ${n} song${n === 1 ? '' : 's'}.`)
+    } catch (e) {
+      setNotice(e instanceof Error ? e.message : 'Could not import that file.')
+    }
+    setTimeout(() => setNotice(''), 4000)
+  }
+
+  const hasAny = Object.keys(collectAllLyrics()).length > 0
   const showEditor = editing || !saved
   return (
     <section className="lyrics-box">
       <div className="lyrics-head">
         <h2 className="block-title">My lyrics</h2>
-        {saved && !editing && (
-          <button className="lyrics-edit" onClick={() => setEditing(true)}>Edit</button>
-        )}
+        <div className="lyrics-head-actions">
+          {saved && !editing && (
+            <button className="lyrics-edit" onClick={() => setEditing(true)}>Edit</button>
+          )}
+          <button
+            className="lyrics-edit"
+            onClick={exportAllLyrics}
+            disabled={!hasAny}
+            title="Download a backup of all your saved lyrics"
+          >
+            Export
+          </button>
+          <button
+            className="lyrics-edit"
+            onClick={() => fileInput.current?.click()}
+            title="Restore lyrics from a backup file"
+          >
+            Import
+          </button>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="application/json,.json"
+            hidden
+            onChange={(e) => {
+              const f = e.target.files?.[0]
+              if (f) onImport(f)
+              e.target.value = ''
+            }}
+          />
+        </div>
       </div>
+      {notice && <div className="lyrics-notice">{notice}</div>}
       {showEditor && (<>
       <textarea
         className="lyrics-input"
