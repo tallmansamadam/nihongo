@@ -551,6 +551,128 @@ const list: KanjiEntry[] = [
     components: [{ char: '宀', meaning: 'a roof / house' }, { char: '寸', meaning: 'a hand / measure' }],
     mnemonic: 'A steady hand (寸) kept under the roof (宀) of the home — guarding and protecting it.',
   },
+
+  // --- Common kanji drawn from the expanded stories, articles, and songs ---
+  {
+    char: '家', meanings: ['house', 'home', 'family'], on: ['カ', 'ケ'], kun: ['いえ', 'や'], strokes: 10, jlpt: 'N5',
+    radical: { char: '宀', meaning: 'roof' },
+    components: [{ char: '宀', meaning: 'a roof' }, { char: '豕', meaning: 'a pig' }],
+    mnemonic: 'A pig (豕) kept under the roof (宀) — the old farmhouse, the home.',
+  },
+  {
+    char: '前', meanings: ['before', 'front', 'previous'], on: ['ゼン'], kun: ['まえ'], strokes: 9, jlpt: 'N5',
+    radical: { char: '刂', meaning: 'knife' },
+    components: [{ char: '䒑', meaning: 'a pair of horns' }, { char: '月', meaning: 'flesh / a boat' }, { char: '刂', meaning: 'knife' }],
+    mnemonic: 'A knife (刂) trimming what lies ahead of the body (月) — the front, before.',
+  },
+  {
+    char: '男', meanings: ['man', 'male'], on: ['ダン', 'ナン'], kun: ['おとこ'], strokes: 7, jlpt: 'N5',
+    radical: { char: '田', meaning: 'rice field' },
+    components: [{ char: '田', meaning: 'rice field' }, { char: '力', meaning: 'power' }],
+    mnemonic: 'Power (力) put to work in the rice field (田) — historically a man\'s labor.',
+  },
+  {
+    char: '力', meanings: ['power', 'strength', 'ability'], on: ['リョク', 'リキ'], kun: ['ちから'], strokes: 2, jlpt: 'N5',
+    radical: { char: '力', meaning: 'power' },
+    components: [{ char: '力', meaning: 'a flexed arm' }],
+    mnemonic: 'A bent, flexing arm straining with effort — strength and power.',
+  },
+  {
+    char: '道', meanings: ['road', 'way', 'path'], on: ['ドウ'], kun: ['みち'], strokes: 12, jlpt: 'N4',
+    radical: { char: '辶', meaning: 'movement / road' },
+    components: [{ char: '辶', meaning: 'road / movement' }, { char: '首', meaning: 'head, neck' }],
+    mnemonic: 'You walk (辶) where you point your head (首) — that is the road, the way.',
+  },
+  {
+    char: '外', meanings: ['outside', 'other'], on: ['ガイ', 'ゲ'], kun: ['そと', 'ほか'], strokes: 5, jlpt: 'N5',
+    radical: { char: '夕', meaning: 'evening' },
+    components: [{ char: '夕', meaning: 'evening' }, { char: '卜', meaning: 'divination' }],
+    mnemonic: 'Reading omens (卜) out in the evening (夕) air — being outside.',
+  },
+  {
+    char: '多', meanings: ['many', 'much'], on: ['タ'], kun: ['おお.い'], strokes: 6, jlpt: 'N5',
+    radical: { char: '夕', meaning: 'evening' },
+    components: [{ char: '夕', meaning: 'evening' }, { char: '夕', meaning: 'evening' }],
+    mnemonic: 'One evening (夕) piled on another (夕) and another — many days, much of something.',
+  },
+  {
+    char: '方', meanings: ['direction', 'way', 'person (polite)'], on: ['ホウ'], kun: ['かた'], strokes: 4, jlpt: 'N5',
+    radical: { char: '方', meaning: 'direction' },
+    components: [{ char: '亠', meaning: 'a top mark' }, { char: '万', meaning: 'a turning plow' }],
+    mnemonic: 'A plow turned to face one way — a direction, a method.',
+  },
+  {
+    char: '北', meanings: ['north'], on: ['ホク'], kun: ['きた'], strokes: 5, jlpt: 'N5',
+    radical: { char: '匕', meaning: 'spoon / seated person' },
+    components: [{ char: '丬', meaning: 'a person' }, { char: '匕', meaning: 'a person turned away' }],
+    mnemonic: 'Two people sitting back to back, turning away from the cold — the north.',
+  },
+  {
+    char: '古', meanings: ['old', 'used'], on: ['コ'], kun: ['ふる.い'], strokes: 5, jlpt: 'N5',
+    radical: { char: '口', meaning: 'mouth' },
+    components: [{ char: '十', meaning: 'ten' }, { char: '口', meaning: 'mouth' }],
+    mnemonic: 'A tale passed down through ten (十) mouths (口) over generations — something old.',
+  },
+  {
+    char: '京', meanings: ['capital'], on: ['キョウ', 'ケイ'], kun: ['みやこ'], strokes: 8, jlpt: 'N4',
+    radical: { char: '亠', meaning: 'lid / roof' },
+    components: [{ char: '亠', meaning: 'a high roof' }, { char: '口', meaning: 'a gate' }, { char: '小', meaning: 'a base / hill' }],
+    mnemonic: 'A tall gate-tower raised on a hill — the capital city.',
+  },
+  {
+    char: '都', meanings: ['metropolis', 'capital', 'all'], on: ['ト', 'ツ'], kun: ['みやこ'], strokes: 11, jlpt: 'N4',
+    radical: { char: '阝', meaning: 'village / city wall' },
+    components: [{ char: '者', meaning: 'person' }, { char: '阝', meaning: 'city wall' }],
+    mnemonic: 'Where the people (者) gather behind the city walls (阝) — the capital, the metropolis.',
+  },
+  {
+    char: '元', meanings: ['origin', 'beginning', 'former'], on: ['ゲン', 'ガン'], kun: ['もと'], strokes: 4, jlpt: 'N4',
+    radical: { char: '儿', meaning: 'legs / person' },
+    components: [{ char: '二', meaning: 'the head and a line' }, { char: '儿', meaning: 'legs' }],
+    mnemonic: 'The very top of a standing person (二 over 儿) — the origin, the source.',
+  },
+  {
+    char: '切', meanings: ['cut', 'earnest'], on: ['セツ', 'サイ'], kun: ['き.る'], strokes: 4, jlpt: 'N5',
+    radical: { char: '刀', meaning: 'sword / knife' },
+    components: [{ char: '七', meaning: 'seven; a slash' }, { char: '刀', meaning: 'knife' }],
+    mnemonic: 'A knife (刀) drawn across with a slash (七) — to cut.',
+  },
+  {
+    char: '帰', meanings: ['return', 'go home'], on: ['キ'], kun: ['かえ.る'], strokes: 10, jlpt: 'N5',
+    radical: { char: '巾', meaning: 'cloth' },
+    components: [{ char: '刂', meaning: 'a turning' }, { char: '帚', meaning: 'a broom' }],
+    mnemonic: 'Sweeping up with a broom (帚) before you turn and return home.',
+  },
+  {
+    char: '春', meanings: ['spring'], on: ['シュン'], kun: ['はる'], strokes: 9, jlpt: 'N4',
+    radical: { char: '日', meaning: 'sun' },
+    components: [{ char: '龶', meaning: 'sprouting plants' }, { char: '日', meaning: 'sun' }],
+    mnemonic: 'The sun (日) warming the first sprouting plants (龶) — spring.',
+  },
+  {
+    char: '夏', meanings: ['summer'], on: ['カ', 'ゲ'], kun: ['なつ'], strokes: 10, jlpt: 'N4',
+    radical: { char: '夂', meaning: 'slow steps' },
+    components: [{ char: '一', meaning: 'heat above' }, { char: '自', meaning: 'a face' }, { char: '夂', meaning: 'dragging feet' }],
+    mnemonic: 'A person dragging their feet (夂), face (自) flushed under the beating heat — summer.',
+  },
+  {
+    char: '秋', meanings: ['autumn', 'fall'], on: ['シュウ'], kun: ['あき'], strokes: 9, jlpt: 'N4',
+    radical: { char: '禾', meaning: 'grain stalk' },
+    components: [{ char: '禾', meaning: 'grain' }, { char: '火', meaning: 'fire' }],
+    mnemonic: 'Grain (禾) ripening fire-red (火) in the fields — the autumn harvest.',
+  },
+  {
+    char: '冬', meanings: ['winter'], on: ['トウ'], kun: ['ふゆ'], strokes: 5, jlpt: 'N4',
+    radical: { char: '冫', meaning: 'ice' },
+    components: [{ char: '夂', meaning: 'walking steps' }, { char: '冫', meaning: 'two drops of ice' }],
+    mnemonic: 'Footsteps (夂) crunching over ice (冫) — winter.',
+  },
+  {
+    char: '雪', meanings: ['snow'], on: ['セツ'], kun: ['ゆき'], strokes: 11, jlpt: 'N4',
+    radical: { char: '雨', meaning: 'rain' },
+    components: [{ char: '雨', meaning: 'rain' }, { char: '彐', meaning: 'a sweeping hand' }],
+    mnemonic: 'Rain (雨) soft enough to sweep up by hand (彐) — snow.',
+  },
 ]
 
 export const KANJI: Record<string, KanjiEntry> = Object.fromEntries(

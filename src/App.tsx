@@ -3,8 +3,15 @@ import { tokenizeText } from './lib/furigana'
 import { KANJI } from './data/kanji'
 import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
-import type { Song, Story, Token } from './data/types'
+import { READINGS } from './data/readings'
+import type { Reading, Song, Story, Token } from './data/types'
 import KanjiPopover from './components/KanjiCard'
+
+const CATEGORY_LABEL: Record<Reading['category'], string> = {
+  story: 'Story',
+  article: 'Article',
+  folktale: 'Folktale',
+}
 
 interface Hover {
   char: string
@@ -18,7 +25,10 @@ interface HoverApi {
 }
 const HoverCtx = createContext<HoverApi>({ show: () => {}, scheduleHide: () => {} })
 
-type Selection = { kind: 'story'; id: string } | { kind: 'song'; id: string }
+type Selection =
+  | { kind: 'story'; id: string }
+  | { kind: 'reading'; id: string }
+  | { kind: 'song'; id: string }
 
 export default function App() {
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
@@ -54,6 +64,7 @@ export default function App() {
   const cancelHide = () => window.clearTimeout(hideTimer.current)
 
   const story = sel.kind === 'story' ? STORIES.find((s) => s.id === sel.id)! : null
+  const reading = sel.kind === 'reading' ? READINGS.find((s) => s.id === sel.id)! : null
   const song = sel.kind === 'song' ? SONGS.find((s) => s.id === sel.id)! : null
 
   return (
@@ -83,6 +94,24 @@ export default function App() {
           </div>
 
           <div className="nav-group">
+            <div className="nav-label">Articles &amp; Tales</div>
+            <nav className="story-list">
+              {READINGS.map((r) => (
+                <button
+                  key={r.id}
+                  className={'story-item' + (sel.kind === 'reading' && r.id === sel.id ? ' active' : '')}
+                  onClick={() => setSel({ kind: 'reading', id: r.id })}
+                >
+                  <span className="si-title">{r.title}</span>
+                  <span className="si-en">{r.titleEn}</span>
+                  <span className="si-level">{r.level}</span>
+                  <span className="si-cat">{CATEGORY_LABEL[r.category]}</span>
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          <div className="nav-group">
             <div className="nav-label">Songs</div>
             <nav className="story-list">
               {SONGS.map((s) => (
@@ -106,6 +135,7 @@ export default function App() {
 
         <main className="reader">
           {story && <StoryView story={story} />}
+          {reading && <ReadingView reading={reading} />}
           {song && <SongView song={song} />}
         </main>
 
@@ -263,31 +293,85 @@ function SongView({ song }: { song: Song }) {
         <FuriToggle on={furigana} set={setFurigana} />
       </header>
 
-      <section className="phrase-block">
-        <h2 className="block-title">Key phrases <span className="block-sub">— example sentences in the spirit of the song</span></h2>
-        <ul className="phrases">
-          {song.phrases.map((p, i) => (
-            <li className="phrase" key={i}>
-              <div className="phrase-jp">
-                <Line tokens={p.line} furigana={furigana} />
-              </div>
-              <div className="phrase-en">{p.en}</div>
-              {p.note && <div className="phrase-note">{p.note}</div>}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {song.lyrics && (
+        <section className="phrase-block">
+          <h2 className="block-title">Lyrics <span className="block-sub">— public domain</span></h2>
+          <div className="lyrics-render bundled">
+            <FuriganaText text={song.lyrics} furigana={furigana} />
+          </div>
+          {song.credit && <p className="lyrics-credit">{song.credit}</p>}
+        </section>
+      )}
+
+      {song.phrases && (
+        <section className="phrase-block">
+          <h2 className="block-title">Key phrases <span className="block-sub">— example sentences in the spirit of the song</span></h2>
+          <ul className="phrases">
+            {song.phrases.map((p, i) => (
+              <li className="phrase" key={i}>
+                <div className="phrase-jp">
+                  <Line tokens={p.line} furigana={furigana} />
+                </div>
+                <div className="phrase-en">{p.en}</div>
+                {p.note && <div className="phrase-note">{p.note}</div>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <Panels vocab={song.vocab} grammar={song.grammar} />
 
       <LyricsBox songId={song.id} furigana={furigana} />
 
-      <p className="copyright-note">
-        Song lyrics are copyrighted, so they aren't bundled with this app. The vocabulary and
-        grammar above are taught with original example sentences. Paste lyrics you have legal
-        access to into your library below — they're saved on this device and rendered with full
-        hover-kanji support.
-      </p>
+      {!song.publicDomain && (
+        <p className="copyright-note">
+          Song lyrics are copyrighted, so they aren't bundled with this app. The vocabulary and
+          grammar above are taught with original example sentences. Paste lyrics you have legal
+          access to into your library below — they're saved on this device and rendered with full
+          hover-kanji support.
+        </p>
+      )}
+    </>
+  )
+}
+
+/* ---------------- Reading view (text + auto-furigana) ---------------- */
+
+function ReadingView({ reading }: { reading: Reading }) {
+  const [furigana, setFurigana] = useState(true)
+  return (
+    <>
+      <header className="reader-head">
+        <div>
+          <h1 className="story-title">{reading.title}</h1>
+          <div className="story-sub">
+            {reading.titleReading && (
+              <>
+                <span className="story-reading">{reading.titleReading}</span>
+                <span className="dot">·</span>
+              </>
+            )}
+            <span>{reading.titleEn}</span>
+            <span className="dot">·</span>
+            <span className="cat-pill">{CATEGORY_LABEL[reading.category]}</span>
+          </div>
+          <p className="story-summary">{reading.summary}</p>
+        </div>
+        <FuriToggle on={furigana} set={setFurigana} />
+      </header>
+
+      <article className="story-body reading-body">
+        {reading.paragraphs.map((para, i) => (
+          <div className="para" key={i}>
+            <FuriganaText text={para} furigana={furigana} />
+          </div>
+        ))}
+      </article>
+
+      {reading.credit && <p className="lyrics-credit">{reading.credit}</p>}
+
+      <Panels vocab={reading.vocab} grammar={reading.grammar ?? []} />
     </>
   )
 }
@@ -357,14 +441,19 @@ function LyricsBox({ songId, furigana }: { songId: string; furigana: boolean }) 
         )}
       </div>
       </>)}
-      {!showEditor && <LyricsRender text={saved} furigana={furigana} />}
+      {!showEditor && (
+        <div className="lyrics-render">
+          <FuriganaText text={saved} furigana={furigana} />
+        </div>
+      )}
     </section>
   )
 }
 
-/* Renders saved lyrics. When furigana is on, runs the kuromoji tokenizer to add
-   readings; otherwise shows plain lines with hoverable kanji. */
-function LyricsRender({ text, furigana }: { text: string; furigana: boolean }) {
+/* Renders a block of Japanese text. When furigana is on, runs the kuromoji
+   tokenizer to add readings; otherwise shows plain lines with hoverable kanji.
+   Renders a fragment of lines — wrap it in your own container. */
+function FuriganaText({ text, furigana }: { text: string; furigana: boolean }) {
   const [tokenized, setTokenized] = useState<Token[][] | null>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
 
@@ -393,7 +482,7 @@ function LyricsRender({ text, furigana }: { text: string; furigana: boolean }) {
   const lines = useFuri ? tokenized! : plain
 
   return (
-    <div className="lyrics-render">
+    <>
       {status === 'loading' && <div className="furi-loading">Generating furigana…</div>}
       {status === 'error' && (
         <div className="furi-loading">Furigana dictionary unavailable — showing plain text.</div>
@@ -403,7 +492,7 @@ function LyricsRender({ text, furigana }: { text: string; furigana: boolean }) {
           {tokens.length === 0 ? ' ' : <Line tokens={tokens} furigana={furigana} />}
         </p>
       ))}
-    </div>
+    </>
   )
 }
 

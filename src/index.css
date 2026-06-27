@@ -87,6 +87,20 @@ body {
   background: rgba(255, 255, 255, 0.15);
   padding: 2px 6px; border-radius: 6px;
 }
+.si-cat {
+  display: inline-block; margin-top: 4px;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: #cdb87a;
+}
+.story-item.active .si-cat { color: #fbf2dc; }
+.cat-pill {
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--line); border-radius: 999px;
+  padding: 1px 8px;
+}
+.lyrics-credit { font-size: 12px; color: var(--ink-soft); font-style: italic; margin: 10px 0 0; }
+.lyrics-render.bundled { font-size: 28px; }
+.reading-body .para { margin-bottom: 18px; }
 .sidebar-foot {
   margin-top: auto;
   font-size: 12px; line-height: 1.6;
