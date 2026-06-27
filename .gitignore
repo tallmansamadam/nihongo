@@ -5,3 +5,7 @@ dist
 
 # kuromoji dictionary — regenerated from node_modules by `npm run prepare-dict` (postinstall)
 public/dict
+
+# Tauri (desktop/mobile) build artifacts
+src-tauri/target
+src-tauri/gen
