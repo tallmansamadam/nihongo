@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { getGlyph } from '../data/components'
-import { KANJI } from '../data/kanji'
 import type { Token } from '../data/types'
 import StrokeOrder from './StrokeOrder'
 
@@ -78,7 +77,7 @@ function CompoundView({
       <div className="cmp-tiles">
         {chars.map((c, i) => {
           const isKanji = KANJI_RE.test(c)
-          const meaning = KANJI[c]?.meanings[0]
+          const meaning = isKanji ? getGlyph(c).meaning : undefined
           return isKanji ? (
             <button className="cmp-tile" key={i} onClick={() => onPick(c, meaning)}>
               <span className="cmp-tile-char">{c}</span>

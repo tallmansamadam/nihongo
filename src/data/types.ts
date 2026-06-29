@@ -78,6 +78,16 @@ export interface Song {
   grammar: GrammarNote[]
 }
 
+/** Baseline dictionary data for a kanji that isn't hand-authored — meanings,
+ *  readings, and stroke count from KANJIDIC2 (via kanjiapi.dev). No mnemonic or
+ *  grapheme breakdown; those exist only for the curated set. */
+export interface BaseKanji {
+  meanings: string[]
+  on: string[]
+  kun: string[]
+  strokes: number
+}
+
 /** A plain-text reading (story / article / folktale) rendered with
  *  auto-furigana and hover-kanji. Cheaper to author than tokenized stories. */
 export interface Reading {

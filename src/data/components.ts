@@ -1,4 +1,5 @@
 import { KANJI } from './kanji'
+import { KANJI_BASE } from './kanji-base'
 import type { Component } from './types'
 
 // A small dictionary of sub-kanji graphemes (radicals and parts) so the popover
@@ -77,8 +78,15 @@ export interface GlyphInfo {
   mnemonic?: string
 }
 
-/** Resolve any glyph: full kanji from KANJI, else a known component, else a
- *  leaf using the meaning passed down from the parent chip. */
+const KANJI_RANGE = /[一-龯㐀-䶿]/
+
+/** True if we have hover data for this character (curated or baseline kanji). */
+export function isHoverableKanji(char: string): boolean {
+  return KANJI_RANGE.test(char) && (char in KANJI || char in KANJI_BASE)
+}
+
+/** Resolve any glyph: full kanji from KANJI, else baseline KANJIDIC data, else a
+ *  known component, else a leaf using the meaning passed down from the parent. */
 export function getGlyph(char: string, fallbackMeaning?: string): GlyphInfo {
   const k = KANJI[char]
   if (k) {
@@ -94,6 +102,19 @@ export function getGlyph(char: string, fallbackMeaning?: string): GlyphInfo {
       radical: k.radical,
       components: k.components,
       mnemonic: k.mnemonic,
+    }
+  }
+  const b = KANJI_BASE[char]
+  if (b) {
+    return {
+      char,
+      isKanji: true,
+      meaning: b.meanings[0] ?? '—',
+      meanings: b.meanings,
+      on: b.on,
+      kun: b.kun,
+      strokes: b.strokes,
+      components: [],
     }
   }
   const c = COMPONENTS[char]

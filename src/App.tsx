@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { tokenizeText } from './lib/furigana'
-import { KANJI } from './data/kanji'
 import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
 import { READINGS } from './data/readings'
+import { isHoverableKanji } from './data/components'
 import type { Reading, Song, Story, Token } from './data/types'
 import KanjiPopover from './components/KanjiCard'
 
@@ -139,7 +139,7 @@ export default function App() {
           {song && <SongView song={song} />}
         </main>
 
-        {hover && KANJI[hover.char] && (
+        {hover && isHoverableKanji(hover.char) && (
           <Popover rect={hover.rect} onEnter={cancelHide} onLeave={api.scheduleHide}>
             <KanjiPopover token={hover.token} char={hover.char} altDown={altDown} />
           </Popover>
@@ -149,14 +149,12 @@ export default function App() {
   )
 }
 
-const KANJI_RE = /[一-龯]/
-
 function TokenView({ tok, furigana }: { tok: Token; furigana: boolean }) {
   const { show, scheduleHide } = useContext(HoverCtx)
   const base = (
     <span className="word" title={tok.g}>
       {[...tok.w].map((ch, i) =>
-        KANJI_RE.test(ch) && KANJI[ch] ? (
+        isHoverableKanji(ch) ? (
           <span
             key={i}
             className="kanji"
