@@ -21,9 +21,8 @@ interface Hover {
 
 interface HoverApi {
   show: (char: string, token: Token, el: HTMLElement) => void
-  scheduleHide: () => void
 }
-const HoverCtx = createContext<HoverApi>({ show: () => {}, scheduleHide: () => {} })
+const HoverCtx = createContext<HoverApi>({ show: () => {} })
 
 type Selection =
   | { kind: 'story'; id: string }
@@ -34,7 +33,7 @@ export default function App() {
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
   const [hover, setHover] = useState<Hover | null>(null)
   const [altDown, setAltDown] = useState(false)
-  const hideTimer = useRef<number | undefined>(undefined)
+  const popoverRef = useRef<HTMLDivElement>(null)
 
   // Track Alt/Option so hovering can switch into the surrounding-compound view.
   useEffect(() => {
@@ -53,15 +52,29 @@ export default function App() {
 
   const api: HoverApi = {
     show(char, token, el) {
-      window.clearTimeout(hideTimer.current)
       setHover({ char, token, rect: el.getBoundingClientRect() })
     },
-    scheduleHide() {
-      window.clearTimeout(hideTimer.current)
-      hideTimer.current = window.setTimeout(() => setHover(null), 120)
-    },
   }
-  const cancelHide = () => window.clearTimeout(hideTimer.current)
+
+  // Sticky popover: once open it stays put — through grapheme drill-downs and
+  // their size changes — until you click outside it or press Escape. Hovering a
+  // different kanji replaces it (via show()).
+  useEffect(() => {
+    const onDown = (e: MouseEvent) => {
+      if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
+        setHover(null)
+      }
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setHover(null)
+    }
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [])
 
   const story = sel.kind === 'story' ? STORIES.find((s) => s.id === sel.id)! : null
   const reading = sel.kind === 'reading' ? READINGS.find((s) => s.id === sel.id)! : null
@@ -140,7 +153,7 @@ export default function App() {
         </main>
 
         {hover && isHoverableKanji(hover.char) && (
-          <Popover rect={hover.rect} onEnter={cancelHide} onLeave={api.scheduleHide}>
+          <Popover rect={hover.rect} innerRef={popoverRef}>
             <KanjiPopover token={hover.token} char={hover.char} altDown={altDown} />
           </Popover>
         )}
@@ -150,7 +163,7 @@ export default function App() {
 }
 
 function TokenView({ tok, furigana }: { tok: Token; furigana: boolean }) {
-  const { show, scheduleHide } = useContext(HoverCtx)
+  const { show } = useContext(HoverCtx)
   const base = (
     <span className="word" title={tok.g}>
       {[...tok.w].map((ch, i) =>
@@ -159,7 +172,6 @@ function TokenView({ tok, furigana }: { tok: Token; furigana: boolean }) {
             key={i}
             className="kanji"
             onMouseEnter={(e) => show(ch, tok, e.currentTarget)}
-            onMouseLeave={scheduleHide}
           >
             {ch}
           </span>
@@ -193,13 +205,11 @@ function Line({ tokens, furigana = true }: { tokens: Token[]; furigana?: boolean
 function Popover({
   rect,
   children,
-  onEnter,
-  onLeave,
+  innerRef,
 }: {
   rect: DOMRect
   children: React.ReactNode
-  onEnter: () => void
-  onLeave: () => void
+  innerRef: React.Ref<HTMLDivElement>
 }) {
   const width = 320
   const margin = 12
@@ -210,12 +220,7 @@ function Popover({
     ? { left, top: rect.bottom + 10, width }
     : { left, bottom: window.innerHeight - rect.top + 10, width }
   return (
-    <div
-      className={'popover ' + (below ? 'below' : 'above')}
-      style={style}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-    >
+    <div ref={innerRef} className={'popover ' + (below ? 'below' : 'above')} style={style}>
       {children}
     </div>
   )
