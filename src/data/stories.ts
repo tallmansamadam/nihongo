@@ -19,9 +19,9 @@ export const STORIES: Story[] = [
         [{ w: '学校', r: 'がっこう' }, { w: 'で' }, { w: '日本語', r: 'にほんご' }, { w: 'を' }, { w: '学びます', r: 'まなびます', g: 'to learn' }, { w: '。' }],
       ],
       [
-        [{ w: '先生', r: 'せんせい', g: 'teacher' }, { w: 'は' }, { w: 'とても' }, { w: 'いい' }, { w: '人', r: 'ひと', g: 'person' }, { w: 'です' }, { w: '。' }],
-        [{ w: '友だち', r: 'ともだち', g: 'friend' }, { w: 'と' }, { w: 'いっしょに' }, { w: '本', r: 'ほん', g: 'book' }, { w: 'を' }, { w: '読みます', r: 'よみます', g: 'to read' }, { w: '。' }],
-        [{ w: 'おひる' }, { w: 'に' }, { w: 'ごはん' }, { w: 'を' }, { w: '食べます', r: 'たべます', g: 'to eat' }, { w: '。' }],
+        [{ w: '先生', r: 'せんせい', g: 'teacher' }, { w: 'は' }, { w: 'とても' }, { w: '良い', r: 'いい' }, { w: '人', r: 'ひと', g: 'person' }, { w: 'です' }, { w: '。' }],
+        [{ w: '友達', r: 'ともだち', g: 'friend' }, { w: 'と' }, { w: '一緒に', r: 'いっしょに' }, { w: '本', r: 'ほん', g: 'book' }, { w: 'を' }, { w: '読みます', r: 'よみます', g: 'to read' }, { w: '。' }],
+        [{ w: 'お昼', r: 'おひる' }, { w: 'に' }, { w: 'ご飯', r: 'ごはん' }, { w: 'を' }, { w: '食べます', r: 'たべます', g: 'to eat' }, { w: '。' }],
         [{ w: '今', r: 'いま', g: 'now' }, { w: '、' }, { w: '日本語', r: 'にほんご' }, { w: 'が' }, { w: '大好き', r: 'だいすき', g: 'to love / like a lot' }, { w: 'です' }, { w: '。' }],
       ],
     ],
@@ -31,7 +31,7 @@ export const STORIES: Story[] = [
       { word: '学校', reading: 'がっこう', meaning: 'school' },
       { word: '学ぶ', reading: 'まなぶ', meaning: 'to learn, to study' },
       { word: '先生', reading: 'せんせい', meaning: 'teacher' },
-      { word: '友だち', reading: 'ともだち', meaning: 'friend' },
+      { word: '友達', reading: 'ともだち', meaning: 'friend' },
       { word: '読む', reading: 'よむ', meaning: 'to read' },
       { word: '大好き', reading: 'だいすき', meaning: 'to love, to really like' },
     ],
@@ -44,39 +44,39 @@ export const STORIES: Story[] = [
   },
   {
     id: 'breakfast',
-    title: '朝ごはん',
+    title: '朝ご飯',
     titleReading: 'あさごはん',
     titleEn: 'Breakfast',
     level: 'N5',
     summary: 'A warm look at one family eating breakfast together in the morning.',
     paragraphs: [
       [
-        [{ w: '今日', r: 'きょう', g: 'today' }, { w: 'は' }, { w: 'いい' }, { w: '天気', r: 'てんき', g: 'weather' }, { w: 'です' }, { w: '。' }],
-        [{ w: '母', r: 'はは', g: 'mother' }, { w: 'は' }, { w: '朝ごはん', r: 'あさごはん', g: 'breakfast' }, { w: 'を' }, { w: 'つくります' }, { w: '。' }],
+        [{ w: '今日', r: 'きょう', g: 'today' }, { w: 'は' }, { w: '良い', r: 'いい' }, { w: '天気', r: 'てんき', g: 'weather' }, { w: 'です' }, { w: '。' }],
+        [{ w: '母', r: 'はは', g: 'mother' }, { w: 'は' }, { w: '朝ご飯', r: 'あさごはん', g: 'breakfast' }, { w: 'を' }, { w: '作ります', r: 'つくります' }, { w: '。' }],
       ],
       [
-        [{ w: '私', r: 'わたし' }, { w: 'は' }, { w: '魚', r: 'さかな', g: 'fish' }, { w: 'と' }, { w: 'ごはん' }, { w: 'を' }, { w: '食べます', r: 'たべます' }, { w: '。' }],
-        [{ w: '父', r: 'ちち', g: 'father' }, { w: 'は' }, { w: 'おちゃ' }, { w: 'を' }, { w: '飲みます', r: 'のみます', g: 'to drink' }, { w: '。' }],
-        [{ w: 'とても' }, { w: 'おいしい' }, { w: 'です' }, { w: '。' }],
+        [{ w: '私', r: 'わたし' }, { w: 'は' }, { w: '魚', r: 'さかな', g: 'fish' }, { w: 'と' }, { w: 'ご飯', r: 'ごはん' }, { w: 'を' }, { w: '食べます', r: 'たべます' }, { w: '。' }],
+        [{ w: '父', r: 'ちち', g: 'father' }, { w: 'は' }, { w: 'お茶', r: 'おちゃ' }, { w: 'を' }, { w: '飲みます', r: 'のみます', g: 'to drink' }, { w: '。' }],
+        [{ w: 'とても' }, { w: '美味しい', r: 'おいしい' }, { w: 'です' }, { w: '。' }],
       ],
       [
-        [{ w: '毎朝', r: 'まいあさ' }, { w: '、' }, { w: '家ぞく', r: 'かぞく', g: 'family' }, { w: 'で' }, { w: '話します', r: 'はなします', g: 'to talk' }, { w: '。' }],
+        [{ w: '毎朝', r: 'まいあさ' }, { w: '、' }, { w: '家族', r: 'かぞく', g: 'family' }, { w: 'で' }, { w: '話します', r: 'はなします', g: 'to talk' }, { w: '。' }],
         [{ w: '朝', r: 'あさ', g: 'morning' }, { w: 'の' }, { w: '時間', r: 'じかん', g: 'time' }, { w: 'が' }, { w: '大好き', r: 'だいすき' }, { w: 'です' }, { w: '。' }],
       ],
     ],
     vocab: [
       { word: '今日', reading: 'きょう', meaning: 'today' },
       { word: '天気', reading: 'てんき', meaning: 'weather' },
-      { word: '朝ごはん', reading: 'あさごはん', meaning: 'breakfast' },
+      { word: '朝ご飯', reading: 'あさごはん', meaning: 'breakfast' },
       { word: '魚', reading: 'さかな', meaning: 'fish' },
       { word: '飲む', reading: 'のむ', meaning: 'to drink' },
       { word: '話す', reading: 'はなす', meaning: 'to talk, to speak' },
       { word: '時間', reading: 'じかん', meaning: 'time, hour' },
     ],
     grammar: [
-      { point: '〜と〜', explanation: 'と connects two nouns like "and": A と B = "A and B".', example: '魚とごはん', exampleEn: 'fish and rice' },
-      { point: '〜で (means / location of action)', explanation: 'で marks where an action happens, or the means by which it is done.', example: '家ぞくで話します。', exampleEn: 'We talk as a family.' },
-      { point: 'い-adjective + です', explanation: 'い-adjectives (おいしい, いい) come straight before です with no な.', example: 'とてもおいしいです。', exampleEn: 'It is very delicious.' },
+      { point: '〜と〜', explanation: 'と connects two nouns like "and": A と B = "A and B".', example: '魚とご飯', exampleEn: 'fish and rice' },
+      { point: '〜で (means / location of action)', explanation: 'で marks where an action happens, or the means by which it is done.', example: '家族で話します。', exampleEn: 'We talk as a family.' },
+      { point: 'い-adjective + です', explanation: 'い-adjectives (美味しい, 良い) come straight before です with no な.', example: 'とても美味しいです。', exampleEn: 'It is very delicious.' },
     ],
   },
   {
@@ -88,14 +88,14 @@ export const STORIES: Story[] = [
     summary: 'A day trip with a friend — climbing a mountain and visiting the sea.',
     paragraphs: [
       [
-        [{ w: 'なつやすみ' }, { w: '、' }, { w: '友だち', r: 'ともだち' }, { w: 'と' }, { w: '山', r: 'やま', g: 'mountain' }, { w: 'へ' }, { w: '行きました', r: 'いきました', g: 'went' }, { w: '。' }],
-        [{ w: '山', r: 'やま' }, { w: 'は' }, { w: '高くて', r: 'たかくて', g: 'tall and…' }, { w: '、' }, { w: 'きれい' }, { w: 'でした' }, { w: '。' }],
-        [{ w: '川', r: 'かわ', g: 'river' }, { w: 'の' }, { w: '水', r: 'みず', g: 'water' }, { w: 'は' }, { w: 'つめたかった' }, { w: 'です' }, { w: '。' }],
+        [{ w: '夏休み', r: 'なつやすみ' }, { w: '、' }, { w: '友達', r: 'ともだち' }, { w: 'と' }, { w: '山', r: 'やま', g: 'mountain' }, { w: 'へ' }, { w: '行きました', r: 'いきました', g: 'went' }, { w: '。' }],
+        [{ w: '山', r: 'やま' }, { w: 'は' }, { w: '高くて', r: 'たかくて', g: 'tall and…' }, { w: '、' }, { w: '綺麗', r: 'きれい' }, { w: 'でした' }, { w: '。' }],
+        [{ w: '川', r: 'かわ', g: 'river' }, { w: 'の' }, { w: '水', r: 'みず', g: 'water' }, { w: 'は' }, { w: '冷たかった', r: 'つめたかった' }, { w: 'です' }, { w: '。' }],
       ],
       [
-        [{ w: 'おひる' }, { w: 'に' }, { w: '海', r: 'うみ', g: 'sea' }, { w: 'へ' }, { w: '行きました', r: 'いきました' }, { w: '。' }],
+        [{ w: 'お昼', r: 'おひる' }, { w: 'に' }, { w: '海', r: 'うみ', g: 'sea' }, { w: 'へ' }, { w: '行きました', r: 'いきました' }, { w: '。' }],
         [{ w: '海', r: 'うみ' }, { w: 'で' }, { w: '魚', r: 'さかな' }, { w: 'を' }, { w: '見ました', r: 'みました', g: 'saw' }, { w: '。' }],
-        [{ w: '空', r: 'そら', g: 'sky' }, { w: 'は' }, { w: 'とても' }, { w: 'きれい' }, { w: 'でした' }, { w: '。' }],
+        [{ w: '空', r: 'そら', g: 'sky' }, { w: 'は' }, { w: 'とても' }, { w: '綺麗', r: 'きれい' }, { w: 'でした' }, { w: '。' }],
         [{ w: '楽しい', r: 'たのしい', g: 'fun, enjoyable' }, { w: '一日', r: 'いちにち', g: 'one day' }, { w: 'でした' }, { w: '。' }],
       ],
     ],
@@ -110,7 +110,7 @@ export const STORIES: Story[] = [
     ],
     grammar: [
       { point: '〜ました (past polite)', explanation: 'Change ます to ました for the polite past tense.', example: '山へ行きました。', exampleEn: 'I went to the mountain.' },
-      { point: 'い-adjective + くて', explanation: 'Drop い and add くて to join adjectives or clauses: "tall and…".', example: '高くて、きれいでした。', exampleEn: 'It was tall and beautiful.' },
+      { point: 'い-adjective + くて', explanation: 'Drop い and add くて to join adjectives or clauses: "tall and…".', example: '高くて、綺麗でした。', exampleEn: 'It was tall and beautiful.' },
       { point: 'でした', explanation: 'The past tense of です. Use it with nouns and な-adjectives.', example: '楽しい一日でした。', exampleEn: 'It was a fun day.' },
     ],
   },
@@ -124,12 +124,12 @@ export const STORIES: Story[] = [
     paragraphs: [
       [
         [{ w: '私', r: 'わたし' }, { w: 'の' }, { w: '町', r: 'まち', g: 'town' }, { w: 'に' }, { w: '新しい', r: 'あたらしい', g: 'new' }, { w: '店', r: 'みせ', g: 'shop' }, { w: 'が' }, { w: 'あります' }, { w: '。' }],
-        [{ w: '友だち', r: 'ともだち' }, { w: 'の' }, { w: 'お母さん', r: 'おかあさん', g: 'mother (polite)' }, { w: 'の' }, { w: '店', r: 'みせ' }, { w: 'です' }, { w: '。' }],
+        [{ w: '友達', r: 'ともだち' }, { w: 'の' }, { w: 'お母さん', r: 'おかあさん', g: 'mother (polite)' }, { w: 'の' }, { w: '店', r: 'みせ' }, { w: 'です' }, { w: '。' }],
       ],
       [
         [{ w: 'そこ' }, { w: 'で' }, { w: '本', r: 'ほん' }, { w: 'を' }, { w: '買います', r: 'かいます', g: 'to buy' }, { w: '。' }],
-        [{ w: 'きのう' }, { w: '、' }, { w: '日本語', r: 'にほんご' }, { w: 'の' }, { w: '本', r: 'ほん' }, { w: 'を' }, { w: '買いました', r: 'かいました', g: 'bought' }, { w: '。' }],
-        [{ w: '店', r: 'みせ' }, { w: 'の' }, { w: '人', r: 'ひと' }, { w: 'は' }, { w: 'みんな' }, { w: 'やさしい' }, { w: 'です' }, { w: '。' }],
+        [{ w: '昨日', r: 'きのう' }, { w: '、' }, { w: '日本語', r: 'にほんご' }, { w: 'の' }, { w: '本', r: 'ほん' }, { w: 'を' }, { w: '買いました', r: 'かいました', g: 'bought' }, { w: '。' }],
+        [{ w: '店', r: 'みせ' }, { w: 'の' }, { w: '人', r: 'ひと' }, { w: 'は' }, { w: '皆', r: 'みんな' }, { w: '優しい', r: 'やさしい' }, { w: 'です' }, { w: '。' }],
       ],
       [
         [{ w: '電車', r: 'でんしゃ', g: 'train' }, { w: 'で' }, { w: '駅', r: 'えき', g: 'station' }, { w: 'から' }, { w: '行きます', r: 'いきます' }, { w: '。' }],

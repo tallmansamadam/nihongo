@@ -213,12 +213,19 @@ function Popover({
 }) {
   const width = 320
   const margin = 12
+  const gap = 10
+  // Clamp horizontally within the viewport.
   let left = rect.left + rect.width / 2 - width / 2
   left = Math.max(margin, Math.min(left, window.innerWidth - width - margin))
-  const below = rect.top < 380
+  // Place on whichever side has more room, and cap the height so it always fits
+  // on screen — the card scrolls internally if a deep drill-down runs long.
+  const spaceBelow = window.innerHeight - rect.bottom - gap - margin
+  const spaceAbove = rect.top - gap - margin
+  const below = spaceBelow >= spaceAbove
+  const maxHeight = Math.max(140, Math.floor(below ? spaceBelow : spaceAbove))
   const style: React.CSSProperties = below
-    ? { left, top: rect.bottom + 10, width }
-    : { left, bottom: window.innerHeight - rect.top + 10, width }
+    ? { left, top: rect.bottom + gap, width, maxHeight, overflowY: 'auto' }
+    : { left, bottom: window.innerHeight - rect.top + gap, width, maxHeight, overflowY: 'auto' }
   return (
     <div ref={innerRef} className={'popover ' + (below ? 'below' : 'above')} style={style}>
       {children}
