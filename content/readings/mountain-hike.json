@@ -1,0 +1,49 @@
+{
+  "id": "mountain-hike",
+  "title": "山登り",
+  "titleReading": "やまのぼり",
+  "titleEn": "A Mountain Hike",
+  "level": "N4",
+  "category": "story",
+  "summary": "An early-morning climb rewarded by a view above the clouds.",
+  "paragraphs": [
+    "先週の土曜日、友達と山に登りました。朝早く、まだ暗いうちに出発しました。",
+    "道はけっこうきびしくて、何度も休みました。でも、山の空気はとてもきれいでした。",
+    "頂上に着いたとき、雲の上に太陽が見えました。がんばってよかったと思いました。"
+  ],
+  "vocab": [
+    {
+      "word": "登る",
+      "reading": "のぼる",
+      "meaning": "to climb"
+    },
+    {
+      "word": "出発",
+      "reading": "しゅっぱつ",
+      "meaning": "departure"
+    },
+    {
+      "word": "空気",
+      "reading": "くうき",
+      "meaning": "air"
+    },
+    {
+      "word": "頂上",
+      "reading": "ちょうじょう",
+      "meaning": "summit, peak"
+    },
+    {
+      "word": "太陽",
+      "reading": "たいよう",
+      "meaning": "the sun"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てよかった",
+      "explanation": "Expresses relief/gladness that something was done: 〜てよかった = \"I’m glad I …\".",
+      "example": "がんばってよかったです。",
+      "exampleEn": "I’m glad I tried hard."
+    }
+  ]
+}

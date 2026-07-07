@@ -1,0 +1,41 @@
+{
+  "id": "my-room",
+  "title": "私の部屋",
+  "titleReading": "わたしのへや",
+  "titleEn": "My Room",
+  "level": "N5",
+  "category": "story",
+  "summary": "A tour of a small, tidy bedroom.",
+  "paragraphs": [
+    "私の部屋は小さいですが、明るくて静かです。",
+    "まどのそばに机といすがあります。机の上にパソコンと本があります。",
+    "かべには家族の写真がはってあります。私はこの部屋が大好きです。"
+  ],
+  "vocab": [
+    {
+      "word": "部屋",
+      "reading": "へや",
+      "meaning": "room"
+    },
+    {
+      "word": "明るい",
+      "reading": "あかるい",
+      "meaning": "bright"
+    },
+    {
+      "word": "静か",
+      "reading": "しずか",
+      "meaning": "quiet"
+    },
+    {
+      "word": "机",
+      "reading": "つくえ",
+      "meaning": "desk"
+    },
+    {
+      "word": "壁",
+      "reading": "かべ",
+      "meaning": "wall"
+    }
+  ]
+}

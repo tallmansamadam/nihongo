@@ -1,0 +1,49 @@
+{
+  "id": "history-of-manga",
+  "title": "漫画の歴史",
+  "titleReading": "まんがのれきし",
+  "titleEn": "A Short History of Manga",
+  "level": "N3",
+  "category": "article",
+  "summary": "From playful old picture scrolls to a global pop-culture force.",
+  "paragraphs": [
+    "漫画は今、世界中で読まれていますが、その歴史は長いです。",
+    "古い時代の絵巻物には、すでに動物を人のようにえがいた絵があり、これが漫画のもとだと言われています。",
+    "戦後、手塚治虫のような作家が、物語のある長い漫画を広めました。今では、漫画は日本を代表する文化の一つになっています。"
+  ],
+  "vocab": [
+    {
+      "word": "漫画",
+      "reading": "まんが",
+      "meaning": "manga, comics"
+    },
+    {
+      "word": "歴史",
+      "reading": "れきし",
+      "meaning": "history"
+    },
+    {
+      "word": "描く",
+      "reading": "えがく",
+      "meaning": "to draw, to depict"
+    },
+    {
+      "word": "作家",
+      "reading": "さっか",
+      "meaning": "author, creator"
+    },
+    {
+      "word": "文化",
+      "reading": "ぶんか",
+      "meaning": "culture"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜と言われている",
+      "explanation": "\"It is said that …\": 漫画のもとだと言われている = \"it is said to be the origin of manga\".",
+      "example": "漫画のもとだと言われています。",
+      "exampleEn": "It is said to be the origin of manga."
+    }
+  ]
+}

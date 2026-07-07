@@ -1,0 +1,49 @@
+{
+  "id": "moving-house",
+  "title": "引っ越し",
+  "titleReading": "ひっこし",
+  "titleEn": "Moving House",
+  "level": "N4",
+  "category": "story",
+  "summary": "The busy, bittersweet day of moving to a new apartment.",
+  "paragraphs": [
+    "先月、私は新しいアパートに引っ越しました。前のアパートより広くて、駅にも近いです。",
+    "引っ越しの日は本当にたいへんでした。友達が手伝ってくれたので、はやく終わりました。",
+    "新しい部屋はまだ荷物でいっぱいですが、少しずつかたづけています。早く住みやすくしたいです。"
+  ],
+  "vocab": [
+    {
+      "word": "引っ越し",
+      "reading": "ひっこし",
+      "meaning": "moving (house)"
+    },
+    {
+      "word": "広い",
+      "reading": "ひろい",
+      "meaning": "spacious"
+    },
+    {
+      "word": "手伝う",
+      "reading": "てつだう",
+      "meaning": "to help"
+    },
+    {
+      "word": "荷物",
+      "reading": "にもつ",
+      "meaning": "luggage, belongings"
+    },
+    {
+      "word": "片付ける",
+      "reading": "かたづける",
+      "meaning": "to tidy up"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜より",
+      "explanation": "Comparison: A は B より〜 = \"A is more … than B\".",
+      "example": "前より広いです。",
+      "exampleEn": "It is more spacious than before."
+    }
+  ]
+}

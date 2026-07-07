@@ -1,0 +1,49 @@
+{
+  "id": "trains-in-japan",
+  "title": "日本の電車",
+  "titleReading": "にほんのでんしゃ",
+  "titleEn": "Trains in Japan",
+  "level": "N3",
+  "category": "article",
+  "summary": "Why Japan’s railways are famous for being fast, clean, and on time.",
+  "paragraphs": [
+    "日本の電車は、世界でも時間に正確なことで有名です。ほとんどの電車が、一分もおくれずに来ます。",
+    "大きな駅では、たくさんの路線が集まっていて、まるでめいろのようです。はじめて来た人はよく道にまよいます。",
+    "中でも新幹線は、時速三百キロ近くで走ります。東京から大阪まで、およそ二時間半で着くことができます。"
+  ],
+  "vocab": [
+    {
+      "word": "正確",
+      "reading": "せいかく",
+      "meaning": "accurate, precise"
+    },
+    {
+      "word": "遅れる",
+      "reading": "おくれる",
+      "meaning": "to be late, delayed"
+    },
+    {
+      "word": "路線",
+      "reading": "ろせん",
+      "meaning": "train line, route"
+    },
+    {
+      "word": "迷う",
+      "reading": "まよう",
+      "meaning": "to get lost, to hesitate"
+    },
+    {
+      "word": "新幹線",
+      "reading": "しんかんせん",
+      "meaning": "bullet train"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ことで有名",
+      "explanation": "\"Famous for (doing/being) …\": 正確なことで有名 = \"famous for being precise\".",
+      "example": "時間に正確なことで有名です。",
+      "exampleEn": "It is famous for being on time."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "japanese-work-style",
+  "title": "日本の働き方",
+  "titleReading": "にほんのはたらきかた",
+  "titleEn": "Working in Japan",
+  "level": "N3",
+  "category": "article",
+  "summary": "How work culture in Japan is changing in recent years.",
+  "paragraphs": [
+    "昔の日本では、一つの会社で定年まで働くのがふつうでした。長い時間働く人も多かったです。",
+    "しかし、最近は考え方が変わってきています。家族との時間や、自分の生活を大切にする人が増えました。",
+    "在宅勤務をみとめる会社も多くなり、働き方はどんどん自由になってきています。"
+  ],
+  "vocab": [
+    {
+      "word": "定年",
+      "reading": "ていねん",
+      "meaning": "retirement age"
+    },
+    {
+      "word": "考え方",
+      "reading": "かんがえかた",
+      "meaning": "way of thinking"
+    },
+    {
+      "word": "生活",
+      "reading": "せいかつ",
+      "meaning": "daily life"
+    },
+    {
+      "word": "増える",
+      "reading": "ふえる",
+      "meaning": "to increase"
+    },
+    {
+      "word": "在宅勤務",
+      "reading": "ざいたくきんむ",
+      "meaning": "working from home"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てくる (gradual change)",
+      "explanation": "Shows a change developing up to now: 変わってきている = \"has been changing\".",
+      "example": "考え方が変わってきています。",
+      "exampleEn": "Ways of thinking have been changing."
+    }
+  ]
+}

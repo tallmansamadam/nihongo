@@ -1,0 +1,42 @@
+{
+  "id": "princess-kaguya",
+  "title": "かぐや姫",
+  "titleReading": "かぐやひめ",
+  "titleEn": "Princess Kaguya",
+  "level": "N4",
+  "category": "folktale",
+  "credit": "Based on the public-domain tale \"Taketori Monogatari\". Retold in simple Japanese.",
+  "summary": "The moon princess found inside a shining stalk of bamboo.",
+  "paragraphs": [
+    "昔、竹を取って生活しているおじいさんがいました。ある日、光る竹を見つけました。",
+    "竹を切ると、中に小さくてきれいな女の子がいました。おじいさんとおばあさんは、その子を大切に育てました。",
+    "女の子は美しい姫になりました。しかし、じつは月の世界の人で、ある秋の夜、月へ帰っていきました。"
+  ],
+  "vocab": [
+    {
+      "word": "竹",
+      "reading": "たけ",
+      "meaning": "bamboo"
+    },
+    {
+      "word": "光る",
+      "reading": "ひかる",
+      "meaning": "to shine"
+    },
+    {
+      "word": "育てる",
+      "reading": "そだてる",
+      "meaning": "to raise, to bring up"
+    },
+    {
+      "word": "姫",
+      "reading": "ひめ",
+      "meaning": "princess"
+    },
+    {
+      "word": "世界",
+      "reading": "せかい",
+      "meaning": "world"
+    }
+  ]
+}

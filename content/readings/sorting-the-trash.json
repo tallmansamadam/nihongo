@@ -1,0 +1,49 @@
+{
+  "id": "sorting-the-trash",
+  "title": "ゴミの分別",
+  "titleReading": "ゴミのぶんべつ",
+  "titleEn": "Sorting the Trash",
+  "level": "N3",
+  "category": "article",
+  "summary": "How and why Japan separates its household garbage so carefully.",
+  "paragraphs": [
+    "日本では、ゴミを細かく分けて出すルールがあります。これを「分別」と言います。",
+    "燃えるゴミ、燃えないゴミ、プラスチック、びん、かんなど、種類によって出す日が決まっています。はじめて日本に住む外国人は、よくおどろきます。",
+    "少し面倒に感じるかもしれませんが、資源を大切にし、環境を守るために役に立っています。"
+  ],
+  "vocab": [
+    {
+      "word": "分別",
+      "reading": "ぶんべつ",
+      "meaning": "sorting, separation"
+    },
+    {
+      "word": "燃える",
+      "reading": "もえる",
+      "meaning": "to burn"
+    },
+    {
+      "word": "種類",
+      "reading": "しゅるい",
+      "meaning": "kind, type"
+    },
+    {
+      "word": "面倒",
+      "reading": "めんどう",
+      "meaning": "troublesome, a hassle"
+    },
+    {
+      "word": "環境",
+      "reading": "かんきょう",
+      "meaning": "environment"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜によって",
+      "explanation": "\"Depending on / according to …\": 種類によって = \"depending on the type\".",
+      "example": "種類によって日が決まっています。",
+      "exampleEn": "The day is decided according to the type."
+    }
+  ]
+}

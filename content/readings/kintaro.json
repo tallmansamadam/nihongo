@@ -1,0 +1,42 @@
+{
+  "id": "kintaro",
+  "title": "金太郎",
+  "titleReading": "きんたろう",
+  "titleEn": "Kintarō, the Golden Boy",
+  "level": "N5",
+  "category": "folktale",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese.",
+  "summary": "The classic tale of the super-strong boy who grew up in the mountains.",
+  "paragraphs": [
+    "昔、山の中に金太郎という強い男の子がいました。",
+    "金太郎はくまやうさぎといっしょに遊びました。とても力が強くて、大きい石も持ち上げました。",
+    "大きくなって、金太郎は町へ行き、みんなのために働くさむらいになりました。"
+  ],
+  "vocab": [
+    {
+      "word": "強い",
+      "reading": "つよい",
+      "meaning": "strong"
+    },
+    {
+      "word": "熊",
+      "reading": "くま",
+      "meaning": "bear"
+    },
+    {
+      "word": "力",
+      "reading": "ちから",
+      "meaning": "strength, power"
+    },
+    {
+      "word": "石",
+      "reading": "いし",
+      "meaning": "stone"
+    },
+    {
+      "word": "侍",
+      "reading": "さむらい",
+      "meaning": "samurai"
+    }
+  ]
+}

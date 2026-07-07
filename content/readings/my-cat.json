@@ -1,0 +1,41 @@
+{
+  "id": "my-cat",
+  "title": "猫の一日",
+  "titleReading": "ねこのいちにち",
+  "titleEn": "A Cat's Day",
+  "level": "N5",
+  "category": "story",
+  "summary": "A lazy house cat’s daily routine, told gently.",
+  "paragraphs": [
+    "うちの猫の名前はミケです。ミケは白と茶色の小さい猫です。",
+    "朝、ミケはまどのそばで日なたぼっこをします。昼は一日中よく寝ます。",
+    "夜になると、ミケは元気になります。おもちゃで遊んで、私のベッドで寝ます。"
+  ],
+  "vocab": [
+    {
+      "word": "猫",
+      "reading": "ねこ",
+      "meaning": "cat"
+    },
+    {
+      "word": "茶色",
+      "reading": "ちゃいろ",
+      "meaning": "brown"
+    },
+    {
+      "word": "窓",
+      "reading": "まど",
+      "meaning": "window"
+    },
+    {
+      "word": "一日中",
+      "reading": "いちにちじゅう",
+      "meaning": "all day long"
+    },
+    {
+      "word": "遊ぶ",
+      "reading": "あそぶ",
+      "meaning": "to play"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "cat-cafe",
+  "title": "猫カフェ",
+  "titleReading": "ねこカフェ",
+  "titleEn": "The Cat Café",
+  "level": "N4",
+  "category": "story",
+  "summary": "A relaxing hour spent among the cats at a café.",
+  "paragraphs": [
+    "日本には「猫カフェ」という店があります。コーヒーを飲みながら、猫と遊べる店です。",
+    "昨日、はじめて猫カフェに行きました。中には十ぴきぐらいの猫がいました。",
+    "一ぴきの黒い猫が私のひざの上で寝ました。とてもかわいくて、しあわせな気持ちになりました。"
+  ],
+  "vocab": [
+    {
+      "word": "店",
+      "reading": "みせ",
+      "meaning": "shop"
+    },
+    {
+      "word": "初めて",
+      "reading": "はじめて",
+      "meaning": "for the first time"
+    },
+    {
+      "word": "黒い",
+      "reading": "くろい",
+      "meaning": "black"
+    },
+    {
+      "word": "膝",
+      "reading": "ひざ",
+      "meaning": "lap, knee"
+    },
+    {
+      "word": "気持ち",
+      "reading": "きもち",
+      "meaning": "feeling"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ながら",
+      "explanation": "Two actions at once: Verb-stem + ながら = \"while doing …\".",
+      "example": "コーヒーを飲みながら遊びます。",
+      "exampleEn": "I play while drinking coffee."
+    }
+  ]
+}

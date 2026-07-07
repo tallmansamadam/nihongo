@@ -1,0 +1,49 @@
+{
+  "id": "part-time-job",
+  "title": "アルバイト",
+  "titleReading": "アルバイト",
+  "titleEn": "A Part-time Job",
+  "level": "N4",
+  "category": "story",
+  "summary": "A student’s first part-time job at a café.",
+  "paragraphs": [
+    "私は大学生です。週に三回、カフェでアルバイトをしています。",
+    "仕事はコーヒーを作ったり、お客さんに料理を運んだりすることです。はじめはむずかしかったです。",
+    "今は仕事にもなれて、楽しくなりました。お金をためて、旅行に行きたいです。"
+  ],
+  "vocab": [
+    {
+      "word": "大学生",
+      "reading": "だいがくせい",
+      "meaning": "university student"
+    },
+    {
+      "word": "お客さん",
+      "reading": "おきゃくさん",
+      "meaning": "customer, guest"
+    },
+    {
+      "word": "運ぶ",
+      "reading": "はこぶ",
+      "meaning": "to carry"
+    },
+    {
+      "word": "慣れる",
+      "reading": "なれる",
+      "meaning": "to get used to"
+    },
+    {
+      "word": "貯める",
+      "reading": "ためる",
+      "meaning": "to save (money)"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜たり〜たりする",
+      "explanation": "Lists example actions: A たり B たりする = \"do things like A and B\".",
+      "example": "作ったり運んだりします。",
+      "exampleEn": "I do things like making and carrying."
+    }
+  ]
+}

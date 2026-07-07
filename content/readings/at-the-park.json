@@ -1,0 +1,49 @@
+{
+  "id": "at-the-park",
+  "title": "公園で",
+  "titleReading": "こうえんで",
+  "titleEn": "At the Park",
+  "level": "N5",
+  "category": "story",
+  "summary": "A sunny afternoon spent at the neighborhood park.",
+  "paragraphs": [
+    "日曜日の午後、私は近くの公園へ行きました。天気がよくて、とても暖かかったです。",
+    "子どもたちがボールで遊んでいました。おじいさんは犬と散歩していました。",
+    "私はベンチにすわって、アイスクリームを食べました。とても楽しい午後でした。"
+  ],
+  "vocab": [
+    {
+      "word": "公園",
+      "reading": "こうえん",
+      "meaning": "park"
+    },
+    {
+      "word": "近く",
+      "reading": "ちかく",
+      "meaning": "nearby"
+    },
+    {
+      "word": "暖かい",
+      "reading": "あたたかい",
+      "meaning": "warm"
+    },
+    {
+      "word": "散歩",
+      "reading": "さんぽ",
+      "meaning": "a walk, stroll"
+    },
+    {
+      "word": "座る",
+      "reading": "すわる",
+      "meaning": "to sit"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ている (ongoing action)",
+      "explanation": "The て-form + いる shows an action in progress: 遊んでいる = \"is playing\".",
+      "example": "子どもが遊んでいました。",
+      "exampleEn": "The children were playing."
+    }
+  ]
+}

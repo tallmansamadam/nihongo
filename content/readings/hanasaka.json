@@ -1,0 +1,42 @@
+{
+  "id": "hanasaka",
+  "title": "花咲かじいさん",
+  "titleReading": "はなさかじいさん",
+  "titleEn": "The Old Man Who Made Flowers Bloom",
+  "level": "N4",
+  "category": "folktale",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese.",
+  "summary": "A kind old man, a loyal dog, and ashes that make trees blossom.",
+  "paragraphs": [
+    "昔、心のやさしいおじいさんが、白い犬をかわいがっていました。",
+    "その犬のおかげで、おじいさんは山でたくさんの金を見つけました。となりのいじわるなおじいさんは、それをうらやましく思いました。",
+    "さいごに、やさしいおじいさんは、はいを木にまいて、かれた木に美しい花をさかせました。とのさまも大よろこびしました。"
+  ],
+  "vocab": [
+    {
+      "word": "優しい",
+      "reading": "やさしい",
+      "meaning": "kind, gentle"
+    },
+    {
+      "word": "可愛がる",
+      "reading": "かわいがる",
+      "meaning": "to love, to be affectionate to"
+    },
+    {
+      "word": "隣",
+      "reading": "となり",
+      "meaning": "next door, neighbor"
+    },
+    {
+      "word": "灰",
+      "reading": "はい",
+      "meaning": "ash"
+    },
+    {
+      "word": "咲かせる",
+      "reading": "さかせる",
+      "meaning": "to make bloom"
+    }
+  ]
+}

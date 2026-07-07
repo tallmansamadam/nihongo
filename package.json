@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "fetch-kanjivg": "node scripts/fetch-kanjivg.mjs",
     "build-kanji": "node scripts/build-kanji-base.mjs",
+    "build-content": "node scripts/build-content.mjs",
     "prepare-dict": "node scripts/prepare-dict.mjs",
     "postinstall": "node scripts/prepare-dict.mjs",
     "tauri": "tauri",

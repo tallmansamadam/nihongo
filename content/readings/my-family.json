@@ -1,0 +1,41 @@
+{
+  "id": "my-family",
+  "title": "私の家族",
+  "titleReading": "わたしのかぞく",
+  "titleEn": "My Family",
+  "level": "N5",
+  "category": "story",
+  "summary": "A short introduction to each member of a family.",
+  "paragraphs": [
+    "私の家族は四人です。父と母と、妹と私です。",
+    "父は会社員で、毎日おそくまで働いています。母は料理がとても上手です。",
+    "妹はまだ小学生です。歌が好きで、いつも家で歌っています。私は家族が大好きです。"
+  ],
+  "vocab": [
+    {
+      "word": "妹",
+      "reading": "いもうと",
+      "meaning": "younger sister"
+    },
+    {
+      "word": "会社員",
+      "reading": "かいしゃいん",
+      "meaning": "company employee"
+    },
+    {
+      "word": "働く",
+      "reading": "はたらく",
+      "meaning": "to work"
+    },
+    {
+      "word": "料理",
+      "reading": "りょうり",
+      "meaning": "cooking, cuisine"
+    },
+    {
+      "word": "上手",
+      "reading": "じょうず",
+      "meaning": "skilled, good at"
+    }
+  ]
+}

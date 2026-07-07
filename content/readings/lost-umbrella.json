@@ -1,0 +1,49 @@
+{
+  "id": "lost-umbrella",
+  "title": "忘れ物",
+  "titleReading": "わすれもの",
+  "titleEn": "The Forgotten Umbrella",
+  "level": "N4",
+  "category": "story",
+  "summary": "A rainy-day mix-up over a left-behind umbrella.",
+  "paragraphs": [
+    "雨の日、私は電車の中にかさを忘れてしまいました。家に着いてから気づきました。",
+    "次の日、駅の忘れ物センターに行って、聞いてみました。",
+    "よかったです。私のかさがありました。えきいんさんに「ありがとうございます」と言いました。"
+  ],
+  "vocab": [
+    {
+      "word": "忘れ物",
+      "reading": "わすれもの",
+      "meaning": "a lost/forgotten item"
+    },
+    {
+      "word": "傘",
+      "reading": "かさ",
+      "meaning": "umbrella"
+    },
+    {
+      "word": "着く",
+      "reading": "つく",
+      "meaning": "to arrive"
+    },
+    {
+      "word": "気づく",
+      "reading": "きづく",
+      "meaning": "to notice, to realize"
+    },
+    {
+      "word": "次",
+      "reading": "つぎ",
+      "meaning": "next"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てしまう",
+      "explanation": "Expresses completion or regret: 忘れてしまった = \"went and forgot (oops)\".",
+      "example": "かさを忘れてしまいました。",
+      "exampleEn": "I (unfortunately) forgot my umbrella."
+    }
+  ]
+}

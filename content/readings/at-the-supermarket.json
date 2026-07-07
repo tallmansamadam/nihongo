@@ -1,0 +1,41 @@
+{
+  "id": "at-the-supermarket",
+  "title": "スーパーで",
+  "titleReading": "スーパーで",
+  "titleEn": "At the Supermarket",
+  "level": "N5",
+  "category": "story",
+  "summary": "A quick evening shopping trip.",
+  "paragraphs": [
+    "夕方、母とスーパーへ買い物に行きました。",
+    "野菜とくだものと魚を買いました。今日は魚が安かったです。",
+    "母は晩ご飯にさかなを焼きました。とても美味しかったです。"
+  ],
+  "vocab": [
+    {
+      "word": "夕方",
+      "reading": "ゆうがた",
+      "meaning": "evening"
+    },
+    {
+      "word": "買い物",
+      "reading": "かいもの",
+      "meaning": "shopping"
+    },
+    {
+      "word": "野菜",
+      "reading": "やさい",
+      "meaning": "vegetables"
+    },
+    {
+      "word": "安い",
+      "reading": "やすい",
+      "meaning": "cheap"
+    },
+    {
+      "word": "焼く",
+      "reading": "やく",
+      "meaning": "to grill, to bake"
+    }
+  ]
+}

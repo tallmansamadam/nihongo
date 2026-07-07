@@ -1,16 +1,365 @@
 {
   "version": 1,
-  "updated": "2026-07-06",
   "readings": [
-    { "id": "my-dog", "title": "私の犬", "titleReading": "わたしのいぬ", "titleEn": "My Dog", "level": "N5", "category": "story", "summary": "A short story about a playful family dog named Pochi." },
-    { "id": "sunday", "title": "日曜日", "titleReading": "にちようび", "titleEn": "Sunday", "level": "N5", "category": "story", "summary": "How one person spends a relaxing Sunday at home and in the park." },
-    { "id": "on-the-train", "title": "電車の中で", "titleReading": "でんしゃのなかで", "titleEn": "On the Train", "level": "N5", "category": "story", "summary": "A quiet morning commute and a small act of kindness." },
-    { "id": "japanese-food", "title": "日本の食べ物", "titleReading": "にほんのたべもの", "titleEn": "Japanese Food", "level": "N4", "category": "article", "summary": "An introduction to rice, fish, and the foods people eat in Japan." },
-    { "id": "cherry-blossoms", "title": "桜の季節", "titleReading": "さくらのきせつ", "titleEn": "Cherry Blossom Season", "level": "N4", "category": "article", "summary": "Why cherry blossoms matter and how people enjoy hanami." },
-    { "id": "at-the-library", "title": "図書館で", "titleReading": "としょかんで", "titleEn": "At the Library", "level": "N4", "category": "story", "summary": "A student studies for a test and borrows some books." },
-    { "id": "new-year", "title": "日本のお正月", "titleReading": "にほんのおしょうがつ", "titleEn": "New Year in Japan", "level": "N4", "category": "article", "summary": "New Year customs: temples, special food, and family time." },
-    { "id": "hot-springs", "title": "温泉", "titleReading": "おんせん", "titleEn": "Hot Springs", "level": "N4", "category": "article", "summary": "What an onsen is and how to enjoy one." },
-    { "id": "convenience-stores", "title": "コンビニ", "titleReading": "コンビニ", "titleEn": "Convenience Stores", "level": "N3", "category": "article", "summary": "How convenience stores became part of daily life in Japan." },
-    { "id": "grateful-crane", "title": "鶴の恩返し", "titleReading": "つるのおんがえし", "titleEn": "The Grateful Crane", "level": "N4", "category": "folktale", "summary": "A classic folktale about a rescued crane who repays a kindness." }
+    {
+      "id": "my-dog",
+      "title": "私の犬",
+      "titleReading": "わたしのいぬ",
+      "titleEn": "My Dog",
+      "level": "N5",
+      "category": "story",
+      "summary": "A short story about a playful family dog named Pochi."
+    },
+    {
+      "id": "sunday",
+      "title": "日曜日",
+      "titleReading": "にちようび",
+      "titleEn": "Sunday",
+      "level": "N5",
+      "category": "story",
+      "summary": "How one person spends a relaxing Sunday at home and in the park."
+    },
+    {
+      "id": "on-the-train",
+      "title": "電車の中で",
+      "titleReading": "でんしゃのなかで",
+      "titleEn": "On the Train",
+      "level": "N5",
+      "category": "story",
+      "summary": "A quiet morning commute and a small act of kindness."
+    },
+    {
+      "id": "japanese-food",
+      "title": "日本の食べ物",
+      "titleReading": "にほんのたべもの",
+      "titleEn": "Japanese Food",
+      "level": "N4",
+      "category": "article",
+      "summary": "An introduction to rice, fish, and the foods people eat in Japan."
+    },
+    {
+      "id": "cherry-blossoms",
+      "title": "桜の季節",
+      "titleReading": "さくらのきせつ",
+      "titleEn": "Cherry Blossom Season",
+      "level": "N4",
+      "category": "article",
+      "summary": "Why cherry blossoms matter and how people enjoy hanami."
+    },
+    {
+      "id": "at-the-library",
+      "title": "図書館で",
+      "titleReading": "としょかんで",
+      "titleEn": "At the Library",
+      "level": "N4",
+      "category": "story",
+      "summary": "A student studies for a test and borrows some books."
+    },
+    {
+      "id": "new-year",
+      "title": "日本のお正月",
+      "titleReading": "にほんのおしょうがつ",
+      "titleEn": "New Year in Japan",
+      "level": "N4",
+      "category": "article",
+      "summary": "New Year customs: temples, special food, and family time."
+    },
+    {
+      "id": "hot-springs",
+      "title": "温泉",
+      "titleReading": "おんせん",
+      "titleEn": "Hot Springs",
+      "level": "N4",
+      "category": "article",
+      "summary": "What an onsen is and how to enjoy one."
+    },
+    {
+      "id": "convenience-stores",
+      "title": "コンビニ",
+      "titleReading": "コンビニ",
+      "titleEn": "Convenience Stores",
+      "level": "N3",
+      "category": "article",
+      "summary": "How convenience stores became part of daily life in Japan."
+    },
+    {
+      "id": "grateful-crane",
+      "title": "鶴の恩返し",
+      "titleReading": "つるのおんがえし",
+      "titleEn": "The Grateful Crane",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "A classic folktale about a rescued crane who repays a kindness."
+    },
+    {
+      "id": "at-the-park",
+      "title": "公園で",
+      "titleReading": "こうえんで",
+      "titleEn": "At the Park",
+      "level": "N5",
+      "category": "story",
+      "summary": "A sunny afternoon spent at the neighborhood park."
+    },
+    {
+      "id": "at-the-supermarket",
+      "title": "スーパーで",
+      "titleReading": "スーパーで",
+      "titleEn": "At the Supermarket",
+      "level": "N5",
+      "category": "story",
+      "summary": "A quick evening shopping trip."
+    },
+    {
+      "id": "cat-cafe",
+      "title": "猫カフェ",
+      "titleReading": "ねこカフェ",
+      "titleEn": "The Cat Café",
+      "level": "N4",
+      "category": "story",
+      "summary": "A relaxing hour spent among the cats at a café."
+    },
+    {
+      "id": "fireworks-festival",
+      "title": "花火大会",
+      "titleReading": "はなびたいかい",
+      "titleEn": "The Fireworks Festival",
+      "level": "N4",
+      "category": "story",
+      "summary": "A summer evening at a riverside fireworks display."
+    },
+    {
+      "id": "first-snow",
+      "title": "初雪",
+      "titleReading": "はつゆき",
+      "titleEn": "The First Snow",
+      "level": "N5",
+      "category": "story",
+      "summary": "The excitement of the winter’s first snowfall."
+    },
+    {
+      "id": "hanasaka",
+      "title": "花咲かじいさん",
+      "titleReading": "はなさかじいさん",
+      "titleEn": "The Old Man Who Made Flowers Bloom",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "A kind old man, a loyal dog, and ashes that make trees blossom."
+    },
+    {
+      "id": "history-of-manga",
+      "title": "漫画の歴史",
+      "titleReading": "まんがのれきし",
+      "titleEn": "A Short History of Manga",
+      "level": "N3",
+      "category": "article",
+      "summary": "From playful old picture scrolls to a global pop-culture force."
+    },
+    {
+      "id": "hokkaido",
+      "title": "北海道",
+      "titleReading": "ほっかいどう",
+      "titleEn": "Hokkaido",
+      "level": "N3",
+      "category": "article",
+      "summary": "Japan’s big northern island — nature, snow, and food."
+    },
+    {
+      "id": "japanese-work-style",
+      "title": "日本の働き方",
+      "titleReading": "にほんのはたらきかた",
+      "titleEn": "Working in Japan",
+      "level": "N3",
+      "category": "article",
+      "summary": "How work culture in Japan is changing in recent years."
+    },
+    {
+      "id": "kintaro",
+      "title": "金太郎",
+      "titleReading": "きんたろう",
+      "titleEn": "Kintarō, the Golden Boy",
+      "level": "N5",
+      "category": "folktale",
+      "summary": "The classic tale of the super-strong boy who grew up in the mountains."
+    },
+    {
+      "id": "letter-to-grandmother",
+      "title": "祖母への手紙",
+      "titleReading": "そぼへのてがみ",
+      "titleEn": "A Letter to Grandmother",
+      "level": "N4",
+      "category": "story",
+      "summary": "A gentle letter home to a grandmother in the countryside."
+    },
+    {
+      "id": "lost-umbrella",
+      "title": "忘れ物",
+      "titleReading": "わすれもの",
+      "titleEn": "The Forgotten Umbrella",
+      "level": "N4",
+      "category": "story",
+      "summary": "A rainy-day mix-up over a left-behind umbrella."
+    },
+    {
+      "id": "making-curry",
+      "title": "カレーを作る",
+      "titleReading": "カレーをつくる",
+      "titleEn": "Making Curry",
+      "level": "N4",
+      "category": "story",
+      "summary": "Cooking a pot of Japanese curry for friends."
+    },
+    {
+      "id": "morning-routine",
+      "title": "朝の習慣",
+      "titleReading": "あさのしゅうかん",
+      "titleEn": "My Morning Routine",
+      "level": "N5",
+      "category": "story",
+      "summary": "A simple description of one person’s morning, from waking up to leaving home."
+    },
+    {
+      "id": "mountain-hike",
+      "title": "山登り",
+      "titleReading": "やまのぼり",
+      "titleEn": "A Mountain Hike",
+      "level": "N4",
+      "category": "story",
+      "summary": "An early-morning climb rewarded by a view above the clouds."
+    },
+    {
+      "id": "moving-house",
+      "title": "引っ越し",
+      "titleReading": "ひっこし",
+      "titleEn": "Moving House",
+      "level": "N4",
+      "category": "story",
+      "summary": "The busy, bittersweet day of moving to a new apartment."
+    },
+    {
+      "id": "my-bicycle",
+      "title": "私の自転車",
+      "titleReading": "わたしのじてんしゃ",
+      "titleEn": "My Bicycle",
+      "level": "N5",
+      "category": "story",
+      "summary": "Getting around town by bike."
+    },
+    {
+      "id": "my-birthday",
+      "title": "私の誕生日",
+      "titleReading": "わたしのたんじょうび",
+      "titleEn": "My Birthday",
+      "level": "N5",
+      "category": "story",
+      "summary": "A birthday celebration with family and a small surprise."
+    },
+    {
+      "id": "my-cat",
+      "title": "猫の一日",
+      "titleReading": "ねこのいちにち",
+      "titleEn": "A Cat's Day",
+      "level": "N5",
+      "category": "story",
+      "summary": "A lazy house cat’s daily routine, told gently."
+    },
+    {
+      "id": "my-family",
+      "title": "私の家族",
+      "titleReading": "わたしのかぞく",
+      "titleEn": "My Family",
+      "level": "N5",
+      "category": "story",
+      "summary": "A short introduction to each member of a family."
+    },
+    {
+      "id": "my-room",
+      "title": "私の部屋",
+      "titleReading": "わたしのへや",
+      "titleEn": "My Room",
+      "level": "N5",
+      "category": "story",
+      "summary": "A tour of a small, tidy bedroom."
+    },
+    {
+      "id": "old-bookstore",
+      "title": "古い本屋",
+      "titleReading": "ふるいほんや",
+      "titleEn": "The Old Bookstore",
+      "level": "N4",
+      "category": "story",
+      "summary": "A quiet discovery in a narrow street of secondhand books."
+    },
+    {
+      "id": "part-time-job",
+      "title": "アルバイト",
+      "titleReading": "アルバイト",
+      "titleEn": "A Part-time Job",
+      "level": "N4",
+      "category": "story",
+      "summary": "A student’s first part-time job at a café."
+    },
+    {
+      "id": "piano-practice",
+      "title": "ピアノの練習",
+      "titleReading": "ピアノのれんしゅう",
+      "titleEn": "Piano Practice",
+      "level": "N4",
+      "category": "story",
+      "summary": "The slow, patient work of learning a difficult song."
+    },
+    {
+      "id": "princess-kaguya",
+      "title": "かぐや姫",
+      "titleReading": "かぐやひめ",
+      "titleEn": "Princess Kaguya",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "The moon princess found inside a shining stalk of bamboo."
+    },
+    {
+      "id": "rainy-season",
+      "title": "梅雨",
+      "titleReading": "つゆ",
+      "titleEn": "The Rainy Season",
+      "level": "N5",
+      "category": "article",
+      "summary": "A short explanation of Japan’s early-summer rainy season."
+    },
+    {
+      "id": "school-lunch",
+      "title": "学校の昼ご飯",
+      "titleReading": "がっこうのひるごはん",
+      "titleEn": "School Lunch",
+      "level": "N5",
+      "category": "story",
+      "summary": "What lunchtime is like at a Japanese elementary school."
+    },
+    {
+      "id": "sorting-the-trash",
+      "title": "ゴミの分別",
+      "titleReading": "ゴミのぶんべつ",
+      "titleEn": "Sorting the Trash",
+      "level": "N3",
+      "category": "article",
+      "summary": "How and why Japan separates its household garbage so carefully."
+    },
+    {
+      "id": "the-bento-box",
+      "title": "お弁当",
+      "titleReading": "おべんとう",
+      "titleEn": "The Bento Box",
+      "level": "N4",
+      "category": "article",
+      "summary": "What a Japanese boxed lunch is and why it’s special."
+    },
+    {
+      "id": "trains-in-japan",
+      "title": "日本の電車",
+      "titleReading": "にほんのでんしゃ",
+      "titleEn": "Trains in Japan",
+      "level": "N3",
+      "category": "article",
+      "summary": "Why Japan’s railways are famous for being fast, clean, and on time."
+    }
   ]
 }

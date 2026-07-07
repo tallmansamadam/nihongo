@@ -1,0 +1,49 @@
+{
+  "id": "piano-practice",
+  "title": "ピアノの練習",
+  "titleReading": "ピアノのれんしゅう",
+  "titleEn": "Piano Practice",
+  "level": "N4",
+  "category": "story",
+  "summary": "The slow, patient work of learning a difficult song.",
+  "paragraphs": [
+    "私は三年前からピアノを習っています。毎日少しずつ練習しています。",
+    "今、むずかしい曲を練習しています。はじめは全然ひけませんでした。",
+    "でも、毎日練習したら、だんだんひけるようになりました。来月、はっぴょう会でひきます。"
+  ],
+  "vocab": [
+    {
+      "word": "練習",
+      "reading": "れんしゅう",
+      "meaning": "practice"
+    },
+    {
+      "word": "習う",
+      "reading": "ならう",
+      "meaning": "to learn (from a teacher)"
+    },
+    {
+      "word": "曲",
+      "reading": "きょく",
+      "meaning": "song, musical piece"
+    },
+    {
+      "word": "全然",
+      "reading": "ぜんぜん",
+      "meaning": "(not) at all"
+    },
+    {
+      "word": "発表会",
+      "reading": "はっぴょうかい",
+      "meaning": "recital"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ようになる",
+      "explanation": "A change over time / gained ability: ひけるようになった = \"came to be able to play\".",
+      "example": "ひけるようになりました。",
+      "exampleEn": "I became able to play it."
+    }
+  ]
+}

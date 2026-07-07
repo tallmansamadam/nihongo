@@ -1,0 +1,41 @@
+{
+  "id": "old-bookstore",
+  "title": "古い本屋",
+  "titleReading": "ふるいほんや",
+  "titleEn": "The Old Bookstore",
+  "level": "N4",
+  "category": "story",
+  "summary": "A quiet discovery in a narrow street of secondhand books.",
+  "paragraphs": [
+    "町のせまい通りに、古い本屋があります。おじいさんが一人でやっています。",
+    "店の中は古い本のにおいがします。私はときどきそこで古い本をさがします。",
+    "昨日、五十年前の写真集を見つけました。昔の東京の写真がのっていて、とてもおもしろかったです。"
+  ],
+  "vocab": [
+    {
+      "word": "本屋",
+      "reading": "ほんや",
+      "meaning": "bookstore"
+    },
+    {
+      "word": "狭い",
+      "reading": "せまい",
+      "meaning": "narrow"
+    },
+    {
+      "word": "通り",
+      "reading": "とおり",
+      "meaning": "street"
+    },
+    {
+      "word": "探す",
+      "reading": "さがす",
+      "meaning": "to search for"
+    },
+    {
+      "word": "見つける",
+      "reading": "みつける",
+      "meaning": "to find"
+    }
+  ]
+}

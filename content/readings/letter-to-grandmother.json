@@ -1,0 +1,49 @@
+{
+  "id": "letter-to-grandmother",
+  "title": "祖母への手紙",
+  "titleReading": "そぼへのてがみ",
+  "titleEn": "A Letter to Grandmother",
+  "level": "N4",
+  "category": "story",
+  "summary": "A gentle letter home to a grandmother in the countryside.",
+  "paragraphs": [
+    "おばあちゃん、お元気ですか。私は東京で元気にくらしています。",
+    "大学の勉強はいそがしいですが、毎日楽しいです。友達もたくさんできました。",
+    "ふゆ休みには、そちらに帰ります。おばあちゃんの作るごはんが食べたいです。体に気をつけてください。"
+  ],
+  "vocab": [
+    {
+      "word": "祖母",
+      "reading": "そぼ",
+      "meaning": "grandmother"
+    },
+    {
+      "word": "手紙",
+      "reading": "てがみ",
+      "meaning": "letter"
+    },
+    {
+      "word": "暮らす",
+      "reading": "くらす",
+      "meaning": "to live, to get by"
+    },
+    {
+      "word": "忙しい",
+      "reading": "いそがしい",
+      "meaning": "busy"
+    },
+    {
+      "word": "体",
+      "reading": "からだ",
+      "meaning": "body, health"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜に気をつける",
+      "explanation": "\"Be careful of / take care of …\": 体に気をつけてください = \"please take care of your health\".",
+      "example": "体に気をつけてください。",
+      "exampleEn": "Please take care of yourself."
+    }
+  ]
+}

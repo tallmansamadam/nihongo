@@ -1,0 +1,41 @@
+{
+  "id": "fireworks-festival",
+  "title": "花火大会",
+  "titleReading": "はなびたいかい",
+  "titleEn": "The Fireworks Festival",
+  "level": "N4",
+  "category": "story",
+  "summary": "A summer evening at a riverside fireworks display.",
+  "paragraphs": [
+    "夏の夜、町で花火大会がありました。私は友達とゆかたを着て行きました。",
+    "川のそばにはたくさんの人がいました。屋台でやきそばやかき氷を買いました。",
+    "空に大きな花火が上がりました。とてもきれいで、みんな「わあ」と声を上げました。"
+  ],
+  "vocab": [
+    {
+      "word": "花火",
+      "reading": "はなび",
+      "meaning": "fireworks"
+    },
+    {
+      "word": "浴衣",
+      "reading": "ゆかた",
+      "meaning": "yukata (summer kimono)"
+    },
+    {
+      "word": "屋台",
+      "reading": "やたい",
+      "meaning": "food stall"
+    },
+    {
+      "word": "上がる",
+      "reading": "あがる",
+      "meaning": "to rise, to go up"
+    },
+    {
+      "word": "声",
+      "reading": "こえ",
+      "meaning": "voice"
+    }
+  ]
+}

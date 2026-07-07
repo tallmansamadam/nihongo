@@ -1,0 +1,49 @@
+{
+  "id": "my-birthday",
+  "title": "私の誕生日",
+  "titleReading": "わたしのたんじょうび",
+  "titleEn": "My Birthday",
+  "level": "N5",
+  "category": "story",
+  "summary": "A birthday celebration with family and a small surprise.",
+  "paragraphs": [
+    "昨日は私の誕生日でした。家族がパーティーをしてくれました。",
+    "母はチョコレートのケーキを作ってくれました。父から新しいかばんをもらいました。",
+    "とてもうれしかったです。来年の誕生日も楽しみです。"
+  ],
+  "vocab": [
+    {
+      "word": "誕生日",
+      "reading": "たんじょうび",
+      "meaning": "birthday"
+    },
+    {
+      "word": "作る",
+      "reading": "つくる",
+      "meaning": "to make"
+    },
+    {
+      "word": "もらう",
+      "reading": "もらう",
+      "meaning": "to receive"
+    },
+    {
+      "word": "来年",
+      "reading": "らいねん",
+      "meaning": "next year"
+    },
+    {
+      "word": "楽しみ",
+      "reading": "たのしみ",
+      "meaning": "looking forward to"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てくれる",
+      "explanation": "Someone does something for you (a kindness): 作ってくれた = \"made it for me\".",
+      "example": "ケーキを作ってくれました。",
+      "exampleEn": "She made a cake for me."
+    }
+  ]
+}

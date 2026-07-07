@@ -1,0 +1,41 @@
+{
+  "id": "hokkaido",
+  "title": "北海道",
+  "titleReading": "ほっかいどう",
+  "titleEn": "Hokkaido",
+  "level": "N3",
+  "category": "article",
+  "summary": "Japan’s big northern island — nature, snow, and food.",
+  "paragraphs": [
+    "北海道は、日本の一番北にある大きな島です。自然がゆたかで、広い土地が広がっています。",
+    "冬はとても寒く、雪がたくさんふります。そのため、スキーやゆきまつりが有名で、多くの観光客が集まります。",
+    "また、北海道は食べ物がおいしいことでも知られています。新鮮な魚や牛乳、ラーメンなどが人気です。"
+  ],
+  "vocab": [
+    {
+      "word": "島",
+      "reading": "しま",
+      "meaning": "island"
+    },
+    {
+      "word": "自然",
+      "reading": "しぜん",
+      "meaning": "nature"
+    },
+    {
+      "word": "豊か",
+      "reading": "ゆたか",
+      "meaning": "rich, abundant"
+    },
+    {
+      "word": "観光客",
+      "reading": "かんこうきゃく",
+      "meaning": "tourist"
+    },
+    {
+      "word": "新鮮",
+      "reading": "しんせん",
+      "meaning": "fresh"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "first-snow",
+  "title": "初雪",
+  "titleReading": "はつゆき",
+  "titleEn": "The First Snow",
+  "level": "N5",
+  "category": "story",
+  "summary": "The excitement of the winter’s first snowfall.",
+  "paragraphs": [
+    "今朝、まどの外を見て、びっくりしました。雪がふっていました。今年の初雪です。",
+    "町が白くなって、とてもきれいでした。子どもたちは外で雪だるまを作っていました。",
+    "私も外に出て、少しあそびました。手はつめたかったですが、楽しかったです。"
+  ],
+  "vocab": [
+    {
+      "word": "初雪",
+      "reading": "はつゆき",
+      "meaning": "first snow of the season"
+    },
+    {
+      "word": "今朝",
+      "reading": "けさ",
+      "meaning": "this morning"
+    },
+    {
+      "word": "びっくりする",
+      "reading": "びっくりする",
+      "meaning": "to be surprised"
+    },
+    {
+      "word": "雪だるま",
+      "reading": "ゆきだるま",
+      "meaning": "snowman"
+    },
+    {
+      "word": "冷たい",
+      "reading": "つめたい",
+      "meaning": "cold (to touch)"
+    }
+  ]
+}

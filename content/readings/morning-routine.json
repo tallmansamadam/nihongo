@@ -1,0 +1,54 @@
+{
+  "id": "morning-routine",
+  "title": "朝の習慣",
+  "titleReading": "あさのしゅうかん",
+  "titleEn": "My Morning Routine",
+  "level": "N5",
+  "category": "story",
+  "summary": "A simple description of one person’s morning, from waking up to leaving home.",
+  "paragraphs": [
+    "私は毎朝六時に起きます。まず、顔を洗って、歯をみがきます。",
+    "それから、台所でパンとたまごを食べます。コーヒーも飲みます。",
+    "七時半に家を出て、駅まで歩きます。電車の中で本を読みます。"
+  ],
+  "vocab": [
+    {
+      "word": "起きる",
+      "reading": "おきる",
+      "meaning": "to get up"
+    },
+    {
+      "word": "顔",
+      "reading": "かお",
+      "meaning": "face"
+    },
+    {
+      "word": "洗う",
+      "reading": "あらう",
+      "meaning": "to wash"
+    },
+    {
+      "word": "歯",
+      "reading": "は",
+      "meaning": "tooth, teeth"
+    },
+    {
+      "word": "台所",
+      "reading": "だいどころ",
+      "meaning": "kitchen"
+    },
+    {
+      "word": "出る",
+      "reading": "でる",
+      "meaning": "to leave, to go out"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "まず / それから",
+      "explanation": "Sequence words: まず = \"first\", それから = \"after that / then\".",
+      "example": "まず顔を洗って、それから食べます。",
+      "exampleEn": "First I wash my face, then I eat."
+    }
+  ]
+}

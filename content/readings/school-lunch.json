@@ -1,0 +1,41 @@
+{
+  "id": "school-lunch",
+  "title": "学校の昼ご飯",
+  "titleReading": "がっこうのひるごはん",
+  "titleEn": "School Lunch",
+  "level": "N5",
+  "category": "story",
+  "summary": "What lunchtime is like at a Japanese elementary school.",
+  "paragraphs": [
+    "日本の小学校では、みんなで教室で昼ご飯を食べます。これを「きゅうしょく」と言います。",
+    "今日のきゅうしょくはカレーライスと牛乳とサラダでした。カレーはとても美味しかったです。",
+    "食べた後、みんなで教室をそうじします。それから、外で遊びます。"
+  ],
+  "vocab": [
+    {
+      "word": "小学校",
+      "reading": "しょうがっこう",
+      "meaning": "elementary school"
+    },
+    {
+      "word": "教室",
+      "reading": "きょうしつ",
+      "meaning": "classroom"
+    },
+    {
+      "word": "牛乳",
+      "reading": "ぎゅうにゅう",
+      "meaning": "milk"
+    },
+    {
+      "word": "後",
+      "reading": "あと",
+      "meaning": "after"
+    },
+    {
+      "word": "掃除",
+      "reading": "そうじ",
+      "meaning": "cleaning"
+    }
+  ]
+}

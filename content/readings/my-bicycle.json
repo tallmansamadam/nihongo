@@ -1,0 +1,41 @@
+{
+  "id": "my-bicycle",
+  "title": "私の自転車",
+  "titleReading": "わたしのじてんしゃ",
+  "titleEn": "My Bicycle",
+  "level": "N5",
+  "category": "story",
+  "summary": "Getting around town by bike.",
+  "paragraphs": [
+    "私は毎日自転車に乗ります。青い自転車で、去年買いました。",
+    "学校まで自転車で二十分ぐらいかかります。雨の日はバスに乗ります。",
+    "週末は、自転車で川のそばの道を走ります。気持ちがいいです。"
+  ],
+  "vocab": [
+    {
+      "word": "自転車",
+      "reading": "じてんしゃ",
+      "meaning": "bicycle"
+    },
+    {
+      "word": "去年",
+      "reading": "きょねん",
+      "meaning": "last year"
+    },
+    {
+      "word": "かかる",
+      "reading": "かかる",
+      "meaning": "to take (time)"
+    },
+    {
+      "word": "週末",
+      "reading": "しゅうまつ",
+      "meaning": "weekend"
+    },
+    {
+      "word": "走る",
+      "reading": "はしる",
+      "meaning": "to run, to ride along"
+    }
+  ]
+}

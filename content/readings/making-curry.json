@@ -1,0 +1,49 @@
+{
+  "id": "making-curry",
+  "title": "カレーを作る",
+  "titleReading": "カレーをつくる",
+  "titleEn": "Making Curry",
+  "level": "N4",
+  "category": "story",
+  "summary": "Cooking a pot of Japanese curry for friends.",
+  "paragraphs": [
+    "今日は友達が家に来るので、カレーを作ることにしました。",
+    "まず、玉ねぎとにんじんとじゃがいもを切ります。それから、肉といっしょになべでいためます。",
+    "水を入れて、三十分ぐらい煮ます。最後にカレーのルーを入れれば、できあがりです。"
+  ],
+  "vocab": [
+    {
+      "word": "玉ねぎ",
+      "reading": "たまねぎ",
+      "meaning": "onion"
+    },
+    {
+      "word": "切る",
+      "reading": "きる",
+      "meaning": "to cut"
+    },
+    {
+      "word": "肉",
+      "reading": "にく",
+      "meaning": "meat"
+    },
+    {
+      "word": "煮る",
+      "reading": "にる",
+      "meaning": "to simmer, to boil"
+    },
+    {
+      "word": "最後",
+      "reading": "さいご",
+      "meaning": "the end, last"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ことにする",
+      "explanation": "Deciding to do something: Verb + ことにする = \"decide to …\".",
+      "example": "カレーを作ることにしました。",
+      "exampleEn": "I decided to make curry."
+    }
+  ]
+}
