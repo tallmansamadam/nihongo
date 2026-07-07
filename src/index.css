@@ -69,6 +69,17 @@ body {
 }
 .remote-loading { padding: 8px 0; }
 .remote-loading .lib-note { color: var(--ink-soft); font-size: 14px; }
+
+/* Practice: level buttons in the sidebar */
+.test-levels { display: flex; gap: 6px; margin-top: 8px; }
+.test-level {
+  flex: 1; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+  color: #cfe0ea; background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px;
+  padding: 7px 0; cursor: pointer; transition: background 0.15s, border-color 0.15s;
+}
+.test-level:hover { background: rgba(255, 255, 255, 0.14); }
+.test-level.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .story-list { display: flex; flex-direction: column; gap: 8px; }
 .si-title.song { font-family: var(--jp-sans); font-size: 17px; }
 .story-item.song.active { background: var(--gold); border-color: var(--gold); box-shadow: 0 6px 18px rgba(176, 138, 62, 0.4); }
@@ -275,6 +286,108 @@ rt {
 .copyright-note {
   margin-top: 24px; font-size: 12px; line-height: 1.6;
   color: var(--ink-soft); border-top: 1px dashed var(--line); padding-top: 16px;
+}
+
+/* ---------- Practice: tests ---------- */
+.test-varctrl { display: flex; gap: 6px; flex-shrink: 0; }
+.test-varctrl button {
+  font-size: 13px; color: var(--ink-soft);
+  background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 8px; padding: 6px 12px; cursor: pointer;
+}
+.test-varctrl button:hover { border-color: var(--accent); color: var(--accent); }
+
+.questions { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; counter-reset: q; }
+.question {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px;
+}
+.q-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.q-type {
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: #fff; background: var(--indigo); border-radius: 6px; padding: 2px 8px;
+}
+.q-hint { font-size: 12px; color: var(--ink-soft); }
+.q-prompt { font-family: var(--jp); font-size: 24px; line-height: 1.8; counter-increment: q; }
+.q-prompt::before { content: counter(q) '. '; font-family: var(--ui); font-size: 15px; color: var(--ink-soft); }
+.q-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.q-choice {
+  display: flex; align-items: center; gap: 10px; text-align: left;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 12px; cursor: pointer; font-family: var(--jp); font-size: 18px;
+  transition: border-color 0.12s, background 0.12s;
+}
+.q-choice:hover { border-color: var(--accent); }
+.q-choice.chosen { border-color: var(--accent); background: var(--accent-soft); }
+.q-choice.correct { border-color: #3f8f5b; background: #e3f2e8; }
+.q-choice.wrong { border-color: var(--accent); background: #f7e0da; opacity: 0.85; }
+.q-choice-mark {
+  font-family: var(--ui); font-size: 12px; font-weight: 700; color: var(--ink-soft);
+  width: 20px; height: 20px; flex-shrink: 0; border-radius: 50%;
+  display: grid; place-items: center; background: var(--line-2);
+}
+.q-explain {
+  margin-top: 12px; font-size: 13px; line-height: 1.6; color: var(--indigo);
+  background: var(--line-2); border-radius: 8px; padding: 8px 12px;
+}
+.test-foot { margin: 24px 0 60px; display: flex; justify-content: center; }
+.test-submit {
+  font-size: 15px; color: #fff; background: var(--accent); border: none;
+  border-radius: 999px; padding: 12px 28px; cursor: pointer;
+}
+.test-submit:disabled { background: var(--line); color: var(--ink-soft); cursor: default; }
+.test-result { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.test-score { font-family: var(--jp); font-size: 40px; color: var(--ink); }
+.test-pct { font-size: 20px; color: var(--ink-soft); }
+.test-result-actions { display: flex; gap: 10px; }
+.test-result-actions button {
+  font-size: 14px; color: var(--ink-soft); background: var(--paper-2);
+  border: 1px solid var(--line); border-radius: 999px; padding: 10px 20px; cursor: pointer;
+}
+
+/* ---------- Practice: flashcards ---------- */
+.flash-decks { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 8px; }
+.flash-deck {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--ink); background: var(--paper-2);
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer;
+}
+.flash-deck.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.flash-deck-count {
+  font-size: 11px; background: var(--line-2); color: var(--ink-soft);
+  border-radius: 999px; padding: 1px 7px;
+}
+.flash-deck.active .flash-deck-count { background: rgba(255, 255, 255, 0.22); color: #fff; }
+
+.flash-stage { display: flex; flex-direction: column; align-items: center; margin-top: 24px; }
+.flash-progress { font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
+.flash-known { color: var(--gold); }
+.flash-card {
+  width: 100%; max-width: 460px; min-height: 240px;
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 20px;
+  box-shadow: var(--shadow); cursor: pointer; padding: 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  transition: transform 0.08s;
+}
+.flash-card:active { transform: scale(0.99); }
+.flash-front { font-family: var(--jp); font-size: 72px; line-height: 1; }
+.flash-back { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.flash-reading { font-family: var(--jp-sans); font-size: 24px; color: var(--gold); }
+.flash-meaning { font-size: 22px; color: var(--ink); }
+.flash-sub { font-size: 13px; color: var(--ink-soft); }
+.flash-tap { position: absolute; margin-top: 200px; font-size: 11px; color: var(--line); letter-spacing: 1px; text-transform: uppercase; }
+.flash-actions { display: flex; gap: 12px; margin-top: 18px; }
+.flash-again, .flash-got {
+  font-size: 15px; border-radius: 999px; padding: 11px 26px; cursor: pointer; border: 1px solid var(--line);
+}
+.flash-again { color: var(--ink-soft); background: var(--paper-2); }
+.flash-got { color: #fff; background: #3f8f5b; border-color: #3f8f5b; }
+.flash-done { text-align: center; padding: 30px; }
+.flash-done-big { font-size: 48px; color: #3f8f5b; }
+.flash-done-actions { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
+.flash-foot { display: flex; gap: 10px; justify-content: center; margin: 24px 0 60px; }
+.flash-foot button {
+  font-size: 13px; color: var(--ink-soft); background: none;
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; cursor: pointer;
 }
 
 /* ---------- Panels ---------- */

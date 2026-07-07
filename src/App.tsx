@@ -14,7 +14,10 @@ import {
   type CatalogEntry,
 } from './lib/library'
 import type { Reading, Song, Story, Token } from './data/types'
+import { LEVELS, type Level } from './data/quizzes'
 import KanjiPopover from './components/KanjiCard'
+import TestView from './components/TestView'
+import FlashcardView from './components/FlashcardView'
 
 const CATEGORY_LABEL: Record<Reading['category'], string> = {
   story: 'Story',
@@ -38,6 +41,8 @@ type Selection =
   | { kind: 'reading'; id: string }
   | { kind: 'remote'; id: string }
   | { kind: 'song'; id: string }
+  | { kind: 'test'; level: Level }
+  | { kind: 'flashcards' }
 
 export default function App() {
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
@@ -198,6 +203,31 @@ export default function App() {
             )}
           </div>
 
+          <div className="nav-group">
+            <div className="nav-label">Practice</div>
+            <button
+              className={'story-item' + (sel.kind === 'flashcards' ? ' active' : '')}
+              onClick={() => setSel({ kind: 'flashcards' })}
+            >
+              <span className="si-title">🗂 Flashcards</span>
+              <span className="si-en">Vocab &amp; kanji decks</span>
+            </button>
+            <div className="lib-note">JLPT practice tests — 100 variations each</div>
+            <div className="test-levels">
+              {LEVELS.map((lvl) => (
+                <button
+                  key={lvl}
+                  className={
+                    'test-level' + (sel.kind === 'test' && sel.level === lvl ? ' active' : '')
+                  }
+                  onClick={() => setSel({ kind: 'test', level: lvl })}
+                >
+                  {lvl}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="sidebar-foot">
             Hover any <b>kanji</b> for readings, radicals, graphemes, stroke order &amp; a mnemonic.
           </div>
@@ -208,6 +238,8 @@ export default function App() {
           {reading && <ReadingView reading={reading} />}
           {sel.kind === 'remote' && <RemoteReadingView id={sel.id} meta={remoteMeta} />}
           {song && <SongView song={song} />}
+          {sel.kind === 'test' && <TestView level={sel.level} />}
+          {sel.kind === 'flashcards' && <FlashcardView />}
         </main>
 
         {hover && isHoverableKanji(hover.char) && (
