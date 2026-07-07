@@ -19,21 +19,33 @@ export default function StrokeOrder({ char, size = 120 }: Props) {
     setPaths(null)
     setError(false)
     const hex = codepointHex(char)
-    fetch(`${import.meta.env.BASE_URL}kanjivg/${hex}.svg`)
-      .then((r) => {
-        if (!r.ok) throw new Error('not found')
-        return r.text()
-      })
-      .then((text) => {
-        if (cancelled) return
-        const doc = new DOMParser().parseFromString(text, 'image/svg+xml')
-        const ds = [...doc.querySelectorAll('path')]
-          .map((p) => p.getAttribute('d'))
-          .filter((d): d is string => !!d)
-        setPaths(ds)
-        setPlayToken((t) => t + 1)
-      })
-      .catch(() => !cancelled && setError(true))
+    // Try the bundled SVG first; fall back to the KanjiVG CDN for kanji that
+    // only appear in fetched content and aren't packaged locally.
+    const sources = [
+      `${import.meta.env.BASE_URL}kanjivg/${hex}.svg`,
+      `https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/${hex}.svg`,
+    ]
+    ;(async () => {
+      for (const url of sources) {
+        try {
+          const r = await fetch(url)
+          if (!r.ok) continue
+          const text = await r.text()
+          if (cancelled) return
+          const doc = new DOMParser().parseFromString(text, 'image/svg+xml')
+          const ds = [...doc.querySelectorAll('path')]
+            .map((p) => p.getAttribute('d'))
+            .filter((d): d is string => !!d)
+          if (ds.length === 0) continue
+          setPaths(ds)
+          setPlayToken((t) => t + 1)
+          return
+        } catch {
+          /* try next source */
+        }
+      }
+      if (!cancelled) setError(true)
+    })()
     return () => {
       cancelled = true
     }

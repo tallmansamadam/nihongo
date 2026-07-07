@@ -53,7 +53,22 @@ body {
 .nav-label {
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
   color: #9fb3c0; padding-left: 2px;
+  display: flex; align-items: center; justify-content: space-between;
 }
+.lib-refresh {
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: #cfe0ea; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px;
+  padding: 3px 10px; cursor: pointer; transition: background 0.15s;
+}
+.lib-refresh:hover { background: rgba(255, 255, 255, 0.16); }
+.lib-refresh:disabled { opacity: 0.5; cursor: default; }
+.lib-note {
+  font-size: 12px; line-height: 1.5; color: #8ba3b2;
+  padding: 6px 2px 2px;
+}
+.remote-loading { padding: 8px 0; }
+.remote-loading .lib-note { color: var(--ink-soft); font-size: 14px; }
 .story-list { display: flex; flex-direction: column; gap: 8px; }
 .si-title.song { font-family: var(--jp-sans); font-size: 17px; }
 .story-item.song.active { background: var(--gold); border-color: var(--gold); box-shadow: 0 6px 18px rgba(176, 138, 62, 0.4); }

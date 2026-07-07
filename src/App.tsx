@@ -4,6 +4,15 @@ import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
 import { READINGS } from './data/readings'
 import { isHoverableKanji } from './data/components'
+import { ensureKanjiForText } from './lib/kanjiLookup'
+import {
+  cachedCatalog,
+  cachedReading,
+  fetchCatalog,
+  fetchReading,
+  isDownloaded,
+  type CatalogEntry,
+} from './lib/library'
 import type { Reading, Song, Story, Token } from './data/types'
 import KanjiPopover from './components/KanjiCard'
 
@@ -27,6 +36,7 @@ const HoverCtx = createContext<HoverApi>({ show: () => {} })
 type Selection =
   | { kind: 'story'; id: string }
   | { kind: 'reading'; id: string }
+  | { kind: 'remote'; id: string }
   | { kind: 'song'; id: string }
 
 export default function App() {
@@ -76,9 +86,23 @@ export default function App() {
     }
   }, [])
 
+  // Remote library catalog (fetched on demand; hydrated from cache if present).
+  const [catalog, setCatalog] = useState<CatalogEntry[] | null>(() => cachedCatalog())
+  const [catalogStatus, setCatalogStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+  async function loadCatalog() {
+    setCatalogStatus('loading')
+    try {
+      setCatalog(await fetchCatalog())
+      setCatalogStatus('idle')
+    } catch {
+      setCatalogStatus('error')
+    }
+  }
+
   const story = sel.kind === 'story' ? STORIES.find((s) => s.id === sel.id)! : null
   const reading = sel.kind === 'reading' ? READINGS.find((s) => s.id === sel.id)! : null
   const song = sel.kind === 'song' ? SONGS.find((s) => s.id === sel.id)! : null
+  const remoteMeta = sel.kind === 'remote' ? catalog?.find((c) => c.id === sel.id) : undefined
 
   return (
     <HoverCtx.Provider value={api}>
@@ -141,6 +165,39 @@ export default function App() {
             </nav>
           </div>
 
+          <div className="nav-group">
+            <div className="nav-label">
+              Library
+              <button className="lib-refresh" onClick={loadCatalog} disabled={catalogStatus === 'loading'}>
+                {catalog ? '↻' : 'Browse'}
+              </button>
+            </div>
+            {catalogStatus === 'loading' && <div className="lib-note">Loading library…</div>}
+            {catalogStatus === 'error' && <div className="lib-note">Couldn’t reach the library (offline?).</div>}
+            {!catalog && catalogStatus === 'idle' && (
+              <div className="lib-note">More stories &amp; articles, downloaded on demand.</div>
+            )}
+            {catalog && (
+              <nav className="story-list">
+                {catalog.map((c) => (
+                  <button
+                    key={c.id}
+                    className={'story-item' + (sel.kind === 'remote' && c.id === sel.id ? ' active' : '')}
+                    onClick={() => setSel({ kind: 'remote', id: c.id })}
+                  >
+                    <span className="si-title">{c.title}</span>
+                    <span className="si-en">{c.titleEn}</span>
+                    <span className="si-level">{c.level}</span>
+                    <span className="si-cat">
+                      {CATEGORY_LABEL[c.category]}
+                      {isDownloaded(c.id) ? ' · saved' : ''}
+                    </span>
+                  </button>
+                ))}
+              </nav>
+            )}
+          </div>
+
           <div className="sidebar-foot">
             Hover any <b>kanji</b> for readings, radicals, graphemes, stroke order &amp; a mnemonic.
           </div>
@@ -149,6 +206,7 @@ export default function App() {
         <main className="reader">
           {story && <StoryView story={story} />}
           {reading && <ReadingView reading={reading} />}
+          {sel.kind === 'remote' && <RemoteReadingView id={sel.id} meta={remoteMeta} />}
           {song && <SongView song={song} />}
         </main>
 
@@ -393,6 +451,65 @@ function FuriToggle({ on, set }: { on: boolean; set: (v: boolean) => void }) {
       Furigana
     </label>
   )
+}
+
+/* A reading fetched from the remote library. Loads from cache instantly if
+   available, otherwise downloads it; then makes sure every kanji has hover data. */
+function RemoteReadingView({ id, meta }: { id: string; meta?: CatalogEntry }) {
+  const [reading, setReading] = useState<Reading | null>(() => cachedReading(id))
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>(
+    cachedReading(id) ? 'idle' : 'loading',
+  )
+  const [, bumpKanji] = useState(0)
+
+  useEffect(() => {
+    let cancelled = false
+    const cached = cachedReading(id)
+    if (cached) {
+      setReading(cached)
+      setStatus('idle')
+      return
+    }
+    setReading(null)
+    setStatus('loading')
+    fetchReading(id)
+      .then((r) => {
+        if (cancelled) return
+        setReading(r)
+        setStatus('idle')
+      })
+      .catch(() => !cancelled && setStatus('error'))
+    return () => {
+      cancelled = true
+    }
+  }, [id])
+
+  // Once the text is loaded, fetch any missing kanji data so hover works.
+  useEffect(() => {
+    if (!reading) return
+    let cancelled = false
+    ensureKanjiForText(reading.paragraphs.join('\n')).then((added) => {
+      if (added && !cancelled) bumpKanji((n) => n + 1)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [reading])
+
+  if (!reading) {
+    return (
+      <div className="remote-loading">
+        {meta && <h1 className="story-title">{meta.title}</h1>}
+        {meta && <p className="story-summary">{meta.summary}</p>}
+        <p className="lib-note">
+          {status === 'error'
+            ? 'Couldn’t download this one — check your connection and hit Browse again.'
+            : 'Downloading…'}
+        </p>
+      </div>
+    )
+  }
+  return <ReadingView reading={reading} />
 }
 
 /* Per-song lyrics you paste yourself: saved on this device and rendered with
