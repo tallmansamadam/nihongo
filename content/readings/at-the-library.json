@@ -1,0 +1,25 @@
+{
+  "id": "at-the-library",
+  "title": "図書館で",
+  "titleReading": "としょかんで",
+  "titleEn": "At the Library",
+  "level": "N4",
+  "category": "story",
+  "summary": "A student studies for a test and borrows some books.",
+  "paragraphs": [
+    "来週、大切な試験があります。だから、私は今日、図書館で勉強しました。",
+    "図書館はとても静かで、集中できます。分からないところは、先生に借りた本で調べました。",
+    "帰る前に、日本の歴史の本を三冊借りました。試験のために、家でもがんばるつもりです。"
+  ],
+  "vocab": [
+    { "word": "試験", "reading": "しけん", "meaning": "exam, test" },
+    { "word": "集中", "reading": "しゅうちゅう", "meaning": "concentration" },
+    { "word": "調べる", "reading": "しらべる", "meaning": "to look up, investigate" },
+    { "word": "歴史", "reading": "れきし", "meaning": "history" },
+    { "word": "借りる", "reading": "かりる", "meaning": "to borrow" }
+  ],
+  "grammar": [
+    { "point": "〜つもりです", "explanation": "States an intention: 'I plan to ~'. Dictionary verb + つもり.", "example": "がんばるつもりです。", "exampleEn": "I intend to do my best." },
+    { "point": "〜ために", "explanation": "'For the purpose of ~'. Noun の / dictionary verb + ために.", "example": "試験のために勉強します。", "exampleEn": "I study for the exam." }
+  ]
+}

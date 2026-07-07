@@ -1,0 +1,25 @@
+{
+  "id": "on-the-train",
+  "title": "電車の中で",
+  "titleReading": "でんしゃのなかで",
+  "titleEn": "On the Train",
+  "level": "N5",
+  "category": "story",
+  "summary": "A quiet morning commute and a small act of kindness.",
+  "paragraphs": [
+    "毎朝、私は電車で会社へ行きます。朝の電車はいつも人がたくさんいます。",
+    "今日、私の前におばあさんが立っていました。私は席を立って、「どうぞ」と言いました。",
+    "おばあさんは「ありがとう」と言って、うれしそうに笑いました。私も朝から気持ちがよかったです。"
+  ],
+  "vocab": [
+    { "word": "会社", "reading": "かいしゃ", "meaning": "company, office" },
+    { "word": "立つ", "reading": "たつ", "meaning": "to stand" },
+    { "word": "席", "reading": "せき", "meaning": "seat" },
+    { "word": "笑う", "reading": "わらう", "meaning": "to smile, to laugh" },
+    { "word": "気持ち", "reading": "きもち", "meaning": "feeling, mood" }
+  ],
+  "grammar": [
+    { "point": "〜ています (state)", "explanation": "て-form + いる can describe an ongoing state, like 立っています = 'is standing'.", "example": "おばあさんが立っていました。", "exampleEn": "An old woman was standing." },
+    { "point": "〜と言います", "explanation": "と marks a quote before 言う (to say).", "example": "「どうぞ」と言いました。", "exampleEn": "I said, \"Please (go ahead).\"" }
+  ]
+}

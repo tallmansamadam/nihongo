@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "updated": "2026-07-06",
+  "readings": [
+    { "id": "my-dog", "title": "私の犬", "titleReading": "わたしのいぬ", "titleEn": "My Dog", "level": "N5", "category": "story", "summary": "A short story about a playful family dog named Pochi." },
+    { "id": "sunday", "title": "日曜日", "titleReading": "にちようび", "titleEn": "Sunday", "level": "N5", "category": "story", "summary": "How one person spends a relaxing Sunday at home and in the park." },
+    { "id": "on-the-train", "title": "電車の中で", "titleReading": "でんしゃのなかで", "titleEn": "On the Train", "level": "N5", "category": "story", "summary": "A quiet morning commute and a small act of kindness." },
+    { "id": "japanese-food", "title": "日本の食べ物", "titleReading": "にほんのたべもの", "titleEn": "Japanese Food", "level": "N4", "category": "article", "summary": "An introduction to rice, fish, and the foods people eat in Japan." },
+    { "id": "cherry-blossoms", "title": "桜の季節", "titleReading": "さくらのきせつ", "titleEn": "Cherry Blossom Season", "level": "N4", "category": "article", "summary": "Why cherry blossoms matter and how people enjoy hanami." },
+    { "id": "at-the-library", "title": "図書館で", "titleReading": "としょかんで", "titleEn": "At the Library", "level": "N4", "category": "story", "summary": "A student studies for a test and borrows some books." },
+    { "id": "new-year", "title": "日本のお正月", "titleReading": "にほんのおしょうがつ", "titleEn": "New Year in Japan", "level": "N4", "category": "article", "summary": "New Year customs: temples, special food, and family time." },
+    { "id": "hot-springs", "title": "温泉", "titleReading": "おんせん", "titleEn": "Hot Springs", "level": "N4", "category": "article", "summary": "What an onsen is and how to enjoy one." },
+    { "id": "convenience-stores", "title": "コンビニ", "titleReading": "コンビニ", "titleEn": "Convenience Stores", "level": "N3", "category": "article", "summary": "How convenience stores became part of daily life in Japan." },
+    { "id": "grateful-crane", "title": "鶴の恩返し", "titleReading": "つるのおんがえし", "titleEn": "The Grateful Crane", "level": "N4", "category": "folktale", "summary": "A classic folktale about a rescued crane who repays a kindness." }
+  ]
+}

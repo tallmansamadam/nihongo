@@ -1,0 +1,25 @@
+{
+  "id": "japanese-food",
+  "title": "日本の食べ物",
+  "titleReading": "にほんのたべもの",
+  "titleEn": "Japanese Food",
+  "level": "N4",
+  "category": "article",
+  "summary": "An introduction to rice, fish, and the foods people eat in Japan.",
+  "paragraphs": [
+    "日本の食事の中心はご飯です。多くの人が毎日ご飯を食べます。",
+    "海が近いので、魚もよく食べます。すしや刺身は世界でも有名です。",
+    "冬には、みんなで鍋を囲むことが多いです。温かい料理を家族で一緒に食べる時間は、とても楽しいものです。"
+  ],
+  "vocab": [
+    { "word": "食事", "reading": "しょくじ", "meaning": "meal" },
+    { "word": "中心", "reading": "ちゅうしん", "meaning": "center" },
+    { "word": "刺身", "reading": "さしみ", "meaning": "sashimi (sliced raw fish)" },
+    { "word": "世界", "reading": "せかい", "meaning": "world" },
+    { "word": "料理", "reading": "りょうり", "meaning": "cooking, dish" }
+  ],
+  "grammar": [
+    { "point": "〜ので", "explanation": "States a reason, softer and more objective than から.", "example": "海が近いので魚を食べます。", "exampleEn": "Because the sea is near, people eat fish." },
+    { "point": "〜ことが多い", "explanation": "'It often happens that ~'. Dictionary verb + ことが多い.", "example": "鍋を囲むことが多いです。", "exampleEn": "People often gather around a hot pot." }
+  ]
+}

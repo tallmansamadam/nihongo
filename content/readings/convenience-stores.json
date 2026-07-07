@@ -1,0 +1,25 @@
+{
+  "id": "convenience-stores",
+  "title": "コンビニ",
+  "titleReading": "コンビニ",
+  "titleEn": "Convenience Stores",
+  "level": "N3",
+  "category": "article",
+  "summary": "How convenience stores became part of daily life in Japan.",
+  "paragraphs": [
+    "日本の町を歩くと、どこでもコンビニが目に入ります。コンビニは、二十四時間開いている小さな店です。",
+    "食べ物や飲み物だけでなく、雑誌や日用品も売っています。それに、お金を払ったり、荷物を送ったりすることもできます。",
+    "忙しい生活の中で、コンビニは多くの人にとって、なくてはならない場所になりました。便利すぎて、つい毎日行ってしまう人も少なくありません。"
+  ],
+  "vocab": [
+    { "word": "目に入る", "reading": "めにはいる", "meaning": "to catch one's eye" },
+    { "word": "雑誌", "reading": "ざっし", "meaning": "magazine" },
+    { "word": "日用品", "reading": "にちようひん", "meaning": "daily necessities" },
+    { "word": "払う", "reading": "はらう", "meaning": "to pay" },
+    { "word": "便利", "reading": "べんり", "meaning": "convenient" }
+  ],
+  "grammar": [
+    { "point": "〜だけでなく", "explanation": "'Not only ~ (but also)'. Adds an additional element.", "example": "食べ物だけでなく雑誌も売っています。", "exampleEn": "They sell not only food but also magazines." },
+    { "point": "〜なくてはならない", "explanation": "'Indispensable / must'. Something you cannot do without.", "example": "なくてはならない場所です。", "exampleEn": "It is an indispensable place." }
+  ]
+}

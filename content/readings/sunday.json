@@ -1,0 +1,25 @@
+{
+  "id": "sunday",
+  "title": "日曜日",
+  "titleReading": "にちようび",
+  "titleEn": "Sunday",
+  "level": "N5",
+  "category": "story",
+  "summary": "How one person spends a relaxing Sunday at home and in the park.",
+  "paragraphs": [
+    "日曜日は仕事も学校もありません。私はゆっくり起きます。",
+    "朝ご飯を食べてから、家の近くの公園へ行きます。公園で本を読んだり、写真を撮ったりします。",
+    "午後は家に帰って、音楽を聞きます。日曜日はとても静かで、いい一日です。"
+  ],
+  "vocab": [
+    { "word": "日曜日", "reading": "にちようび", "meaning": "Sunday" },
+    { "word": "仕事", "reading": "しごと", "meaning": "work, job" },
+    { "word": "近く", "reading": "ちかく", "meaning": "nearby" },
+    { "word": "音楽", "reading": "おんがく", "meaning": "music" },
+    { "word": "静か", "reading": "しずか", "meaning": "quiet" }
+  ],
+  "grammar": [
+    { "point": "〜てから", "explanation": "'After doing ~'. Verb て-form + から shows one action follows another.", "example": "朝ご飯を食べてから行きます。", "exampleEn": "I go after eating breakfast." },
+    { "point": "〜たり〜たりする", "explanation": "Lists example activities: 'do things like A and B'.", "example": "読んだり撮ったりします。", "exampleEn": "I do things like reading and taking photos." }
+  ]
+}

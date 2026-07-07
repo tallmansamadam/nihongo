@@ -1,0 +1,28 @@
+{
+  "id": "grateful-crane",
+  "title": "鶴の恩返し",
+  "titleReading": "つるのおんがえし",
+  "titleEn": "The Grateful Crane",
+  "level": "N4",
+  "category": "folktale",
+  "summary": "A classic folktale about a rescued crane who repays a kindness.",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese for this app.",
+  "paragraphs": [
+    "昔、貧しいけれど心の優しいおじいさんがいました。ある寒い日、おじいさんはわなにかかった鶴を助けてやりました。",
+    "その夜、一人の若い女の人が家に来ました。女の人はおじいさんの家に泊まり、美しい布を織ってくれました。「織っている間は、部屋を見ないでください」と女の人は言いました。",
+    "布はよく売れましたが、おじいさんはとうとう約束を破って、部屋をのぞいてしまいました。そこには、自分の羽で布を織る鶴がいました。",
+    "正体を見られた鶴は、「私は助けていただいた鶴です」と言って、空へ飛んで行きました。おじいさんは、約束を守らなかったことを深く後悔しました。"
+  ],
+  "vocab": [
+    { "word": "貧しい", "reading": "まずしい", "meaning": "poor" },
+    { "word": "助ける", "reading": "たすける", "meaning": "to help, rescue" },
+    { "word": "布", "reading": "ぬの", "meaning": "cloth" },
+    { "word": "織る", "reading": "おる", "meaning": "to weave" },
+    { "word": "約束", "reading": "やくそく", "meaning": "promise" },
+    { "word": "後悔", "reading": "こうかい", "meaning": "regret" }
+  ],
+  "grammar": [
+    { "point": "〜てやる / 〜てくれる", "explanation": "Giving/receiving an action as a favor. 助けてやる = do the favor of helping.", "example": "鶴を助けてやりました。", "exampleEn": "He kindly rescued the crane." },
+    { "point": "〜ないでください", "explanation": "A polite request not to do something.", "example": "部屋を見ないでください。", "exampleEn": "Please do not look in the room." }
+  ]
+}
