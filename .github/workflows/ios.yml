@@ -1,0 +1,142 @@
+name: iOS (build on macOS)
+
+# We can't build iOS on Windows/Linux — Apple's toolchain only runs on macOS.
+# This workflow rents a macOS runner from GitHub (free for public repos) and
+# builds the SAME React + Rust (Tauri) codebase for iOS there.
+#
+# Two jobs:
+#   • simulator — builds for the iOS Simulator with code signing DISABLED.
+#     Needs no Apple account; this is the always-green "does it compile for iOS"
+#     build and uploads a runnable .app.
+#   • signed-ipa — builds an installable .ipa. Only runs if you've added Apple
+#     signing secrets (see the env gate below). Off by default.
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags: ['ios-v*']
+
+jobs:
+  simulator:
+    name: iOS Simulator (unsigned)
+    runs-on: macos-14 # Apple Silicon runner, Xcode preinstalled
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Rust toolchain + iOS targets
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios,aarch64-apple-ios-sim,x86_64-apple-ios
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Build web assets
+        run: npm run build
+
+      - name: Generate the Xcode project
+        run: npx tauri ios init
+
+      - name: Build for the iOS Simulator (no signing)
+        run: |
+          set -euo pipefail
+          PROJ=$(ls -d src-tauri/gen/apple/*.xcodeproj | head -n1)
+          SCHEME=$(xcodebuild -project "$PROJ" -list -json \
+            | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).project.schemes[0]))")
+          echo "Building $SCHEME from $PROJ"
+          xcodebuild \
+            -project "$PROJ" \
+            -scheme "$SCHEME" \
+            -configuration debug \
+            -sdk iphonesimulator \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Upload .app
+        uses: actions/upload-artifact@v4
+        with:
+          name: nihongo-ios-simulator
+          path: build/Build/Products/**/*.app
+          if-no-files-found: error
+
+  signed-ipa:
+    name: iOS Device (.ipa, signed)
+    runs-on: macos-14
+    # Gate on the presence of Apple signing secrets. With none set, the steps
+    # below are skipped and the job passes as a no-op.
+    env:
+      HAS_SIGNING: ${{ secrets.APPLE_CERTIFICATE_BASE64 != '' }}
+      APPLE_DEVELOPMENT_TEAM: ${{ secrets.APPLE_TEAM_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        if: env.HAS_SIGNING == 'true'
+
+      - uses: actions/setup-node@v4
+        if: env.HAS_SIGNING == 'true'
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install JS dependencies
+        if: env.HAS_SIGNING == 'true'
+        run: npm ci
+
+      - name: Rust toolchain + iOS device target
+        if: env.HAS_SIGNING == 'true'
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios
+
+      - name: Import signing certificate into a temporary keychain
+        if: env.HAS_SIGNING == 'true'
+        env:
+          CERT_B64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          CERT_PW: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          KC_PW: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          set -euo pipefail
+          echo "$CERT_B64" | base64 --decode > cert.p12
+          security create-keychain -p "$KC_PW" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "$KC_PW" build.keychain
+          security import cert.p12 -k build.keychain -P "$CERT_PW" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KC_PW" build.keychain
+
+      - name: Install provisioning profile
+        if: env.HAS_SIGNING == 'true'
+        env:
+          PROFILE_B64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          echo "$PROFILE_B64" | base64 --decode \
+            > "$HOME/Library/MobileDevice/Provisioning Profiles/profile.mobileprovision"
+
+      - name: Build web assets
+        if: env.HAS_SIGNING == 'true'
+        run: npm run build
+
+      - name: Build signed .ipa
+        if: env.HAS_SIGNING == 'true'
+        run: |
+          npx tauri ios init
+          npx tauri ios build --export-method release-testing
+
+      - name: Upload .ipa
+        if: env.HAS_SIGNING == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nihongo-ios-ipa
+          path: src-tauri/gen/apple/build/**/*.ipa
+          if-no-files-found: error
