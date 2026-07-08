@@ -9,3 +9,6 @@ public/dict
 # Tauri (desktop/mobile) build artifacts
 src-tauri/target
 src-tauri/gen
+
+# Built Android APKs
+*.apk

@@ -39,14 +39,40 @@ npm run tauri:dev        # run the desktop app in dev with hot reload
 
 ## Android
 
-Prerequisites: Android Studio (SDK + NDK), a JDK (17+), and env vars
-`ANDROID_HOME` and `NDK_HOME` set.
+Prerequisites: Android SDK + NDK, a JDK 17+ (Android Studio's bundled JDK works),
+and env vars set for the shell:
 
 ```bash
+export JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"
+export ANDROID_HOME="$LOCALAPPDATA\Android\Sdk"
+export NDK_HOME="$ANDROID_HOME\ndk\android-ndk-r27c"
+export ANDROID_NDK_HOME="$NDK_HOME"
+
 npm run tauri android init     # one-time, generates src-tauri/gen/android
 npm run tauri android dev      # run on emulator/device
-npm run tauri android build    # → signed APK/AAB
+npm run tauri android build --debug --apk --target aarch64
 ```
+
+### Windows symlink workaround
+`tauri android build` cross-compiles the Rust `.so` fine, but its last step
+**symlinks** the library into Gradle's `jniLibs`, which Windows blocks unless
+**Developer Mode** is on (Settings → System → For developers). Either enable that,
+or build the APK with Gradle directly after the Rust step (Tauri embeds the web
+assets *into* the `.so`, so the APK is self-contained):
+
+```bash
+cd src-tauri/gen/android
+cp ../../target/aarch64-linux-android/debug/libapp_lib.so \
+   app/src/main/jniLibs/arm64-v8a/libapp_lib.so
+./gradlew assembleArm64Debug -x rustBuildArm64Debug -x rustBuildUniversalDebug
+# → app/build/outputs/apk/arm64/debug/app-arm64-debug.apk
+```
+
+Installing the debug APK: enable "install unknown apps" on the phone and copy it
+over, or with USB debugging on: `adb install -r NihongoReader-arm64-debug.apk`.
+
+For a Play-Store release you need a signing keystore and `--release --aab`
+(configure signing in `src-tauri/gen/android/app/build.gradle.kts`).
 
 ## iOS
 
@@ -60,7 +86,6 @@ npm run tauri ios build
 ## Status
 
 - ✅ Web app (dev + production build)
-- ✅ Tauri project scaffolded (`src-tauri/`), configured for all three targets
-- ⏳ Windows `.exe` — needs the MSVC C++ Build Tools, then `npm run tauri:build`
-- ⏳ Android — needs Android Studio/SDK/NDK + JDK
+- ✅ Windows `.exe` — `npm run tauri:build` (installer + standalone `nihongo.exe`)
+- ✅ Android — arm64 debug APK builds (see workaround above); `NihongoReader-arm64-debug.apk`
 - ⏳ iOS — needs a Mac with Xcode
