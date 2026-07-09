@@ -4,11 +4,13 @@ import { codepointHex } from '../data/kanji'
 interface Props {
   char: string
   size?: number
+  /** Bump this number to replay the stroke animation from the start. */
+  replay?: number
 }
 
 // Loads a KanjiVG SVG and re-draws the strokes one at a time with a
 // dash-offset animation so the stroke order is visible.
-export default function StrokeOrder({ char, size = 120 }: Props) {
+export default function StrokeOrder({ char, size = 120, replay }: Props) {
   const [paths, setPaths] = useState<string[] | null>(null)
   const [error, setError] = useState(false)
   const [playToken, setPlayToken] = useState(0)
@@ -51,24 +53,34 @@ export default function StrokeOrder({ char, size = 120 }: Props) {
     }
   }, [char])
 
-  // Drive the per-stroke animation by toggling a data attribute after mount.
+  // Draw each stroke in order. Reset every stroke to "undrawn", then animate to
+  // "drawn". A double requestAnimationFrame commits the undrawn state to the
+  // screen first, so re-running this (e.g. after releasing Alt) reliably
+  // restarts the animation instead of snapping to the finished glyph.
   useEffect(() => {
     if (!paths || !containerRef.current) return
-    const strokes = containerRef.current.querySelectorAll<SVGPathElement>('.stroke')
+    const strokes = [...containerRef.current.querySelectorAll<SVGPathElement>('.stroke')]
+    const perStroke = 0.5 // seconds
     strokes.forEach((s) => {
       const len = s.getTotalLength()
       s.style.transition = 'none'
       s.style.strokeDasharray = `${len}`
       s.style.strokeDashoffset = `${len}`
     })
-    // Force reflow so the reset offset takes effect before animating.
-    void containerRef.current.getBoundingClientRect()
-    const perStroke = 0.5 // seconds
-    strokes.forEach((s, i) => {
-      s.style.transition = `stroke-dashoffset ${perStroke}s ease ${i * perStroke}s`
-      s.style.strokeDashoffset = '0'
+    let raf2 = 0
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        strokes.forEach((s, i) => {
+          s.style.transition = `stroke-dashoffset ${perStroke}s ease ${i * perStroke}s`
+          s.style.strokeDashoffset = '0'
+        })
+      })
     })
-  }, [paths, playToken])
+    return () => {
+      cancelAnimationFrame(raf1)
+      cancelAnimationFrame(raf2)
+    }
+  }, [paths, playToken, replay])
 
   if (error) {
     return <div className="stroke-fallback" style={{ fontSize: size * 0.7 }}>{char}</div>

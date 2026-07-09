@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getGlyph } from '../data/components'
 import type { Token } from '../data/types'
 import StrokeOrder from './StrokeOrder'
@@ -27,9 +27,17 @@ export default function KanjiPopover({
 
   const [stack, setStack] = useState<View[]>([rootView()])
 
+  // Replaying the stroke animation when compound mode turns off (e.g. releasing
+  // Alt) — the glyph view returns and should redraw from scratch, as if freshly
+  // hovered.
+  const [replay, setReplay] = useState(0)
+  const prevCompound = useRef(compound)
+
   // When compound mode toggles while open and we're at the root, swap the root.
   useEffect(() => {
     setStack((s) => (s.length === 1 ? [rootView()] : s))
+    if (prevCompound.current && !compound) setReplay((r) => r + 1)
+    prevCompound.current = compound
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compound])
 
@@ -52,7 +60,7 @@ export default function KanjiPopover({
       {view.type === 'compound' ? (
         <CompoundView token={view.token} onPick={pickGlyph} />
       ) : (
-        <GlyphView char={view.char} fallbackMeaning={view.meaning} onPick={pickGlyph} />
+        <GlyphView char={view.char} fallbackMeaning={view.meaning} onPick={pickGlyph} replay={replay} />
       )}
     </div>
   )
@@ -98,16 +106,18 @@ function GlyphView({
   char,
   fallbackMeaning,
   onPick,
+  replay,
 }: {
   char: string
   fallbackMeaning?: string
   onPick: (char: string, meaning?: string) => void
+  replay?: number
 }) {
   const g = getGlyph(char, fallbackMeaning)
   return (
     <>
       <div className="kc-top">
-        <StrokeOrder char={g.char} />
+        <StrokeOrder char={g.char} replay={replay} />
         <div className="kc-head">
           <div className="kc-glyph">{g.char}</div>
           <div className="kc-meanings">{g.meanings ? g.meanings.join(', ') : g.meaning}</div>
