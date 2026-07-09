@@ -9,29 +9,29 @@ type View =
   | { type: 'glyph'; char: string; meaning?: string }
   | { type: 'compound'; token: Token }
 
-/** The navigable popover: drill into graphemes, or (with Alt) view the whole
- *  compound word and pick any kanji from it. */
+/** The navigable popover: drill into graphemes, or (with Alt / long-press) view
+ *  the whole compound word and pick any kanji from it. */
 export default function KanjiPopover({
   token,
   char,
-  altDown,
+  compound,
 }: {
   token: Token
   char: string
-  altDown: boolean
+  compound: boolean
 }) {
   const rootView = (): View =>
-    altDown && [...token.w].some((c) => KANJI_RE.test(c))
+    compound && [...token.w].some((c) => KANJI_RE.test(c))
       ? { type: 'compound', token }
       : { type: 'glyph', char }
 
   const [stack, setStack] = useState<View[]>([rootView()])
 
-  // When Alt is toggled while open and we're at the root, swap the root view.
+  // When compound mode toggles while open and we're at the root, swap the root.
   useEffect(() => {
     setStack((s) => (s.length === 1 ? [rootView()] : s))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [altDown])
+  }, [compound])
 
   // Reset when the hovered kanji changes.
   useEffect(() => {

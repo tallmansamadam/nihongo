@@ -32,9 +32,9 @@ interface Hover {
 }
 
 interface HoverApi {
-  show: (char: string, token: Token, el: HTMLElement) => void
+  open: (char: string, token: Token, el: HTMLElement, compound?: boolean) => void
 }
-const HoverCtx = createContext<HoverApi>({ show: () => {} })
+const HoverCtx = createContext<HoverApi>({ open: () => {} })
 
 type Selection =
   | { kind: 'story'; id: string }
@@ -48,6 +48,8 @@ export default function App() {
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
   const [hover, setHover] = useState<Hover | null>(null)
   const [altDown, setAltDown] = useState(false)
+  // Compound view triggered without a keyboard (long-press on touch).
+  const [touchCompound, setTouchCompound] = useState(false)
   const popoverRef = useRef<HTMLDivElement>(null)
 
   // Track Alt/Option so hovering can switch into the surrounding-compound view.
@@ -66,27 +68,30 @@ export default function App() {
   }, [])
 
   const api: HoverApi = {
-    show(char, token, el) {
+    open(char, token, el, compound = false) {
+      setTouchCompound(compound)
       setHover({ char, token, rect: el.getBoundingClientRect() })
     },
   }
 
   // Sticky popover: once open it stays put — through grapheme drill-downs and
-  // their size changes — until you click outside it or press Escape. Hovering a
-  // different kanji replaces it (via show()).
+  // their size changes — until you tap/click outside it or press Escape.
+  // Works for mouse and touch (pointerdown covers both). Tapping another kanji
+  // is ignored here so its own handler can replace the card.
   useEffect(() => {
-    const onDown = (e: MouseEvent) => {
-      if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
-        setHover(null)
-      }
+    const onDown = (e: PointerEvent) => {
+      const t = e.target as HTMLElement | null
+      if (popoverRef.current?.contains(t as Node)) return
+      if (t?.closest?.('.kanji')) return
+      setHover(null)
     }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setHover(null)
     }
-    document.addEventListener('mousedown', onDown)
+    document.addEventListener('pointerdown', onDown)
     document.addEventListener('keydown', onKey)
     return () => {
-      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('pointerdown', onDown)
       document.removeEventListener('keydown', onKey)
     }
   }, [])
@@ -244,7 +249,7 @@ export default function App() {
 
         {hover && isHoverableKanji(hover.char) && (
           <Popover rect={hover.rect} innerRef={popoverRef}>
-            <KanjiPopover token={hover.token} char={hover.char} altDown={altDown} />
+            <KanjiPopover token={hover.token} char={hover.char} compound={altDown || touchCompound} />
           </Popover>
         )}
       </div>
@@ -252,19 +257,60 @@ export default function App() {
   )
 }
 
+// One hoverable/tappable kanji. Mouse: opens on hover (Alt = compound view).
+// Touch: opens on tap; a long-press opens the surrounding-compound view.
+function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
+  const { open } = useContext(HoverCtx)
+  const lpTimer = useRef<number | undefined>(undefined)
+  const lpFired = useRef(false)
+  const start = useRef<{ x: number; y: number } | null>(null)
+  const clearLP = () => window.clearTimeout(lpTimer.current)
+
+  return (
+    <span
+      className="kanji"
+      onPointerEnter={(e) => {
+        if (e.pointerType === 'mouse') open(ch, tok, e.currentTarget)
+      }}
+      onPointerDown={(e) => {
+        lpFired.current = false
+        if (e.pointerType === 'mouse') return // desktop uses Alt for compound
+        start.current = { x: e.clientX, y: e.clientY }
+        const el = e.currentTarget
+        clearLP()
+        lpTimer.current = window.setTimeout(() => {
+          lpFired.current = true
+          open(ch, tok, el, true) // long-press → compound view
+        }, 500)
+      }}
+      onPointerMove={(e) => {
+        if (!start.current) return
+        if (Math.abs(e.clientX - start.current.x) > 10 || Math.abs(e.clientY - start.current.y) > 10) {
+          clearLP() // finger is scrolling, not long-pressing
+        }
+      }}
+      onPointerUp={clearLP}
+      onPointerLeave={clearLP}
+      onPointerCancel={clearLP}
+      onClick={(e) => {
+        if (lpFired.current) {
+          lpFired.current = false
+          return // long-press already opened the compound view
+        }
+        open(ch, tok, e.currentTarget)
+      }}
+    >
+      {ch}
+    </span>
+  )
+}
+
 function TokenView({ tok, furigana }: { tok: Token; furigana: boolean }) {
-  const { show } = useContext(HoverCtx)
   const base = (
     <span className="word" title={tok.g}>
       {[...tok.w].map((ch, i) =>
         isHoverableKanji(ch) ? (
-          <span
-            key={i}
-            className="kanji"
-            onMouseEnter={(e) => show(ch, tok, e.currentTarget)}
-          >
-            {ch}
-          </span>
+          <KanjiSpan key={i} ch={ch} tok={tok} />
         ) : (
           <span key={i}>{ch}</span>
         ),
