@@ -292,6 +292,7 @@ function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
       onPointerUp={clearLP}
       onPointerLeave={clearLP}
       onPointerCancel={clearLP}
+      onContextMenu={(e) => e.preventDefault()} // suppress the long-press menu on touch
       onClick={(e) => {
         if (lpFired.current) {
           lpFired.current = false

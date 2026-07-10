@@ -192,6 +192,11 @@ rt {
   padding: 0 1px;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation; /* avoid the 300ms tap delay / double-tap zoom */
+  /* Stop the native long-press from selecting text / showing the magnifier &
+     callout, so the long-press can drive the compound view instead. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 .kanji:hover,
 .kanji:active {
