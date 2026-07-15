@@ -1,0 +1,49 @@
+{
+  "id": "ramen",
+  "title": "ラーメンの話",
+  "titleReading": "ラーメンのはなし",
+  "titleEn": "All About Ramen",
+  "level": "N4",
+  "category": "article",
+  "summary": "How a noodle soup became Japan’s favorite comfort food.",
+  "paragraphs": [
+    "ラーメンは、今では日本を代表する食べ物の一つです。もともとは中国から来ましたが、日本で独自に発展しました。",
+    "スープには色々な種類があります。しょうゆ、みそ、しお、とんこつが有名です。地方によって味がぜんぜん違います。",
+    "人気の店の前には、長い行列ができます。寒い日に食べる熱いラーメンは最高です。"
+  ],
+  "vocab": [
+    {
+      "word": "代表",
+      "reading": "だいひょう",
+      "meaning": "representative"
+    },
+    {
+      "word": "独自",
+      "reading": "どくじ",
+      "meaning": "original, unique"
+    },
+    {
+      "word": "発展",
+      "reading": "はってん",
+      "meaning": "development"
+    },
+    {
+      "word": "地方",
+      "reading": "ちほう",
+      "meaning": "region"
+    },
+    {
+      "word": "行列",
+      "reading": "ぎょうれつ",
+      "meaning": "queue, line"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜によって違う",
+      "explanation": "\"Differs depending on\": 地方によって味が違う.",
+      "example": "地方によって味が違います。",
+      "exampleEn": "The flavor differs by region."
+    }
+  ]
+}

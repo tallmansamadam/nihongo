@@ -1,0 +1,49 @@
+{
+  "id": "autumn-festival",
+  "title": "秋祭り",
+  "titleReading": "あきまつり",
+  "titleEn": "The Autumn Festival",
+  "level": "N5",
+  "category": "article",
+  "summary": "Taiko drums, food stalls, and portable shrines.",
+  "paragraphs": [
+    "秋になると、日本の町や村でお祭りがあります。秋祭りは、米がたくさんとれたことに感謝するお祭りです。",
+    "お祭りの日、人々は「みこし」をかついで町を歩きます。たいこの音が遠くまでひびきます。",
+    "道には屋台がならびます。たこ焼き、りんごあめ、金魚すくい。子どもも大人も、この日を楽しみにしています。"
+  ],
+  "vocab": [
+    {
+      "word": "祭り",
+      "reading": "まつり",
+      "meaning": "festival"
+    },
+    {
+      "word": "感謝",
+      "reading": "かんしゃ",
+      "meaning": "gratitude"
+    },
+    {
+      "word": "神輿",
+      "reading": "みこし",
+      "meaning": "portable shrine"
+    },
+    {
+      "word": "太鼓",
+      "reading": "たいこ",
+      "meaning": "taiko drum"
+    },
+    {
+      "word": "響く",
+      "reading": "ひびく",
+      "meaning": "to resound, echo"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜を楽しみにする",
+      "explanation": "\"To look forward to\": この日を楽しみにしています.",
+      "example": "お祭りを楽しみにしています。",
+      "exampleEn": "They look forward to the festival."
+    }
+  ]
+}

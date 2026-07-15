@@ -1,0 +1,54 @@
+{
+  "id": "shrines-and-temples",
+  "title": "神社とお寺",
+  "titleReading": "じんじゃとおてら",
+  "titleEn": "Shrines and Temples",
+  "level": "N3",
+  "category": "article",
+  "summary": "How to tell a Shintō shrine from a Buddhist temple.",
+  "paragraphs": [
+    "日本には神社とお寺があります。似ているようで、実は違うものです。神社は神道、お寺は仏教の建物です。",
+    "神社の入口には鳥居があります。お参りの時は、二回おじぎをして、二回手をたたきます。お寺では手をたたかず、静かに手を合わせます。",
+    "お正月には多くの人が神社やお寺へ初詣に行きます。一年の幸せを祈る、大切な習慣です。"
+  ],
+  "vocab": [
+    {
+      "word": "神社",
+      "reading": "じんじゃ",
+      "meaning": "Shintō shrine"
+    },
+    {
+      "word": "仏教",
+      "reading": "ぶっきょう",
+      "meaning": "Buddhism"
+    },
+    {
+      "word": "鳥居",
+      "reading": "とりい",
+      "meaning": "torii gate"
+    },
+    {
+      "word": "お参り",
+      "reading": "おまいり",
+      "meaning": "visit to worship"
+    },
+    {
+      "word": "初詣",
+      "reading": "はつもうで",
+      "meaning": "first shrine visit of the year"
+    },
+    {
+      "word": "祈る",
+      "reading": "いのる",
+      "meaning": "to pray"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ようで",
+      "explanation": "\"Seems X, but…\": 似ているようで、実は違う = \"they seem alike, but actually differ\".",
+      "example": "似ているようで、実は違います。",
+      "exampleEn": "They look alike but are actually different."
+    }
+  ]
+}

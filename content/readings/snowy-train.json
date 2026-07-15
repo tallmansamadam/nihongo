@@ -1,0 +1,49 @@
+{
+  "id": "snowy-train",
+  "title": "雪の日の電車",
+  "titleReading": "ゆきのひのでんしゃ",
+  "titleEn": "The Train on a Snowy Day",
+  "level": "N4",
+  "category": "story",
+  "summary": "A delayed train, a warm can of coffee, and a small kindness.",
+  "paragraphs": [
+    "大雪の朝、電車が止まってしまいました。ホームは人でいっぱいで、みんな寒そうでした。",
+    "私のとなりに、小さいおばあさんが立っていました。私は自動販売機で温かいコーヒーを二本買って、一本をおばあさんにわたしました。",
+    "おばあさんはびっくりして、それからにっこり笑いました。「あたたかいねえ」。電車はまだ来ませんでしたが、心はあたたかくなりました。"
+  ],
+  "vocab": [
+    {
+      "word": "大雪",
+      "reading": "おおゆき",
+      "meaning": "heavy snow"
+    },
+    {
+      "word": "ホーム",
+      "reading": "ホーム",
+      "meaning": "train platform"
+    },
+    {
+      "word": "渡す",
+      "reading": "わたす",
+      "meaning": "to hand over"
+    },
+    {
+      "word": "にっこり",
+      "reading": "にっこり",
+      "meaning": "with a warm smile"
+    },
+    {
+      "word": "心",
+      "reading": "こころ",
+      "meaning": "heart"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜そうだ (looks like)",
+      "explanation": "寒そうでした = \"they looked cold\" — appearance, from the adjective stem.",
+      "example": "みんな寒そうでした。",
+      "exampleEn": "Everyone looked cold."
+    }
+  ]
+}

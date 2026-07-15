@@ -85,6 +85,11 @@ export function isHoverableKanji(char: string): boolean {
   return hasKanjiData(char)
 }
 
+/** Best-known short meaning for any glyph (curated → baseline/runtime → component dict). */
+export function glyphMeaning(char: string): string {
+  return getGlyph(char).meaning
+}
+
 /** Resolve any glyph: full kanji from KANJI, else baseline KANJIDIC data, else a
  *  known component, else a leaf using the meaning passed down from the parent. */
 export function getGlyph(char: string, fallbackMeaning?: string): GlyphInfo {

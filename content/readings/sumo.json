@@ -1,0 +1,49 @@
+{
+  "id": "sumo",
+  "title": "相撲",
+  "titleReading": "すもう",
+  "titleEn": "Sumo",
+  "level": "N3",
+  "category": "article",
+  "summary": "Japan’s ancient national sport, in brief.",
+  "paragraphs": [
+    "相撲は日本の国技と呼ばれる、とても古いスポーツです。丸い土俵の上で、二人の力士が戦います。",
+    "ルールは簡単です。相手を土俵の外に出すか、足のうら以外を地面につけさせれば勝ちです。一つの取組は数秒で終わることも多いです。",
+    "力士たちは「部屋」と呼ばれる場所で共同生活をしながら、毎日けいこをします。強い力士の中で最も位が高いのが「横綱」です。"
+  ],
+  "vocab": [
+    {
+      "word": "国技",
+      "reading": "こくぎ",
+      "meaning": "national sport"
+    },
+    {
+      "word": "土俵",
+      "reading": "どひょう",
+      "meaning": "sumo ring"
+    },
+    {
+      "word": "力士",
+      "reading": "りきし",
+      "meaning": "sumo wrestler"
+    },
+    {
+      "word": "取組",
+      "reading": "とりくみ",
+      "meaning": "a sumo bout"
+    },
+    {
+      "word": "横綱",
+      "reading": "よこづな",
+      "meaning": "yokozuna (grand champion)"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜させれば",
+      "explanation": "Causative + ば: つけさせれば勝ち = \"if you make (their body) touch, you win\".",
+      "example": "地面につけさせれば勝ちです。",
+      "exampleEn": "If you make them touch the ground, you win."
+    }
+  ]
+}

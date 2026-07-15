@@ -3,7 +3,7 @@ import { tokenizeText } from './lib/furigana'
 import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
 import { READINGS } from './data/readings'
-import { isHoverableKanji } from './data/components'
+import { getGlyph, isHoverableKanji } from './data/components'
 import { ensureKanjiForText } from './lib/kanjiLookup'
 import {
   cachedCatalog,
@@ -15,9 +15,19 @@ import {
 } from './lib/library'
 import type { Reading, Song, Story, Token } from './data/types'
 import { LEVELS, type Level } from './data/quizzes'
+import {
+  getJapaneseVoices,
+  loadSettings,
+  pronounceReading,
+  saveSettings,
+  speak,
+  stopSpeaking,
+  ttsSupported,
+} from './lib/tts'
 import KanjiPopover from './components/KanjiCard'
 import TestView from './components/TestView'
 import FlashcardView from './components/FlashcardView'
+import Splash from './components/Splash'
 
 const CATEGORY_LABEL: Record<Reading['category'], string> = {
   story: 'Story',
@@ -45,6 +55,7 @@ type Selection =
   | { kind: 'flashcards' }
 
 export default function App() {
+  const [splash, setSplash] = useState(true)
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
   const [hover, setHover] = useState<Hover | null>(null)
   const [altDown, setAltDown] = useState(false)
@@ -108,6 +119,12 @@ export default function App() {
       setCatalogStatus('error')
     }
   }
+  // Fetch the library catalog automatically on startup (cached copy shows
+  // instantly; this refreshes it) so the Library never looks empty.
+  useEffect(() => {
+    loadCatalog()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const story = sel.kind === 'story' ? STORIES.find((s) => s.id === sel.id)! : null
   const reading = sel.kind === 'reading' ? READINGS.find((s) => s.id === sel.id)! : null
@@ -116,6 +133,7 @@ export default function App() {
 
   return (
     <HoverCtx.Provider value={api}>
+      {splash && <Splash onDone={() => setSplash(false)} />}
       <div className="app">
         <aside className="sidebar">
           <div className="brand">
@@ -299,6 +317,9 @@ function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
           return // long-press already opened the compound view
         }
         open(ch, tok, e.currentTarget)
+        // Clicking/tapping a kanji pronounces it (kun reading, else on).
+        const g = getGlyph(ch)
+        pronounceReading(g.kun, g.on, ch)
       }}
     >
       {ch}
@@ -386,7 +407,10 @@ function StoryView({ story }: { story: Story }) {
           </div>
           <p className="story-summary">{story.summary}</p>
         </div>
-        <FuriToggle on={furigana} set={setFurigana} />
+        <div className="head-controls">
+          <VoiceMenu />
+          <FuriToggle on={furigana} set={setFurigana} />
+        </div>
       </header>
 
       <article className="story-body">
@@ -397,6 +421,9 @@ function StoryView({ story }: { story: Story }) {
                 <Line tokens={sentence} furigana={furigana} />
               </span>
             ))}
+            <SpeakButton
+              text={para.map((s) => s.map((t) => t.w).join('')).join('')}
+            />
           </p>
         ))}
       </article>
@@ -505,13 +532,17 @@ function ReadingView({ reading }: { reading: Reading }) {
           </div>
           <p className="story-summary">{reading.summary}</p>
         </div>
-        <FuriToggle on={furigana} set={setFurigana} />
+        <div className="head-controls">
+          <VoiceMenu />
+          <FuriToggle on={furigana} set={setFurigana} />
+        </div>
       </header>
 
       <article className="story-body reading-body">
         {reading.paragraphs.map((para, i) => (
           <div className="para" key={i}>
             <FuriganaText text={para} furigana={furigana} />
+            <SpeakButton text={para} />
           </div>
         ))}
       </article>
@@ -529,6 +560,104 @@ function FuriToggle({ on, set }: { on: boolean; set: (v: boolean) => void }) {
       <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} />
       Furigana
     </label>
+  )
+}
+
+/* ---------------- Voice reader ---------------- */
+
+/** Play/stop button that reads one block of Japanese text aloud. */
+function SpeakButton({ text }: { text: string }) {
+  const [playing, setPlaying] = useState(false)
+  useEffect(() => () => stopSpeaking(), []) // stop if the view unmounts
+  if (!ttsSupported()) return null
+  return (
+    <button
+      className={'speak-btn' + (playing ? ' playing' : '')}
+      title={playing ? 'Stop' : 'Read aloud'}
+      onClick={() => {
+        if (playing) {
+          stopSpeaking()
+          setPlaying(false)
+        } else {
+          setPlaying(true)
+          speak(text, () => setPlaying(false))
+        }
+      }}
+    >
+      {playing ? '⏹' : '🔊'}
+    </button>
+  )
+}
+
+/** Voice settings: pick among the device's Japanese voices, adjust speed. */
+function VoiceMenu() {
+  const [open, setOpen] = useState(false)
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[] | null>(null)
+  const [settings, setSettings] = useState(() => loadSettings())
+
+  useEffect(() => {
+    if (open && voices === null) getJapaneseVoices().then(setVoices)
+  }, [open, voices])
+
+  if (!ttsSupported()) return null
+
+  function update(next: Partial<ReturnType<typeof loadSettings>>) {
+    const merged = { ...settings, ...next }
+    setSettings(merged)
+    saveSettings(merged)
+  }
+
+  return (
+    <div className="voice-menu-wrap">
+      <button className="furi-toggle voice-btn" onClick={() => setOpen((o) => !o)}>
+        🎙 Voice
+      </button>
+      {open && (
+        <div className="voice-menu">
+          <div className="voice-menu-title">Japanese voices on this device</div>
+          {voices === null && <div className="lib-note">Loading voices…</div>}
+          {voices !== null && voices.length === 0 && (
+            <div className="lib-note">
+              No Japanese voices found. Install one via your system's text-to-speech settings
+              (on Android: Settings → System → Text-to-speech), then reopen this menu.
+            </div>
+          )}
+          {voices?.map((v) => (
+            <label className="voice-option" key={v.voiceURI}>
+              <input
+                type="radio"
+                name="voice"
+                checked={
+                  settings.voiceURI === v.voiceURI ||
+                  (settings.voiceURI === null && v === voices[0])
+                }
+                onChange={() => update({ voiceURI: v.voiceURI })}
+              />
+              <span className="voice-name">{v.name}</span>
+              <span className="voice-lang">{v.lang}</span>
+            </label>
+          ))}
+          <div className="voice-rate">
+            <span>Speed</span>
+            <input
+              type="range"
+              min="0.6"
+              max="1.3"
+              step="0.05"
+              value={settings.rate}
+              onChange={(e) => update({ rate: parseFloat(e.target.value) })}
+            />
+            <span>{settings.rate.toFixed(2)}×</span>
+          </div>
+          <button
+            className="voice-test"
+            onClick={() => speak('こんにちは。日本語を読みます。')}
+          >
+            ▶ Test voice
+          </button>
+        </div>
+      )}
+    </div>
   )
 }
 

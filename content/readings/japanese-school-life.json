@@ -1,0 +1,49 @@
+{
+  "id": "japanese-school-life",
+  "title": "日本の学校生活",
+  "titleReading": "にほんのがっこうせいかつ",
+  "titleEn": "School Life in Japan",
+  "level": "N4",
+  "category": "article",
+  "summary": "Uniforms, club activities, and cleaning time.",
+  "paragraphs": [
+    "日本の中学校や高校では、たいてい制服を着ます。学校によってデザインが違います。",
+    "授業が終わっても、生徒はすぐに帰りません。多くの生徒が部活動に参加します。野球、サッカー、吹奏楽、書道など、色々あります。",
+    "また、日本の学校では生徒が自分たちで教室をそうじします。自分の使う場所を自分できれいにするという考え方です。"
+  ],
+  "vocab": [
+    {
+      "word": "制服",
+      "reading": "せいふく",
+      "meaning": "school uniform"
+    },
+    {
+      "word": "授業",
+      "reading": "じゅぎょう",
+      "meaning": "class, lesson"
+    },
+    {
+      "word": "生徒",
+      "reading": "せいと",
+      "meaning": "student (secondary school)"
+    },
+    {
+      "word": "部活動",
+      "reading": "ぶかつどう",
+      "meaning": "club activities"
+    },
+    {
+      "word": "考え方",
+      "reading": "かんがえかた",
+      "meaning": "way of thinking"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ても (even if/when)",
+      "explanation": "授業が終わっても = \"even when class ends\".",
+      "example": "授業が終わっても帰りません。",
+      "exampleEn": "Even when class ends, they don’t go home."
+    }
+  ]
+}

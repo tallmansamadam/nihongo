@@ -360,6 +360,132 @@
       "level": "N3",
       "category": "article",
       "summary": "Why Japan’s railways are famous for being fast, clean, and on time."
+    },
+    {
+      "id": "autumn-festival",
+      "title": "秋祭り",
+      "titleReading": "あきまつり",
+      "titleEn": "The Autumn Festival",
+      "level": "N5",
+      "category": "article",
+      "summary": "Taiko drums, food stalls, and portable shrines."
+    },
+    {
+      "id": "grandmas-garden",
+      "title": "おばあちゃんの畑",
+      "titleReading": "おばあちゃんのはたけ",
+      "titleEn": "Grandma's Vegetable Garden",
+      "level": "N5",
+      "category": "story",
+      "summary": "Summer mornings helping grandma pick tomatoes."
+    },
+    {
+      "id": "hanami",
+      "title": "花見",
+      "titleReading": "はなみ",
+      "titleEn": "Cherry-Blossom Viewing",
+      "level": "N5",
+      "category": "article",
+      "summary": "Japan’s springtime picnic under the cherry trees."
+    },
+    {
+      "id": "japanese-school-life",
+      "title": "日本の学校生活",
+      "titleReading": "にほんのがっこうせいかつ",
+      "titleEn": "School Life in Japan",
+      "level": "N4",
+      "category": "article",
+      "summary": "Uniforms, club activities, and cleaning time."
+    },
+    {
+      "id": "japanese-tea",
+      "title": "日本のお茶",
+      "titleReading": "にほんのおちゃ",
+      "titleEn": "Japanese Tea",
+      "level": "N4",
+      "category": "article",
+      "summary": "From everyday green tea to the tea ceremony."
+    },
+    {
+      "id": "kotatsu",
+      "title": "こたつ",
+      "titleReading": "こたつ",
+      "titleEn": "The Kotatsu",
+      "level": "N4",
+      "category": "article",
+      "summary": "Japan’s heated table — winter’s coziest trap."
+    },
+    {
+      "id": "mount-fuji",
+      "title": "富士山",
+      "titleReading": "ふじさん",
+      "titleEn": "Mount Fuji",
+      "level": "N4",
+      "category": "article",
+      "summary": "Japan’s tallest and most beloved mountain."
+    },
+    {
+      "id": "origami",
+      "title": "折り紙",
+      "titleReading": "おりがみ",
+      "titleEn": "Origami",
+      "level": "N5",
+      "category": "article",
+      "summary": "The paper-folding art anyone can start today."
+    },
+    {
+      "id": "ramen",
+      "title": "ラーメンの話",
+      "titleReading": "ラーメンのはなし",
+      "titleEn": "All About Ramen",
+      "level": "N4",
+      "category": "article",
+      "summary": "How a noodle soup became Japan’s favorite comfort food."
+    },
+    {
+      "id": "shrines-and-temples",
+      "title": "神社とお寺",
+      "titleReading": "じんじゃとおてら",
+      "titleEn": "Shrines and Temples",
+      "level": "N3",
+      "category": "article",
+      "summary": "How to tell a Shintō shrine from a Buddhist temple."
+    },
+    {
+      "id": "snowy-train",
+      "title": "雪の日の電車",
+      "titleReading": "ゆきのひのでんしゃ",
+      "titleEn": "The Train on a Snowy Day",
+      "level": "N4",
+      "category": "story",
+      "summary": "A delayed train, a warm can of coffee, and a small kindness."
+    },
+    {
+      "id": "sumo",
+      "title": "相撲",
+      "titleReading": "すもう",
+      "titleEn": "Sumo",
+      "level": "N3",
+      "category": "article",
+      "summary": "Japan’s ancient national sport, in brief."
+    },
+    {
+      "id": "train-manners",
+      "title": "電車のマナー",
+      "titleReading": "でんしゃのマナー",
+      "titleEn": "Train Manners",
+      "level": "N3",
+      "category": "article",
+      "summary": "The unwritten rules of riding Japanese trains."
+    },
+    {
+      "id": "vending-machines",
+      "title": "自動販売機",
+      "titleReading": "じどうはんばいき",
+      "titleEn": "Vending Machines",
+      "level": "N4",
+      "category": "article",
+      "summary": "Why Japan has a vending machine on every corner."
     }
   ]
 }

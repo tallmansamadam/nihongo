@@ -1,0 +1,49 @@
+{
+  "id": "origami",
+  "title": "折り紙",
+  "titleReading": "おりがみ",
+  "titleEn": "Origami",
+  "level": "N5",
+  "category": "article",
+  "summary": "The paper-folding art anyone can start today.",
+  "paragraphs": [
+    "折り紙は、紙を折って形を作る日本の遊びです。はさみものりも使いません。",
+    "一番有名なのは「つる」です。つるは長生きのシンボルです。",
+    "千羽のつるを折ると、願いがかなうと言われています。これを「千羽鶴」と言います。"
+  ],
+  "vocab": [
+    {
+      "word": "折る",
+      "reading": "おる",
+      "meaning": "to fold"
+    },
+    {
+      "word": "形",
+      "reading": "かたち",
+      "meaning": "shape"
+    },
+    {
+      "word": "鶴",
+      "reading": "つる",
+      "meaning": "crane"
+    },
+    {
+      "word": "長生き",
+      "reading": "ながいき",
+      "meaning": "long life"
+    },
+    {
+      "word": "願い",
+      "reading": "ねがい",
+      "meaning": "wish"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜と言われている",
+      "explanation": "\"It is said that…\": 願いがかなうと言われています.",
+      "example": "願いがかなうと言われています。",
+      "exampleEn": "It is said your wish will come true."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "train-manners",
+  "title": "電車のマナー",
+  "titleReading": "でんしゃのマナー",
+  "titleEn": "Train Manners",
+  "level": "N3",
+  "category": "article",
+  "summary": "The unwritten rules of riding Japanese trains.",
+  "paragraphs": [
+    "日本の電車には、書かれていないルールがたくさんあります。まず、電車の中で電話で話すのはマナー違反とされています。",
+    "混んでいる電車では、リュックは前に抱えます。降りる人が先、乗る人は後、が基本です。",
+    "優先席の近くでは、携帯電話の音を消して、お年寄りや体の不自由な人に席をゆずりましょう。"
+  ],
+  "vocab": [
+    {
+      "word": "違反",
+      "reading": "いはん",
+      "meaning": "violation"
+    },
+    {
+      "word": "混む",
+      "reading": "こむ",
+      "meaning": "to be crowded"
+    },
+    {
+      "word": "抱える",
+      "reading": "かかえる",
+      "meaning": "to hold, carry in front"
+    },
+    {
+      "word": "優先席",
+      "reading": "ゆうせんせき",
+      "meaning": "priority seat"
+    },
+    {
+      "word": "譲る",
+      "reading": "ゆずる",
+      "meaning": "to give up (a seat), to yield"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜とされている",
+      "explanation": "\"Is regarded as\": マナー違反とされています = \"is considered bad manners\".",
+      "example": "マナー違反とされています。",
+      "exampleEn": "It is considered a breach of manners."
+    }
+  ]
+}

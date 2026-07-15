@@ -1,0 +1,49 @@
+{
+  "id": "mount-fuji",
+  "title": "富士山",
+  "titleReading": "ふじさん",
+  "titleEn": "Mount Fuji",
+  "level": "N4",
+  "category": "article",
+  "summary": "Japan’s tallest and most beloved mountain.",
+  "paragraphs": [
+    "富士山は日本で一番高い山です。高さは3776メートルあります。",
+    "昔から、富士山は特別な山として大切にされてきました。多くの絵や歌に登場します。",
+    "夏には、たくさんの人が頂上まで登ります。頂上から見る朝日は「ご来光」と呼ばれ、一生に一度は見たいものだと言われています。"
+  ],
+  "vocab": [
+    {
+      "word": "高さ",
+      "reading": "たかさ",
+      "meaning": "height"
+    },
+    {
+      "word": "特別",
+      "reading": "とくべつ",
+      "meaning": "special"
+    },
+    {
+      "word": "登場",
+      "reading": "とうじょう",
+      "meaning": "appearance (in works)"
+    },
+    {
+      "word": "頂上",
+      "reading": "ちょうじょう",
+      "meaning": "summit"
+    },
+    {
+      "word": "ご来光",
+      "reading": "ごらいこう",
+      "meaning": "sunrise seen from a mountaintop"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜として",
+      "explanation": "\"As / in the role of\": 特別な山として = \"as a special mountain\".",
+      "example": "特別な山として大切にされています。",
+      "exampleEn": "It is cherished as a special mountain."
+    }
+  ]
+}

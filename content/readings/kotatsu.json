@@ -1,0 +1,49 @@
+{
+  "id": "kotatsu",
+  "title": "こたつ",
+  "titleReading": "こたつ",
+  "titleEn": "The Kotatsu",
+  "level": "N4",
+  "category": "article",
+  "summary": "Japan’s heated table — winter’s coziest trap.",
+  "paragraphs": [
+    "こたつは、ヒーターがついた低いテーブルです。テーブルの上にふとんをかけて、その中に足を入れて温まります。",
+    "冬、家族はこたつのまわりに集まります。みかんを食べながらテレビを見るのが、日本の冬の風景です。",
+    "こたつは温度がちょうどよくて、一度入るとなかなか出られません。「こたつから出たくない」は、冬の合言葉です。"
+  ],
+  "vocab": [
+    {
+      "word": "布団",
+      "reading": "ふとん",
+      "meaning": "futon, quilt"
+    },
+    {
+      "word": "温まる",
+      "reading": "あたたまる",
+      "meaning": "to warm up"
+    },
+    {
+      "word": "周り",
+      "reading": "まわり",
+      "meaning": "around, surroundings"
+    },
+    {
+      "word": "風景",
+      "reading": "ふうけい",
+      "meaning": "scene, scenery"
+    },
+    {
+      "word": "合言葉",
+      "reading": "あいことば",
+      "meaning": "catchphrase, watchword"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜と、なかなか〜ない",
+      "explanation": "一度入ると、なかなか出られない = \"once you get in, it’s hard to get out\".",
+      "example": "一度入るとなかなか出られません。",
+      "exampleEn": "Once you’re in, you can hardly get out."
+    }
+  ]
+}

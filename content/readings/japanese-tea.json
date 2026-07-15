@@ -1,0 +1,49 @@
+{
+  "id": "japanese-tea",
+  "title": "日本のお茶",
+  "titleReading": "にほんのおちゃ",
+  "titleEn": "Japanese Tea",
+  "level": "N4",
+  "category": "article",
+  "summary": "From everyday green tea to the tea ceremony.",
+  "paragraphs": [
+    "日本人の生活に、お茶は欠かせません。食事の時も、休憩の時も、お茶を飲みます。",
+    "緑茶にはたくさんの種類があります。せん茶、ほうじ茶、玄米茶、そして抹茶です。抹茶は粉のお茶で、茶道で使われます。",
+    "茶道は、お茶を通して心を落ち着かせる日本の伝統文化です。一杯のお茶を、ていねいに、心をこめて出します。"
+  ],
+  "vocab": [
+    {
+      "word": "欠かせない",
+      "reading": "かかせない",
+      "meaning": "indispensable"
+    },
+    {
+      "word": "休憩",
+      "reading": "きゅうけい",
+      "meaning": "break, rest"
+    },
+    {
+      "word": "抹茶",
+      "reading": "まっちゃ",
+      "meaning": "matcha (powdered tea)"
+    },
+    {
+      "word": "茶道",
+      "reading": "さどう",
+      "meaning": "tea ceremony"
+    },
+    {
+      "word": "伝統",
+      "reading": "でんとう",
+      "meaning": "tradition"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜を通して",
+      "explanation": "\"Through / by means of\": お茶を通して心を落ち着かせる.",
+      "example": "お茶を通して心を落ち着かせます。",
+      "exampleEn": "One calms the mind through tea."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "vending-machines",
+  "title": "自動販売機",
+  "titleReading": "じどうはんばいき",
+  "titleEn": "Vending Machines",
+  "level": "N4",
+  "category": "article",
+  "summary": "Why Japan has a vending machine on every corner.",
+  "paragraphs": [
+    "日本には自動販売機がとても多く、全国に約400万台あると言われています。",
+    "飲み物の自動販売機が一番多いです。冬になると、同じ機械で温かい飲み物と冷たい飲み物の両方が買えます。",
+    "町が安全なので、夜でも自動販売機は壊されません。これは世界的にめずらしいことだそうです。"
+  ],
+  "vocab": [
+    {
+      "word": "自動販売機",
+      "reading": "じどうはんばいき",
+      "meaning": "vending machine"
+    },
+    {
+      "word": "全国",
+      "reading": "ぜんこく",
+      "meaning": "the whole country"
+    },
+    {
+      "word": "両方",
+      "reading": "りょうほう",
+      "meaning": "both"
+    },
+    {
+      "word": "安全",
+      "reading": "あんぜん",
+      "meaning": "safety"
+    },
+    {
+      "word": "珍しい",
+      "reading": "めずらしい",
+      "meaning": "rare, unusual"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜そうだ (hearsay)",
+      "explanation": "\"I hear that / they say\": めずらしいことだそうです.",
+      "example": "世界的にめずらしいそうです。",
+      "exampleEn": "I hear it’s rare worldwide."
+    }
+  ]
+}

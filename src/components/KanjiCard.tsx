@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { getGlyph } from '../data/components'
-import type { Token } from '../data/types'
+import { getGlyph, glyphMeaning } from '../data/components'
+import { decompose } from '../lib/kvgDecompose'
+import { ensureKanjiForText } from '../lib/kanjiLookup'
+import type { Component, Token } from '../data/types'
 import StrokeOrder from './StrokeOrder'
 
 const KANJI_RE = /[一-龯々]/
@@ -114,6 +116,28 @@ function GlyphView({
   replay?: number
 }) {
   const g = getGlyph(char, fallbackMeaning)
+
+  // Curated kanji have hand-authored graphemes. For everything else, derive the
+  // component breakdown from the KanjiVG stroke file so EVERY kanji can be
+  // drilled into, and backfill component meanings from the dictionary.
+  const [derived, setDerived] = useState<Component[] | null>(null)
+  useEffect(() => {
+    setDerived(null)
+    if (g.components.length > 0 || !g.isKanji) return
+    let cancelled = false
+    decompose(char).then(async (chars) => {
+      if (cancelled || !chars || chars.length === 0) return
+      await ensureKanjiForText(chars.join(''))
+      if (cancelled) return
+      setDerived(chars.map((c) => ({ char: c, meaning: glyphMeaning(c) })))
+    })
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [char])
+  const components = g.components.length > 0 ? g.components : (derived ?? [])
+
   return (
     <>
       <div className="kc-top">
@@ -156,11 +180,11 @@ function GlyphView({
         </div>
       )}
 
-      {g.components.length > 0 && (
+      {components.length > 0 && (
         <div className="kc-section">
           <div className="kc-section-title">Graphemes <span className="kc-hint">— tap to go deeper</span></div>
           <div className="kc-components">
-            {g.components.map((c, i) => (
+            {components.map((c, i) => (
               <button className="comp chip" key={i} onClick={() => onPick(c.char, c.meaning)}>
                 <span className="comp-glyph">{c.char}</span>
                 <span className="comp-meaning">{c.meaning}</span>

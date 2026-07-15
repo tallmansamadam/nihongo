@@ -164,6 +164,94 @@ body {
   padding: 8px 12px; border-radius: 999px; cursor: pointer; white-space: nowrap;
 }
 .furi-toggle input { accent-color: var(--accent); }
+.head-controls { display: flex; align-items: flex-start; gap: 8px; flex-shrink: 0; }
+
+/* ---------- Retro splash / load screen ---------- */
+.splash {
+  position: fixed; inset: 0; z-index: 200;
+  background: #f7ecd7;
+  display: grid; place-items: center;
+  cursor: pointer;
+  opacity: 1; transition: opacity 0.45s ease;
+  overflow: hidden;
+}
+.splash.leaving { opacity: 0; pointer-events: none; }
+.splash-art { width: min(92vw, 780px); height: auto; }
+
+.sunburst { animation: sun-spin 40s linear infinite; transform-origin: 0 0; }
+@keyframes sun-spin { to { transform: translate(400px, 250px) rotate(60deg); } }
+/* translate is baked into the SVG transform; re-apply for the keyframe */
+.sunburst { transform: translate(400px, 250px); }
+
+.japan path {
+  fill: #d94f30; stroke: #fffdf8; stroke-width: 5; stroke-linejoin: round;
+}
+.japan-label {
+  font-family: var(--jp); font-size: 34px; fill: #a83a22; letter-spacing: 6px;
+}
+
+.flight-dash {
+  stroke: #2f4858; stroke-width: 3.5; stroke-dasharray: 2 14;
+  stroke-linecap: round;
+  animation: dash-crawl 1.2s linear infinite;
+}
+@keyframes dash-crawl { to { stroke-dashoffset: -16; } }
+
+.cloud-a { animation: drift-a 9s ease-in-out infinite alternate; }
+.cloud-b { animation: drift-b 11s ease-in-out infinite alternate; }
+@keyframes drift-a { to { transform: translate(210px, 136px); } }
+@keyframes drift-b { to { transform: translate(596px, 326px); } }
+
+.traveler { animation: bounce 0.9s ease-in-out infinite alternate; }
+@keyframes bounce { to { transform: translate(120px, 374px); } }
+.wave-arm { transform-origin: 2px 14px; animation: wave 0.8s ease-in-out infinite alternate; }
+@keyframes wave { to { transform: rotate(14deg); } }
+.spark { animation: sparkle 0.8s ease-in-out infinite alternate; }
+@keyframes sparkle { from { opacity: 0.3; } to { opacity: 1; } }
+
+.splash-title {
+  font-family: var(--jp); font-size: 46px; fill: #2f4858;
+  letter-spacing: 8px; font-weight: 700;
+}
+.splash-sub {
+  font-family: var(--ui); font-size: 14px; fill: #7a6a52; letter-spacing: 4px;
+}
+.dots { animation: sparkle 1s steps(2) infinite alternate; }
+
+/* ---------- Voice reader ---------- */
+.speak-btn {
+  font-size: 15px; line-height: 1;
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 10px; margin-left: 10px; cursor: pointer; vertical-align: middle;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.speak-btn:hover { border-color: var(--accent); }
+.speak-btn.playing { background: var(--accent-soft); border-color: var(--accent); }
+
+.voice-menu-wrap { position: relative; }
+.voice-btn { cursor: pointer; }
+.voice-menu {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 60;
+  width: 300px; background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: var(--shadow); padding: 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.voice-menu-title {
+  font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent);
+}
+.voice-option {
+  display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer;
+}
+.voice-option input { accent-color: var(--accent); }
+.voice-name { color: var(--ink); }
+.voice-lang { margin-left: auto; font-size: 11px; color: var(--ink-soft); }
+.voice-rate { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-soft); }
+.voice-rate input { flex: 1; accent-color: var(--accent); }
+.voice-test {
+  font-size: 13px; color: var(--ink-soft); background: var(--paper);
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 0; cursor: pointer;
+}
+.voice-test:hover { border-color: var(--accent); color: var(--accent); }
 
 .story-body {
   font-family: var(--jp);
