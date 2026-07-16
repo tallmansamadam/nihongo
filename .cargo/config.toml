@@ -1,0 +1,16 @@
+# Android 15+ devices (e.g. recent Pixels) use 16 KB memory pages and warn on /
+# reject native libraries whose ELF LOAD segments are only 4 KB-aligned. Link
+# every Android target with 16 KB max-page-size. (Zip-level alignment is already
+# handled by AGP 8.5+; this covers the ELF side.)
+
+[target.aarch64-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.armv7-linux-androideabi]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.i686-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.x86_64-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]

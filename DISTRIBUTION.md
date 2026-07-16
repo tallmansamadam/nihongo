@@ -53,6 +53,20 @@ npm run tauri android dev      # run on emulator/device
 npm run tauri android build --debug --apk --target aarch64
 ```
 
+### 16 KB page-size alignment (Android 15+)
+Recent devices (e.g. Pixels on Android 15+) use 16 KB memory pages and warn on /
+reject native libraries whose ELF LOAD segments are 4 KB-aligned. Google Play
+also requires 16 KB support for new submissions. The repo's `.cargo/config.toml`
+links every Android target with `-Wl,-z,max-page-size=16384`; AGP ≥ 8.5 handles
+the zip-level alignment automatically. Verify a build with:
+
+```bash
+llvm-readelf -l libapp_lib.so | grep LOAD    # Align column must be 0x4000
+zipalign -c -P 16 -v 4 app-universal-debug.apk
+```
+
+(`llvm-strip` preserves segment alignment, so stripping is safe.)
+
 ### Windows symlink workaround
 `tauri android build` cross-compiles the Rust `.so` fine, but its last step
 **symlinks** the library into Gradle's `jniLibs`, which Windows blocks unless
