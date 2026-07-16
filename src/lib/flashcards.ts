@@ -2,6 +2,7 @@ import { STORIES } from '../data/stories'
 import { READINGS } from '../data/readings'
 import { SONGS } from '../data/songs'
 import { KANJI } from '../data/kanji'
+import { KANJI_BASE } from '../data/kanji-base'
 import type { Level } from '../data/quizzes'
 
 // Flashcard decks are built from data already in the app — the vocabulary lists
@@ -38,16 +39,23 @@ function vocabCards(): Flashcard[] {
 
 function kanjiCards(level?: Level): Flashcard[] {
   const cards: Flashcard[] = []
-  for (const k of Object.values(KANJI)) {
-    if (level && k.jlpt !== level) continue
-    const reading = [...k.kun, ...k.on].filter(Boolean).join('、')
+  const seen = new Set<string>()
+  const add = (char: string, kun: string[], on: string[], meanings: string[], jlpt: string | undefined, strokes: number) => {
+    if (seen.has(char)) return
+    if (level && jlpt !== level) return
+    seen.add(char)
     cards.push({
-      key: `k:${k.char}`,
-      front: k.char,
-      reading,
-      back: k.meanings.join(', '),
-      sub: `${k.jlpt} · ${k.strokes} strokes`,
+      key: `k:${char}`,
+      front: char,
+      reading: [...kun.slice(0, 3), ...on.slice(0, 2)].filter(Boolean).join('、'),
+      back: meanings.slice(0, 4).join(', '),
+      sub: `${jlpt ?? '—'} · ${strokes} strokes`,
     })
+  }
+  for (const k of Object.values(KANJI)) add(k.char, k.kun, k.on, k.meanings, k.jlpt, k.strokes)
+  // full JLPT lists from the generated base dictionary
+  for (const [char, b] of Object.entries(KANJI_BASE)) {
+    if (b.jlpt) add(char, b.kun, b.on, b.meanings, b.jlpt, b.strokes)
   }
   return cards
 }

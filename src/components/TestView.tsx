@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { buildTest, typeLabel, VARIATIONS, type Level } from '../data/quizzes'
+import { recordTest } from '../lib/progress'
 
 // A single JLPT-style practice test (one of 100 repeatable variations).
 export default function TestView({ level }: { level: Level }) {
@@ -82,7 +83,15 @@ export default function TestView({ level }: { level: Level }) {
 
       <div className="test-foot">
         {!submitted ? (
-          <button className="test-submit" disabled={!answeredAll} onClick={() => setSubmitted(true)}>
+          <button
+            className="test-submit"
+            disabled={!answeredAll}
+            onClick={() => {
+              setSubmitted(true)
+              // 1 point per correct answer on quick practice tests
+              recordTest({ level, mode: 'practice', score, total: test.length }, score)
+            }}
+          >
             {answeredAll ? 'Submit test' : `Answer all ${test.length} questions`}
           </button>
         ) : (

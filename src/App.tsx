@@ -26,8 +26,12 @@ import {
 } from './lib/tts'
 import KanjiPopover from './components/KanjiCard'
 import TestView from './components/TestView'
+import ExamView from './components/ExamView'
 import FlashcardView from './components/FlashcardView'
+import DrawPractice from './components/DrawPractice'
+import ReportCard from './components/ReportCard'
 import Splash from './components/Splash'
+import { loadProgress, onProgressChange } from './lib/progress'
 
 const CATEGORY_LABEL: Record<Reading['category'], string> = {
   story: 'Story',
@@ -52,13 +56,30 @@ type Selection =
   | { kind: 'remote'; id: string }
   | { kind: 'song'; id: string }
   | { kind: 'test'; level: Level }
+  | { kind: 'exam'; level: Level }
   | { kind: 'flashcards' }
+  | { kind: 'draw'; char?: string }
+  | { kind: 'report' }
 
 export default function App() {
   const [splash, setSplash] = useState(true)
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
   // Mobile navigation drawer (the sidebar is a slide-over on small screens).
   const [navOpen, setNavOpen] = useState(false)
+  // Points badge in the sidebar, live-updated on any progress write.
+  const [points, setPoints] = useState(() => loadProgress().points)
+  useEffect(() => onProgressChange(() => setPoints(loadProgress().points)), [])
+
+  // "Practice drawing" buttons in kanji popovers jump to the drawing pad.
+  useEffect(() => {
+    const onDraw = (e: Event) => {
+      const char = (e as CustomEvent<string>).detail
+      setSel({ kind: 'draw', char })
+      setHover(null)
+    }
+    window.addEventListener('nihongo:practice-draw', onDraw)
+    return () => window.removeEventListener('nihongo:practice-draw', onDraw)
+  }, [])
   const select = (s: Selection) => {
     setSel(s)
     setNavOpen(false)
@@ -247,9 +268,25 @@ export default function App() {
               onClick={() => select({ kind: 'flashcards' })}
             >
               <span className="si-title">🗂 Flashcards</span>
-              <span className="si-en">Vocab &amp; kanji decks</span>
+              <span className="si-en">Vocab &amp; kanji decks — full JLPT lists</span>
             </button>
-            <div className="lib-note">JLPT practice tests — 100 variations each</div>
+            <button
+              className={'story-item' + (sel.kind === 'draw' ? ' active' : '')}
+              onClick={() => select({ kind: 'draw' })}
+            >
+              <span className="si-title">✍ Drawing Practice</span>
+              <span className="si-en">Trace &amp; draw kanji, earn points</span>
+            </button>
+            <button
+              className={'story-item' + (sel.kind === 'report' ? ' active' : '')}
+              onClick={() => select({ kind: 'report' })}
+            >
+              <span className="si-title">📊 Report Card</span>
+              <span className="si-en">
+                {points} points · progress &amp; grades
+              </span>
+            </button>
+            <div className="lib-note">Quick practice tests — 100 variations each</div>
             <div className="test-levels">
               {LEVELS.map((lvl) => (
                 <button
@@ -258,6 +295,20 @@ export default function App() {
                     'test-level' + (sel.kind === 'test' && sel.level === lvl ? ' active' : '')
                   }
                   onClick={() => select({ kind: 'test', level: lvl })}
+                >
+                  {lvl}
+                </button>
+              ))}
+            </div>
+            <div className="lib-note">Simulated JLPT exams — timed &amp; sectioned</div>
+            <div className="test-levels">
+              {LEVELS.map((lvl) => (
+                <button
+                  key={lvl}
+                  className={
+                    'test-level exam' + (sel.kind === 'exam' && sel.level === lvl ? ' active' : '')
+                  }
+                  onClick={() => select({ kind: 'exam', level: lvl })}
                 >
                   {lvl}
                 </button>
@@ -276,7 +327,10 @@ export default function App() {
           {sel.kind === 'remote' && <RemoteReadingView id={sel.id} meta={remoteMeta} />}
           {song && <SongView song={song} />}
           {sel.kind === 'test' && <TestView level={sel.level} />}
+          {sel.kind === 'exam' && <ExamView level={sel.level} />}
           {sel.kind === 'flashcards' && <FlashcardView />}
+          {sel.kind === 'draw' && <DrawPractice key={sel.char ?? 'free'} initialChar={sel.char} />}
+          {sel.kind === 'report' && <ReportCard />}
         </main>
 
         {hover && isHoverableKanji(hover.char) && (

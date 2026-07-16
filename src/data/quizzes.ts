@@ -26,7 +26,7 @@ const TYPE_LABEL: Record<Question['type'], string> = {
 }
 export const typeLabel = (t: Question['type']) => TYPE_LABEL[t]
 
-const BANK: Record<Level, Question[]> = {
+export const BANK: Record<Level, Question[]> = {
   N5: [
     { id: 'n5-1', type: 'grammar', prompt: 'これ＿＿ わたしの ペンです。', hint: 'Choose the correct particle.', choices: ['は', 'を', 'に', 'へ'], answer: 0, explanation: 'は marks the topic: "This is my pen."' },
     { id: 'n5-2', type: 'grammar', prompt: 'まいあさ、コーヒー＿＿ のみます。', hint: 'Choose the correct particle.', choices: ['が', 'を', 'に', 'と'], answer: 1, explanation: 'を marks the direct object of のむ (to drink).' },
@@ -100,7 +100,7 @@ const BANK: Record<Level, Question[]> = {
 }
 
 // ---- deterministic randomization so each "variation" is repeatable ----
-function mulberry32(seed: number): () => number {
+export function mulberry32(seed: number): () => number {
   let a = seed
   return () => {
     a |= 0
@@ -110,7 +110,7 @@ function mulberry32(seed: number): () => number {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   }
 }
-function seedFrom(level: string, variation: number): number {
+export function seedFrom(level: string, variation: number): number {
   let h = 2166136261
   const s = `${level}:${variation}`
   for (let i = 0; i < s.length; i++) {
@@ -119,7 +119,7 @@ function seedFrom(level: string, variation: number): number {
   }
   return h >>> 0
 }
-function shuffle<T>(arr: T[], rng: () => number): T[] {
+export function shuffle<T>(arr: T[], rng: () => number): T[] {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1))

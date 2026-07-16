@@ -150,6 +150,16 @@ function GlyphView({
             {g.strokes != null && <span className="tag">{g.strokes} strokes</span>}
             {!g.isKanji && <span className="tag part">component</span>}
           </div>
+          {g.isKanji && (
+            <button
+              className="kc-practice"
+              onClick={() =>
+                window.dispatchEvent(new CustomEvent('nihongo:practice-draw', { detail: g.char }))
+              }
+            >
+              ✍ Practice drawing
+            </button>
+          )}
         </div>
       </div>
 

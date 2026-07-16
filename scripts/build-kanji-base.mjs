@@ -1,10 +1,10 @@
-// Scans all bundled content for every kanji used, then:
-//  1. fetches baseline dictionary data (meanings, on/kun, strokes) from
-//     kanjiapi.dev for any kanji NOT in the hand-authored set, and
-//  2. fetches the KanjiVG stroke-order SVG for every kanji.
-// Output: src/data/kanji-base.ts  (auto-generated)
+// Builds the bundled kanji dictionary + stroke SVGs. Coverage:
+//  - every kanji appearing in bundled content and the remote-library readings
+//  - the complete JLPT N5–N1 kanji lists from kanjiapi.dev (~2200 kanji)
+// For each kanji it fetches baseline dictionary data (meanings, on/kun,
+// strokes, JLPT level) from kanjiapi.dev and the KanjiVG stroke-order SVG.
+// Output: src/data/kanji-base.ts + public/kanjivg/*.svg
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -32,22 +32,50 @@ for (const f of await readdir(libDir)) {
   for (const m of text.matchAll(KANJI_RE)) used.add(m[0])
 }
 
+// --- the full JLPT kanji lists (new-JLPT levels, from kanjiapi.dev) ---
+const jlptOf = new Map() // char -> 'N5'..'N1'
+for (const n of [5, 4, 3, 2, 1]) {
+  const res = await fetch(`https://kanjiapi.dev/v1/kanji/jlpt-${n}`)
+  if (!res.ok) throw new Error(`jlpt-${n} list: HTTP ${res.status}`)
+  const list = await res.json()
+  for (const ch of list) {
+    if (!jlptOf.has(ch)) jlptOf.set(ch, `N${n}`)
+    used.add(ch)
+  }
+  console.log(`JLPT N${n}: ${list.length} kanji`)
+}
+
 // curated chars already have full entries — pull them from kanji.ts
 const kanjiSrc = await readFile(join(dataDir, 'kanji.ts'), 'utf8')
 const curated = new Set([...kanjiSrc.matchAll(/char: '([^']+)',\s*meanings:/g)].map((m) => m[1]))
 
 const all = [...used]
 const needData = all.filter((ch) => !curated.has(ch))
-console.log(`${all.length} unique kanji in content; ${curated.size} curated; ${needData.length} need base data.`)
+console.log(`${all.length} unique kanji total; ${curated.size} curated; ${needData.length} need base data.`)
+
+const CONCURRENCY = 12
+async function pooled(items, worker) {
+  let i = 0
+  let done = 0
+  const runners = Array.from({ length: CONCURRENCY }, async () => {
+    while (i < items.length) {
+      const item = items[i++]
+      await worker(item)
+      if (++done % 100 === 0) process.stdout.write('.')
+    }
+  })
+  await Promise.all(runners)
+  console.log('')
+}
 
 // --- 1. fetch KanjiVG SVGs for everything (skip existing) ---
 await mkdir(kvgDir, { recursive: true })
 const existing = new Set(await readdir(kvgDir))
 let svgOk = 0
-let svgMiss = []
-for (const ch of all) {
+const svgMiss = []
+await pooled(all, async (ch) => {
   const file = `${codepointHex(ch)}.svg`
-  if (existing.has(file)) { svgOk++; continue }
+  if (existing.has(file)) { svgOk++; return }
   try {
     const res = await fetch(`https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/${file}`)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -56,55 +84,47 @@ for (const ch of all) {
   } catch (e) {
     svgMiss.push(`${ch} (${e.message})`)
   }
-}
-console.log(`KanjiVG: ${svgOk}/${all.length} present${svgMiss.length ? `, missing: ${svgMiss.join(', ')}` : ''}`)
+})
+console.log(`KanjiVG: ${svgOk}/${all.length} present${svgMiss.length ? `, ${svgMiss.length} missing: ${svgMiss.slice(0, 8).join(', ')}${svgMiss.length > 8 ? '…' : ''}` : ''}`)
 
 // --- 2. fetch dictionary data from kanjiapi.dev for non-curated kanji ---
 const entries = {}
-let dataMiss = []
-const CONCURRENCY = 8
-for (let i = 0; i < needData.length; i += CONCURRENCY) {
-  const slice = needData.slice(i, i + CONCURRENCY)
-  await Promise.all(
-    slice.map(async (ch) => {
-      try {
-        const res = await fetch(`https://kanjiapi.dev/v1/kanji/${encodeURIComponent(ch)}`)
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const j = await res.json()
-        const meanings = (j.meanings ?? []).slice(0, 5)
-        if (meanings.length === 0) throw new Error('no meanings')
-        const dedupe = (arr) => [...new Set(arr)]
-        entries[ch] = {
-          meanings,
-          on: dedupe(j.on_readings ?? []),
-          kun: dedupe((j.kun_readings ?? []).map((r) => r.replace(/[-.]/g, ''))),
-          strokes: j.stroke_count ?? 0,
-        }
-      } catch (e) {
-        dataMiss.push(`${ch} (${e.message})`)
-      }
-    }),
-  )
-  process.stdout.write('.')
-}
-console.log(`\nDictionary: ${Object.keys(entries).length}/${needData.length} fetched${dataMiss.length ? `, skipped: ${dataMiss.join(', ')}` : ''}`)
+const dataMiss = []
+await pooled(needData, async (ch) => {
+  try {
+    const res = await fetch(`https://kanjiapi.dev/v1/kanji/${encodeURIComponent(ch)}`)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const j = await res.json()
+    const meanings = (j.meanings ?? []).slice(0, 5)
+    if (meanings.length === 0) throw new Error('no meanings')
+    const dedupe = (arr) => [...new Set(arr)]
+    entries[ch] = {
+      meanings,
+      on: dedupe(j.on_readings ?? []),
+      kun: dedupe((j.kun_readings ?? []).map((r) => r.replace(/[-.]/g, ''))),
+      strokes: j.stroke_count ?? 0,
+      jlpt: jlptOf.get(ch),
+    }
+  } catch (e) {
+    dataMiss.push(`${ch} (${e.message})`)
+  }
+})
+console.log(`Dictionary: ${Object.keys(entries).length}/${needData.length} fetched${dataMiss.length ? `, ${dataMiss.length} skipped: ${dataMiss.slice(0, 8).join(', ')}${dataMiss.length > 8 ? '…' : ''}` : ''}`)
 
 // --- write kanji-base.ts (sorted for stable diffs) ---
 const sorted = Object.keys(entries).sort()
 const body = sorted
   .map((ch) => {
     const e = entries[ch]
-    const on = JSON.stringify(e.on)
-    const kun = JSON.stringify(e.kun)
-    const meanings = JSON.stringify(e.meanings)
-    return `  '${ch}': { meanings: ${meanings}, on: ${on}, kun: ${kun}, strokes: ${e.strokes} },`
+    const jlpt = e.jlpt ? `, jlpt: '${e.jlpt}'` : ''
+    return `  '${ch}': { meanings: ${JSON.stringify(e.meanings)}, on: ${JSON.stringify(e.on)}, kun: ${JSON.stringify(e.kun)}, strokes: ${e.strokes}${jlpt} },`
   })
   .join('\n')
 
 const out = `// AUTO-GENERATED by scripts/build-kanji-base.mjs — do not edit by hand.
-// Baseline dictionary data (meanings, readings, stroke counts) for every kanji
-// in the content that isn't hand-authored in kanji.ts. Source: kanjiapi.dev
-// (KANJIDIC2-derived). Run \`npm run build-kanji\` to regenerate.
+// Baseline dictionary data (meanings, readings, stroke counts, JLPT level) for
+// every kanji in the content plus the full JLPT N5–N1 lists. Source:
+// kanjiapi.dev (KANJIDIC2-derived). Run \`npm run build-kanji\` to regenerate.
 import type { BaseKanji } from './types'
 
 export const KANJI_BASE: Record<string, BaseKanji> = {
