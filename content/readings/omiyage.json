@@ -1,0 +1,49 @@
+{
+  "id": "omiyage",
+  "title": "お土産の文化",
+  "titleReading": "おみやげのぶんか",
+  "titleEn": "The Culture of Omiyage",
+  "level": "N4",
+  "category": "article",
+  "summary": "Why every Japanese station sells beautifully boxed sweets.",
+  "paragraphs": [
+    "日本人は旅行に行くと、家族や会社の人にお土産を買って帰ります。多くの場合、その土地のお菓子です。",
+    "だから、日本の駅や空港には、きれいな箱のお菓子がたくさん売っています。「北海道のチョコレート」「京都の抹茶のお菓子」など、土地ごとに名物があります。",
+    "お土産は「あなたのことを旅行中も思っていましたよ」という気持ちを伝えるものなのです。"
+  ],
+  "vocab": [
+    {
+      "word": "土産",
+      "reading": "みやげ",
+      "meaning": "souvenir"
+    },
+    {
+      "word": "土地",
+      "reading": "とち",
+      "meaning": "place, region"
+    },
+    {
+      "word": "名物",
+      "reading": "めいぶつ",
+      "meaning": "local specialty"
+    },
+    {
+      "word": "伝える",
+      "reading": "つたえる",
+      "meaning": "to convey"
+    },
+    {
+      "word": "気持ち",
+      "reading": "きもち",
+      "meaning": "feeling"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ごとに",
+      "explanation": "\"Each / every\": 土地ごとに名物があります = \"each region has its specialty\".",
+      "example": "土地ごとに名物があります。",
+      "exampleEn": "Every region has its own specialty."
+    }
+  ]
+}

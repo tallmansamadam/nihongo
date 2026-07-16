@@ -1,0 +1,50 @@
+{
+  "id": "kasa-jizo",
+  "title": "笠地蔵",
+  "titleReading": "かさじぞう",
+  "titleEn": "The Hats for Jizō",
+  "level": "N4",
+  "category": "folktale",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese.",
+  "summary": "A poor old man gives his unsold hats to six stone statues in the snow.",
+  "paragraphs": [
+    "昔、貧しいおじいさんとおばあさんがいました。大みそかなのに、お正月のもちを買うお金がありません。",
+    "おじいさんは笠を売りに町へ行きましたが、一つも売れませんでした。帰り道、雪をかぶった六つのお地蔵さまを見て、売れなかった笠をかぶせてあげました。",
+    "その夜、家の外で音がしました。戸を開けると、米やもちや魚が置いてありました。雪の中を、笠をかぶったお地蔵さまたちが帰っていくのが見えました。"
+  ],
+  "vocab": [
+    {
+      "word": "貧しい",
+      "reading": "まずしい",
+      "meaning": "poor"
+    },
+    {
+      "word": "大晦日",
+      "reading": "おおみそか",
+      "meaning": "New Year's Eve"
+    },
+    {
+      "word": "笠",
+      "reading": "かさ",
+      "meaning": "woven hat"
+    },
+    {
+      "word": "地蔵",
+      "reading": "じぞう",
+      "meaning": "Jizō statue"
+    },
+    {
+      "word": "被せる",
+      "reading": "かぶせる",
+      "meaning": "to put (a hat) on someone"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜のに",
+      "explanation": "Contrast/regret: 大みそかなのに = \"even though it's New Year's Eve\".",
+      "example": "大みそかなのに、お金がありません。",
+      "exampleEn": "Even though it's New Year's Eve, they have no money."
+    }
+  ]
+}

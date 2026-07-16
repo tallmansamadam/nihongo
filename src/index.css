@@ -636,8 +636,42 @@ button.kc-radical { background: var(--paper); border: 1px solid var(--line); bor
 }
 .replay:hover { border-color: var(--accent); color: var(--accent); }
 
+/* Mobile drawer trigger — hidden on desktop */
+.nav-burger { display: none; }
+.nav-backdrop { display: none; }
+
 @media (max-width: 720px) {
   .app { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
+  /* The sidebar becomes a slide-over drawer instead of disappearing. */
+  .sidebar {
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    width: min(85vw, 320px);
+    transform: translateX(-105%);
+    transition: transform 0.25s ease;
+    z-index: 150;
+    box-shadow: 8px 0 30px rgba(20, 30, 40, 0.35);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .nav-burger {
+    display: grid; place-items: center;
+    position: fixed; top: 12px; left: 12px; z-index: 140;
+    width: 44px; height: 44px;
+    font-size: 20px; line-height: 1;
+    color: #fff; background: var(--indigo);
+    border: none; border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(20, 30, 40, 0.3);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-backdrop {
+    display: block;
+    position: fixed; inset: 0; z-index: 145;
+    background: rgba(20, 25, 30, 0.45);
+  }
+  .reader { padding: 68px 20px 60px; }
+  .story-body { font-size: 26px; }
   .panels { grid-template-columns: 1fr; }
+  .reader-head { flex-direction: column; }
+  .head-controls { align-self: flex-start; }
 }

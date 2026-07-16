@@ -57,6 +57,12 @@ type Selection =
 export default function App() {
   const [splash, setSplash] = useState(true)
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
+  // Mobile navigation drawer (the sidebar is a slide-over on small screens).
+  const [navOpen, setNavOpen] = useState(false)
+  const select = (s: Selection) => {
+    setSel(s)
+    setNavOpen(false)
+  }
   const [hover, setHover] = useState<Hover | null>(null)
   const [altDown, setAltDown] = useState(false)
   // Compound view triggered without a keyboard (long-press on touch).
@@ -135,7 +141,15 @@ export default function App() {
     <HoverCtx.Provider value={api}>
       {splash && <Splash onDone={() => setSplash(false)} />}
       <div className="app">
-        <aside className="sidebar">
+        <button
+          className="nav-burger"
+          aria-label="Menu"
+          onClick={() => setNavOpen((o) => !o)}
+        >
+          ☰
+        </button>
+        {navOpen && <div className="nav-backdrop" onClick={() => setNavOpen(false)} />}
+        <aside className={'sidebar' + (navOpen ? ' open' : '')}>
           <div className="brand">
             <span className="brand-jp">日本語</span>
             <span className="brand-en">Nihongo Reader</span>
@@ -148,7 +162,7 @@ export default function App() {
                 <button
                   key={s.id}
                   className={'story-item' + (sel.kind === 'story' && s.id === sel.id ? ' active' : '')}
-                  onClick={() => setSel({ kind: 'story', id: s.id })}
+                  onClick={() => select({ kind: 'story', id: s.id })}
                 >
                   <span className="si-title">{s.title}</span>
                   <span className="si-en">{s.titleEn}</span>
@@ -165,7 +179,7 @@ export default function App() {
                 <button
                   key={r.id}
                   className={'story-item' + (sel.kind === 'reading' && r.id === sel.id ? ' active' : '')}
-                  onClick={() => setSel({ kind: 'reading', id: r.id })}
+                  onClick={() => select({ kind: 'reading', id: r.id })}
                 >
                   <span className="si-title">{r.title}</span>
                   <span className="si-en">{r.titleEn}</span>
@@ -183,7 +197,7 @@ export default function App() {
                 <button
                   key={s.id}
                   className={'story-item song' + (sel.kind === 'song' && s.id === sel.id ? ' active' : '')}
-                  onClick={() => setSel({ kind: 'song', id: s.id })}
+                  onClick={() => select({ kind: 'song', id: s.id })}
                 >
                   <span className="si-title song">♪ {s.title}</span>
                   <span className="si-en">{s.anime.split('—')[0].trim()}</span>
@@ -211,7 +225,7 @@ export default function App() {
                   <button
                     key={c.id}
                     className={'story-item' + (sel.kind === 'remote' && c.id === sel.id ? ' active' : '')}
-                    onClick={() => setSel({ kind: 'remote', id: c.id })}
+                    onClick={() => select({ kind: 'remote', id: c.id })}
                   >
                     <span className="si-title">{c.title}</span>
                     <span className="si-en">{c.titleEn}</span>
@@ -230,7 +244,7 @@ export default function App() {
             <div className="nav-label">Practice</div>
             <button
               className={'story-item' + (sel.kind === 'flashcards' ? ' active' : '')}
-              onClick={() => setSel({ kind: 'flashcards' })}
+              onClick={() => select({ kind: 'flashcards' })}
             >
               <span className="si-title">🗂 Flashcards</span>
               <span className="si-en">Vocab &amp; kanji decks</span>
@@ -243,7 +257,7 @@ export default function App() {
                   className={
                     'test-level' + (sel.kind === 'test' && sel.level === lvl ? ' active' : '')
                   }
-                  onClick={() => setSel({ kind: 'test', level: lvl })}
+                  onClick={() => select({ kind: 'test', level: lvl })}
                 >
                   {lvl}
                 </button>

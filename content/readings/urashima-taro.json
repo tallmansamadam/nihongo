@@ -1,0 +1,50 @@
+{
+  "id": "urashima-taro",
+  "title": "浦島太郎",
+  "titleReading": "うらしまたろう",
+  "titleEn": "Urashima Tarō",
+  "level": "N4",
+  "category": "folktale",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese.",
+  "summary": "The fisherman who saved a turtle and visited the palace under the sea.",
+  "paragraphs": [
+    "昔、浦島太郎という若い漁師がいました。ある日、子どもたちにいじめられている亀を助けました。",
+    "亀はお礼に、太郎を海の底の竜宮城へ連れて行きました。太郎は美しい乙姫と楽しい日々を過ごしました。",
+    "帰る時、乙姫は「開けてはいけません」と言って、玉手箱をくれました。村に戻ると、何百年も時間が過ぎていました。太郎が箱を開けると、白いけむりが出て、太郎はおじいさんになってしまいました。"
+  ],
+  "vocab": [
+    {
+      "word": "漁師",
+      "reading": "りょうし",
+      "meaning": "fisherman"
+    },
+    {
+      "word": "亀",
+      "reading": "かめ",
+      "meaning": "turtle"
+    },
+    {
+      "word": "助ける",
+      "reading": "たすける",
+      "meaning": "to save, help"
+    },
+    {
+      "word": "過ごす",
+      "reading": "すごす",
+      "meaning": "to spend (time)"
+    },
+    {
+      "word": "煙",
+      "reading": "けむり",
+      "meaning": "smoke"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てはいけません",
+      "explanation": "Prohibition: 開けてはいけません = \"you must not open it\" — the tale's famous warning.",
+      "example": "開けてはいけません。",
+      "exampleEn": "You must not open it."
+    }
+  ]
+}

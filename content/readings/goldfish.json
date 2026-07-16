@@ -1,0 +1,49 @@
+{
+  "id": "goldfish",
+  "title": "金魚",
+  "titleReading": "きんぎょ",
+  "titleEn": "The Goldfish",
+  "level": "N5",
+  "category": "story",
+  "summary": "Two goldfish from the summer festival get a new home.",
+  "paragraphs": [
+    "夏祭りで金魚すくいをしました。二ひきの金魚をもらいました。",
+    "家に帰って、大きいガラスのはちに水を入れました。金魚の名前は「あか」と「しろ」です。",
+    "毎朝、えさをあげます。金魚は口をぱくぱくさせて食べます。見ていると、時間を忘れます。"
+  ],
+  "vocab": [
+    {
+      "word": "金魚",
+      "reading": "きんぎょ",
+      "meaning": "goldfish"
+    },
+    {
+      "word": "金魚すくい",
+      "reading": "きんぎょすくい",
+      "meaning": "goldfish scooping (festival game)"
+    },
+    {
+      "word": "鉢",
+      "reading": "はち",
+      "meaning": "bowl, basin"
+    },
+    {
+      "word": "餌",
+      "reading": "えさ",
+      "meaning": "feed, food (for animals)"
+    },
+    {
+      "word": "忘れる",
+      "reading": "わすれる",
+      "meaning": "to forget"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ていると",
+      "explanation": "\"While/when doing…\": 見ていると、時間を忘れます = \"when I watch them, I lose track of time\".",
+      "example": "見ていると、時間を忘れます。",
+      "exampleEn": "Watching them, I forget the time."
+    }
+  ]
+}

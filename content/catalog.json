@@ -486,6 +486,222 @@
       "level": "N4",
       "category": "article",
       "summary": "Why Japan has a vending machine on every corner."
+    },
+    {
+      "id": "blackout-night",
+      "title": "停電の夜",
+      "titleReading": "ていでんのよる",
+      "titleEn": "The Night of the Blackout",
+      "level": "N4",
+      "category": "story",
+      "summary": "When the lights go out, a family rediscovers candles and conversation."
+    },
+    {
+      "id": "bowing",
+      "title": "お辞儀",
+      "titleReading": "おじぎ",
+      "titleEn": "Bowing",
+      "level": "N4",
+      "category": "article",
+      "summary": "The many angles of the Japanese bow."
+    },
+    {
+      "id": "cherry-blossom-front",
+      "title": "桜前線",
+      "titleReading": "さくらぜんせん",
+      "titleEn": "The Cherry Blossom Front",
+      "level": "N4",
+      "category": "article",
+      "summary": "The bloom line that travels the length of Japan every spring."
+    },
+    {
+      "id": "ekiben",
+      "title": "駅弁",
+      "titleReading": "えきべん",
+      "titleEn": "Station Bento",
+      "level": "N4",
+      "category": "article",
+      "summary": "The train-station lunch boxes worth traveling for."
+    },
+    {
+      "id": "first-train-ride",
+      "title": "はじめてのおつかい電車",
+      "titleReading": "はじめてのおつかいでんしゃ",
+      "titleEn": "First Solo Train Ride",
+      "level": "N5",
+      "category": "story",
+      "summary": "A child rides two stops alone to grandma’s house."
+    },
+    {
+      "id": "goldfish",
+      "title": "金魚",
+      "titleReading": "きんぎょ",
+      "titleEn": "The Goldfish",
+      "level": "N5",
+      "category": "story",
+      "summary": "Two goldfish from the summer festival get a new home."
+    },
+    {
+      "id": "hundred-yen-shops",
+      "title": "百円ショップ",
+      "titleReading": "ひゃくえんショップ",
+      "titleEn": "The 100-Yen Shop",
+      "level": "N4",
+      "category": "article",
+      "summary": "Japan’s wonderland of surprisingly good cheap things."
+    },
+    {
+      "id": "issunboshi",
+      "title": "一寸法師",
+      "titleReading": "いっすんぼうし",
+      "titleEn": "Issun-bōshi, the One-Inch Boy",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "A boy the size of a finger sets out with a needle for a sword."
+    },
+    {
+      "id": "japanese-breakfast",
+      "title": "日本の朝ご飯",
+      "titleReading": "にほんのあさごはん",
+      "titleEn": "The Japanese Breakfast",
+      "level": "N5",
+      "category": "article",
+      "summary": "Rice, miso soup, fish — the classic morning table."
+    },
+    {
+      "id": "japanese-houses",
+      "title": "日本の家",
+      "titleReading": "にほんのいえ",
+      "titleEn": "Japanese Houses",
+      "level": "N4",
+      "category": "article",
+      "summary": "Genkan, tatami, and doors that slide instead of swing."
+    },
+    {
+      "id": "kana-story",
+      "title": "ひらがなとカタカナ",
+      "titleReading": "ひらがなとカタカナ",
+      "titleEn": "Hiragana and Katakana",
+      "level": "N5",
+      "category": "article",
+      "summary": "Why Japanese has two alphabets — and where they came from."
+    },
+    {
+      "id": "kasa-jizo",
+      "title": "笠地蔵",
+      "titleReading": "かさじぞう",
+      "titleEn": "The Hats for Jizō",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "A poor old man gives his unsold hats to six stone statues in the snow."
+    },
+    {
+      "id": "keigo",
+      "title": "敬語入門",
+      "titleReading": "けいごにゅうもん",
+      "titleEn": "An Introduction to Keigo",
+      "level": "N3",
+      "category": "article",
+      "summary": "The three levels of polite Japanese, gently explained."
+    },
+    {
+      "id": "last-train",
+      "title": "終電",
+      "titleReading": "しゅうでん",
+      "titleEn": "The Last Train",
+      "level": "N3",
+      "category": "story",
+      "summary": "Almost missing the last train home — and the stranger who helped."
+    },
+    {
+      "id": "lost-puppy",
+      "title": "迷子の子犬",
+      "titleReading": "まいごのこいぬ",
+      "titleEn": "The Lost Puppy",
+      "level": "N4",
+      "category": "story",
+      "summary": "A rainy evening, a shivering puppy, and a search for its owner."
+    },
+    {
+      "id": "moon-viewing",
+      "title": "お月見",
+      "titleReading": "おつきみ",
+      "titleEn": "Moon Viewing",
+      "level": "N5",
+      "category": "article",
+      "summary": "Autumn’s quiet festival of dumplings and the full moon."
+    },
+    {
+      "id": "omiyage",
+      "title": "お土産の文化",
+      "titleReading": "おみやげのぶんか",
+      "titleEn": "The Culture of Omiyage",
+      "level": "N4",
+      "category": "article",
+      "summary": "Why every Japanese station sells beautifully boxed sweets."
+    },
+    {
+      "id": "post-office",
+      "title": "郵便局で",
+      "titleReading": "ゆうびんきょくで",
+      "titleEn": "At the Post Office",
+      "level": "N5",
+      "category": "story",
+      "summary": "Mailing a birthday present to a friend far away."
+    },
+    {
+      "id": "radio-taiso",
+      "title": "ラジオ体操",
+      "titleReading": "ラジオたいそう",
+      "titleEn": "Radio Exercises",
+      "level": "N5",
+      "category": "story",
+      "summary": "Summer mornings start with exercise in the park."
+    },
+    {
+      "id": "rain-shelter",
+      "title": "雨宿り",
+      "titleReading": "あまやどり",
+      "titleEn": "Taking Shelter from the Rain",
+      "level": "N4",
+      "category": "story",
+      "summary": "A sudden shower, a shared awning, and a short conversation."
+    },
+    {
+      "id": "sento",
+      "title": "銭湯",
+      "titleReading": "せんとう",
+      "titleEn": "The Public Bath",
+      "level": "N4",
+      "category": "article",
+      "summary": "Neighborhood bathhouses and their painted Mt. Fuji walls."
+    },
+    {
+      "id": "shinkansen-cleaning",
+      "title": "新幹線の七分間",
+      "titleReading": "しんかんせんのななふんかん",
+      "titleEn": "The Shinkansen’s Seven Minutes",
+      "level": "N3",
+      "category": "article",
+      "summary": "The famous seven-minute miracle of bullet-train cleaning."
+    },
+    {
+      "id": "shitakiri-suzume",
+      "title": "舌切り雀",
+      "titleReading": "したきりすずめ",
+      "titleEn": "The Tongue-Cut Sparrow",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "Kindness and greed each get the box they choose."
+    },
+    {
+      "id": "urashima-taro",
+      "title": "浦島太郎",
+      "titleReading": "うらしまたろう",
+      "titleEn": "Urashima Tarō",
+      "level": "N4",
+      "category": "folktale",
+      "summary": "The fisherman who saved a turtle and visited the palace under the sea."
     }
   ]
 }

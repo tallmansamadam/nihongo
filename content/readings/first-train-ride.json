@@ -1,0 +1,49 @@
+{
+  "id": "first-train-ride",
+  "title": "はじめてのおつかい電車",
+  "titleReading": "はじめてのおつかいでんしゃ",
+  "titleEn": "First Solo Train Ride",
+  "level": "N5",
+  "category": "story",
+  "summary": "A child rides two stops alone to grandma’s house.",
+  "paragraphs": [
+    "今日、はじめて一人で電車に乗りました。おばあちゃんの家まで、駅二つです。",
+    "切符をにぎって、まどの外を見ていました。「次は、さくら駅」。私の駅です！",
+    "ホームでおばあちゃんが待っていました。「よく来たね」。私は少し大人になった気がしました。"
+  ],
+  "vocab": [
+    {
+      "word": "一人で",
+      "reading": "ひとりで",
+      "meaning": "alone, by oneself"
+    },
+    {
+      "word": "切符",
+      "reading": "きっぷ",
+      "meaning": "ticket"
+    },
+    {
+      "word": "握る",
+      "reading": "にぎる",
+      "meaning": "to grip, to clutch"
+    },
+    {
+      "word": "次",
+      "reading": "つぎ",
+      "meaning": "next"
+    },
+    {
+      "word": "大人",
+      "reading": "おとな",
+      "meaning": "adult"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜気がする",
+      "explanation": "\"To feel that / have a sense that\": 大人になった気がしました.",
+      "example": "大人になった気がしました。",
+      "exampleEn": "I felt like I had grown up a little."
+    }
+  ]
+}

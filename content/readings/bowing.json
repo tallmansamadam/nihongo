@@ -1,0 +1,49 @@
+{
+  "id": "bowing",
+  "title": "お辞儀",
+  "titleReading": "おじぎ",
+  "titleEn": "Bowing",
+  "level": "N4",
+  "category": "article",
+  "summary": "The many angles of the Japanese bow.",
+  "paragraphs": [
+    "日本では、あいさつの時に頭を下げます。これを「お辞儀」と言います。",
+    "お辞儀には種類があります。軽いあいさつは十五度、ていねいなあいさつは三十度、あやまる時や深く感謝する時は四十五度、頭を下げます。",
+    "電話をしながらお辞儀をする人もいます。相手には見えませんが、気持ちは自然に体に出るのです。"
+  ],
+  "vocab": [
+    {
+      "word": "お辞儀",
+      "reading": "おじぎ",
+      "meaning": "bow (greeting)"
+    },
+    {
+      "word": "頭を下げる",
+      "reading": "あたまをさげる",
+      "meaning": "to lower one's head"
+    },
+    {
+      "word": "度",
+      "reading": "ど",
+      "meaning": "degree"
+    },
+    {
+      "word": "謝る",
+      "reading": "あやまる",
+      "meaning": "to apologize"
+    },
+    {
+      "word": "自然に",
+      "reading": "しぜんに",
+      "meaning": "naturally"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ながら",
+      "explanation": "Simultaneous actions: 電話をしながらお辞儀をする = \"bow while on the phone\".",
+      "example": "電話をしながらお辞儀をします。",
+      "exampleEn": "They bow while talking on the phone."
+    }
+  ]
+}

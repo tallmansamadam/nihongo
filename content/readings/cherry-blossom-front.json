@@ -1,0 +1,49 @@
+{
+  "id": "cherry-blossom-front",
+  "title": "桜前線",
+  "titleReading": "さくらぜんせん",
+  "titleEn": "The Cherry Blossom Front",
+  "level": "N4",
+  "category": "article",
+  "summary": "The bloom line that travels the length of Japan every spring.",
+  "paragraphs": [
+    "春になると、ニュースで「桜前線」という言葉を聞きます。桜がさき始める場所を線でつないだものです。",
+    "桜前線は、三月に南の九州から始まり、五月に北の北海道に着きます。二か月かけて、日本を旅するのです。",
+    "天気予報のように「開花予想」が発表され、人々はそれを見て花見の計画を立てます。"
+  ],
+  "vocab": [
+    {
+      "word": "前線",
+      "reading": "ぜんせん",
+      "meaning": "front (weather)"
+    },
+    {
+      "word": "繋ぐ",
+      "reading": "つなぐ",
+      "meaning": "to connect"
+    },
+    {
+      "word": "開花",
+      "reading": "かいか",
+      "meaning": "blooming"
+    },
+    {
+      "word": "予想",
+      "reading": "よそう",
+      "meaning": "forecast, prediction"
+    },
+    {
+      "word": "計画",
+      "reading": "けいかく",
+      "meaning": "plan"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜かけて",
+      "explanation": "Duration of a process: 二か月かけて = \"taking two months\".",
+      "example": "二か月かけて日本を旅します。",
+      "exampleEn": "It travels Japan over two months."
+    }
+  ]
+}

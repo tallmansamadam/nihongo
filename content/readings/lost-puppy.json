@@ -1,0 +1,49 @@
+{
+  "id": "lost-puppy",
+  "title": "迷子の子犬",
+  "titleReading": "まいごのこいぬ",
+  "titleEn": "The Lost Puppy",
+  "level": "N4",
+  "category": "story",
+  "summary": "A rainy evening, a shivering puppy, and a search for its owner.",
+  "paragraphs": [
+    "雨の夕方、家の前で小さい子犬がふるえていました。首輪はありますが、名前が書いてありません。",
+    "私はタオルで子犬をふいて、牛乳をあげました。それから、近所に「子犬をあずかっています」という紙をはりました。",
+    "三日後、女の子がかけてきました。「ポチ！」子犬はしっぽを強くふりました。さよならは少しさびしかったですが、よかったと思います。"
+  ],
+  "vocab": [
+    {
+      "word": "迷子",
+      "reading": "まいご",
+      "meaning": "lost child/animal"
+    },
+    {
+      "word": "震える",
+      "reading": "ふるえる",
+      "meaning": "to shiver, tremble"
+    },
+    {
+      "word": "首輪",
+      "reading": "くびわ",
+      "meaning": "collar"
+    },
+    {
+      "word": "近所",
+      "reading": "きんじょ",
+      "meaning": "neighborhood"
+    },
+    {
+      "word": "預かる",
+      "reading": "あずかる",
+      "meaning": "to look after, keep temporarily"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てあります",
+      "explanation": "A state resulting from someone's action: 名前が書いてありません = \"no name is written (on it)\".",
+      "example": "名前が書いてありません。",
+      "exampleEn": "No name is written on it."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "japanese-breakfast",
+  "title": "日本の朝ご飯",
+  "titleReading": "にほんのあさごはん",
+  "titleEn": "The Japanese Breakfast",
+  "level": "N5",
+  "category": "article",
+  "summary": "Rice, miso soup, fish — the classic morning table.",
+  "paragraphs": [
+    "日本の伝統的な朝ご飯は、ご飯とみそ汁です。焼き魚や、たまご、のり、つけものもよく食べます。",
+    "最近は、パンとコーヒーの人も多いです。でも、旅館に泊まると、きれいな和食の朝ご飯が出てきます。",
+    "温かいご飯と温かいみそ汁。simpleですが、一日を始める力になります。"
+  ],
+  "vocab": [
+    {
+      "word": "伝統的",
+      "reading": "でんとうてき",
+      "meaning": "traditional"
+    },
+    {
+      "word": "味噌汁",
+      "reading": "みそしる",
+      "meaning": "miso soup"
+    },
+    {
+      "word": "焼き魚",
+      "reading": "やきざかな",
+      "meaning": "grilled fish"
+    },
+    {
+      "word": "漬物",
+      "reading": "つけもの",
+      "meaning": "pickles"
+    },
+    {
+      "word": "旅館",
+      "reading": "りょかん",
+      "meaning": "Japanese inn"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜と (discovery)",
+      "explanation": "泊まると、〜が出てきます = \"when you stay (at an inn), … appears\".",
+      "example": "旅館に泊まると、和食が出てきます。",
+      "exampleEn": "When you stay at an inn, Japanese food is served."
+    }
+  ]
+}

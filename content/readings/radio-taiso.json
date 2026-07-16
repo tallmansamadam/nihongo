@@ -1,0 +1,49 @@
+{
+  "id": "radio-taiso",
+  "title": "ラジオ体操",
+  "titleReading": "ラジオたいそう",
+  "titleEn": "Radio Exercises",
+  "level": "N5",
+  "category": "story",
+  "summary": "Summer mornings start with exercise in the park.",
+  "paragraphs": [
+    "夏休みの朝、六時半に公園へ行きます。ラジオ体操があるからです。",
+    "子どもも、お年寄りも、みんなで音楽に合わせて体を動かします。",
+    "体操の後、カードにはんこをもらいます。全部集まると、お菓子がもらえます。朝の空気は気持ちがいいです。"
+  ],
+  "vocab": [
+    {
+      "word": "体操",
+      "reading": "たいそう",
+      "meaning": "exercises, gymnastics"
+    },
+    {
+      "word": "お年寄り",
+      "reading": "おとしより",
+      "meaning": "elderly people"
+    },
+    {
+      "word": "合わせる",
+      "reading": "あわせる",
+      "meaning": "to match, to keep in time with"
+    },
+    {
+      "word": "動かす",
+      "reading": "うごかす",
+      "meaning": "to move (something)"
+    },
+    {
+      "word": "集まる",
+      "reading": "あつまる",
+      "meaning": "to gather, to be collected"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜に合わせて",
+      "explanation": "\"In time with / matching\": 音楽に合わせて体を動かす.",
+      "example": "音楽に合わせて体を動かします。",
+      "exampleEn": "We move our bodies in time with the music."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "keigo",
+  "title": "敬語入門",
+  "titleReading": "けいごにゅうもん",
+  "titleEn": "An Introduction to Keigo",
+  "level": "N3",
+  "category": "article",
+  "summary": "The three levels of polite Japanese, gently explained.",
+  "paragraphs": [
+    "敬語は、相手への敬意を表す日本語の話し方です。大きく分けて三つあります。",
+    "「ていねい語」は です・ます の形。「尊敬語」は相手の動作を高める言い方で、「食べる」が「めしあがる」になります。「けんじょう語」は自分の動作を低くする言い方で、「行く」が「うかがう」になります。",
+    "日本人でも敬語をまちがえることがあります。完璧でなくても、ていねいに話そうとする気持ちが一番大切です。"
+  ],
+  "vocab": [
+    {
+      "word": "敬語",
+      "reading": "けいご",
+      "meaning": "honorific language"
+    },
+    {
+      "word": "敬意",
+      "reading": "けいい",
+      "meaning": "respect"
+    },
+    {
+      "word": "尊敬語",
+      "reading": "そんけいご",
+      "meaning": "respectful language"
+    },
+    {
+      "word": "謙譲語",
+      "reading": "けんじょうご",
+      "meaning": "humble language"
+    },
+    {
+      "word": "完璧",
+      "reading": "かんぺき",
+      "meaning": "perfect"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ようとする",
+      "explanation": "Trying/attempting: 話そうとする気持ち = \"the intention of trying to speak (politely)\".",
+      "example": "ていねいに話そうとする気持ちが大切です。",
+      "exampleEn": "What matters is trying to speak politely."
+    }
+  ]
+}

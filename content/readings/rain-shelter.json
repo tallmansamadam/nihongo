@@ -1,0 +1,49 @@
+{
+  "id": "rain-shelter",
+  "title": "雨宿り",
+  "titleReading": "あまやどり",
+  "titleEn": "Taking Shelter from the Rain",
+  "level": "N4",
+  "category": "story",
+  "summary": "A sudden shower, a shared awning, and a short conversation.",
+  "paragraphs": [
+    "帰り道、急に強い雨がふってきました。かさがなかったので、小さい店の前で雨宿りをしました。",
+    "となりに、おじいさんも立っていました。「よくふりますね」「本当ですね」。それから、少し話をしました。",
+    "十五分後、雨は止みました。「じゃあ、お気をつけて」。名前も知らない人ですが、なんだか温かい気持ちになりました。"
+  ],
+  "vocab": [
+    {
+      "word": "雨宿り",
+      "reading": "あまやどり",
+      "meaning": "taking shelter from rain"
+    },
+    {
+      "word": "帰り道",
+      "reading": "かえりみち",
+      "meaning": "the way home"
+    },
+    {
+      "word": "隣",
+      "reading": "となり",
+      "meaning": "next to"
+    },
+    {
+      "word": "止む",
+      "reading": "やむ",
+      "meaning": "to stop (rain)"
+    },
+    {
+      "word": "温かい",
+      "reading": "あたたかい",
+      "meaning": "warm (feeling)"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てきました (change arriving)",
+      "explanation": "ふってきました = \"it started to rain (came on)\". て-form + くる for something arriving/beginning.",
+      "example": "雨がふってきました。",
+      "exampleEn": "It started to rain."
+    }
+  ]
+}

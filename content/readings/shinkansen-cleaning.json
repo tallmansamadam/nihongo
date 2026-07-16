@@ -1,0 +1,49 @@
+{
+  "id": "shinkansen-cleaning",
+  "title": "新幹線の七分間",
+  "titleReading": "しんかんせんのななふんかん",
+  "titleEn": "The Shinkansen’s Seven Minutes",
+  "level": "N3",
+  "category": "article",
+  "summary": "The famous seven-minute miracle of bullet-train cleaning.",
+  "paragraphs": [
+    "東京駅に着いた新幹線は、わずか十二分後には次の乗客を乗せて出発します。そうじに使える時間は、たった七分です。",
+    "そうじチームは一列に並んで礼をしてから、車内に入ります。ざせきの向きを変え、ゆかをはき、テーブルをふき、わすれ物をチェックする。すべてが七分で終わります。",
+    "この見事な仕事は「七分間の奇跡」と呼ばれ、海外のメディアにも取り上げられました。"
+  ],
+  "vocab": [
+    {
+      "word": "僅か",
+      "reading": "わずか",
+      "meaning": "merely, only"
+    },
+    {
+      "word": "乗客",
+      "reading": "じょうきゃく",
+      "meaning": "passenger"
+    },
+    {
+      "word": "座席",
+      "reading": "ざせき",
+      "meaning": "seat"
+    },
+    {
+      "word": "見事",
+      "reading": "みごと",
+      "meaning": "splendid, admirable"
+    },
+    {
+      "word": "奇跡",
+      "reading": "きせき",
+      "meaning": "miracle"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜と呼ばれる",
+      "explanation": "Passive naming: 「七分間の奇跡」と呼ばれています = \"is called the seven-minute miracle\".",
+      "example": "「七分間の奇跡」と呼ばれています。",
+      "exampleEn": "It is called \"the seven-minute miracle.\""
+    }
+  ]
+}

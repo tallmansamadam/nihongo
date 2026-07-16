@@ -1,0 +1,49 @@
+{
+  "id": "blackout-night",
+  "title": "停電の夜",
+  "titleReading": "ていでんのよる",
+  "titleEn": "The Night of the Blackout",
+  "level": "N4",
+  "category": "story",
+  "summary": "When the lights go out, a family rediscovers candles and conversation.",
+  "paragraphs": [
+    "台風の夜、急に電気が消えました。テレビも、エアコンも、何も動きません。",
+    "母がろうそくを出してきました。小さい光のまわりに、家族が集まりました。",
+    "父が子どものころの話をしてくれました。停電は二時間で終わりましたが、あの夜の話は今でも覚えています。"
+  ],
+  "vocab": [
+    {
+      "word": "停電",
+      "reading": "ていでん",
+      "meaning": "power outage"
+    },
+    {
+      "word": "台風",
+      "reading": "たいふう",
+      "meaning": "typhoon"
+    },
+    {
+      "word": "急に",
+      "reading": "きゅうに",
+      "meaning": "suddenly"
+    },
+    {
+      "word": "蝋燭",
+      "reading": "ろうそく",
+      "meaning": "candle"
+    },
+    {
+      "word": "覚える",
+      "reading": "おぼえる",
+      "meaning": "to remember"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てくれる (story-telling)",
+      "explanation": "してくれました marks the action as a kindness toward the speaker.",
+      "example": "話をしてくれました。",
+      "exampleEn": "He told us stories (for us)."
+    }
+  ]
+}

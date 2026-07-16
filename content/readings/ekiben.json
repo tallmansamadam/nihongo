@@ -1,0 +1,49 @@
+{
+  "id": "ekiben",
+  "title": "駅弁",
+  "titleReading": "えきべん",
+  "titleEn": "Station Bento",
+  "level": "N4",
+  "category": "article",
+  "summary": "The train-station lunch boxes worth traveling for.",
+  "paragraphs": [
+    "「駅弁」は、駅で売っているお弁当のことです。ただのお弁当ではありません。その土地の名物料理が入った、旅の楽しみの一つです。",
+    "北海道ならかに、仙台なら牛たん、広島ならあなご。駅弁を選ぶ時間も楽しいものです。",
+    "新幹線の窓の外を景色が流れていく中で食べる駅弁の味は、特別です。"
+  ],
+  "vocab": [
+    {
+      "word": "駅弁",
+      "reading": "えきべん",
+      "meaning": "station bento"
+    },
+    {
+      "word": "名物料理",
+      "reading": "めいぶつりょうり",
+      "meaning": "local specialty dish"
+    },
+    {
+      "word": "選ぶ",
+      "reading": "えらぶ",
+      "meaning": "to choose"
+    },
+    {
+      "word": "景色",
+      "reading": "けしき",
+      "meaning": "scenery"
+    },
+    {
+      "word": "特別",
+      "reading": "とくべつ",
+      "meaning": "special"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜なら",
+      "explanation": "Topic-conditional: 北海道ならかに = \"if it's Hokkaido, then crab\".",
+      "example": "北海道ならかにです。",
+      "exampleEn": "If it's Hokkaido, it's crab."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "post-office",
+  "title": "郵便局で",
+  "titleReading": "ゆうびんきょくで",
+  "titleEn": "At the Post Office",
+  "level": "N5",
+  "category": "story",
+  "summary": "Mailing a birthday present to a friend far away.",
+  "paragraphs": [
+    "今日、郵便局へ行きました。友達に誕生日のプレゼントを送りたかったからです。",
+    "箱に本とお菓子を入れました。窓口の人が重さをはかって、「三百円です」と言いました。",
+    "一週間後、友達から電話が来ました。「プレゼント、ありがとう！」。私はとてもうれしかったです。"
+  ],
+  "vocab": [
+    {
+      "word": "郵便局",
+      "reading": "ゆうびんきょく",
+      "meaning": "post office"
+    },
+    {
+      "word": "送る",
+      "reading": "おくる",
+      "meaning": "to send"
+    },
+    {
+      "word": "箱",
+      "reading": "はこ",
+      "meaning": "box"
+    },
+    {
+      "word": "窓口",
+      "reading": "まどぐち",
+      "meaning": "service window, counter"
+    },
+    {
+      "word": "重さ",
+      "reading": "おもさ",
+      "meaning": "weight"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜たかったからです",
+      "explanation": "Reason in the past: 送りたかったからです = \"because I wanted to send it\".",
+      "example": "送りたかったからです。",
+      "exampleEn": "Because I wanted to send it."
+    }
+  ]
+}

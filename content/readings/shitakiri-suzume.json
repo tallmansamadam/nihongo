@@ -1,0 +1,50 @@
+{
+  "id": "shitakiri-suzume",
+  "title": "舌切り雀",
+  "titleReading": "したきりすずめ",
+  "titleEn": "The Tongue-Cut Sparrow",
+  "level": "N4",
+  "category": "folktale",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese.",
+  "summary": "Kindness and greed each get the box they choose.",
+  "paragraphs": [
+    "昔、やさしいおじいさんが一羽の雀をかわいがっていました。しかし、いじわるなおばあさんが、のりを食べた雀の舌を切って、追い出してしまいました。",
+    "おじいさんは山へ雀をさがしに行きました。雀たちは喜んで、ごちそうをして、大小二つのつづらを出しました。おじいさんは小さいほうを選びました。中には宝物が入っていました。",
+    "それを聞いたおばあさんは、大きいつづらをもらいに行きました。しかし、中から出たのはへびや虫でした。欲張りは損をするというお話です。"
+  ],
+  "vocab": [
+    {
+      "word": "雀",
+      "reading": "すずめ",
+      "meaning": "sparrow"
+    },
+    {
+      "word": "舌",
+      "reading": "した",
+      "meaning": "tongue"
+    },
+    {
+      "word": "追い出す",
+      "reading": "おいだす",
+      "meaning": "to drive out"
+    },
+    {
+      "word": "葛籠",
+      "reading": "つづら",
+      "meaning": "wicker box"
+    },
+    {
+      "word": "欲張り",
+      "reading": "よくばり",
+      "meaning": "greed, greedy person"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ほうを選ぶ",
+      "explanation": "Choosing between options: 小さいほうを選びました = \"chose the smaller one\".",
+      "example": "小さいほうを選びました。",
+      "exampleEn": "He chose the smaller one."
+    }
+  ]
+}

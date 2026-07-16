@@ -1,12 +1,14 @@
 import type { Reading } from '../data/types'
 
-// Remote content library. Content lives in the repo's content/ directory and is
-// fetched on demand (never bundled into the app). raw.githubusercontent.com is
-// tried first so newly pushed content shows up immediately; the jsDelivr CDN is
-// the fallback if raw is unavailable or rate-limited.
+// Remote content library. raw.githubusercontent.com is tried first so newly
+// pushed content shows up immediately; the jsDelivr CDN covers rate-limiting;
+// and a snapshot bundled into the app at build time (public/content, written by
+// scripts/sync-content.mjs) guarantees the Library works offline and is never
+// empty even when the network is unavailable.
 const SOURCES = [
   'https://raw.githubusercontent.com/tallmansamadam/nihongo/main/content',
   'https://cdn.jsdelivr.net/gh/tallmansamadam/nihongo@main/content',
+  `${import.meta.env.BASE_URL}content`,
 ]
 
 export interface CatalogEntry {

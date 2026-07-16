@@ -1,0 +1,50 @@
+{
+  "id": "issunboshi",
+  "title": "一寸法師",
+  "titleReading": "いっすんぼうし",
+  "titleEn": "Issun-bōshi, the One-Inch Boy",
+  "level": "N4",
+  "category": "folktale",
+  "credit": "Traditional Japanese folktale (public domain). Retold in simple Japanese.",
+  "summary": "A boy the size of a finger sets out with a needle for a sword.",
+  "paragraphs": [
+    "昔、指ほどの小さい男の子が生まれました。名前は一寸法師です。",
+    "大きくなっても体は小さいままでした。一寸法師は針の刀を持って、おわんの船で都へ行きました。",
+    "都で、一寸法師は鬼と戦いました。鬼は一寸法師を飲みこみましたが、おなかの中を針でついたので、鬼は降参しました。鬼が落とした打ち出の小づちをふると、一寸法師は立派な若者になりました。"
+  ],
+  "vocab": [
+    {
+      "word": "指",
+      "reading": "ゆび",
+      "meaning": "finger"
+    },
+    {
+      "word": "針",
+      "reading": "はり",
+      "meaning": "needle"
+    },
+    {
+      "word": "刀",
+      "reading": "かたな",
+      "meaning": "sword"
+    },
+    {
+      "word": "都",
+      "reading": "みやこ",
+      "meaning": "the capital"
+    },
+    {
+      "word": "立派",
+      "reading": "りっぱ",
+      "meaning": "splendid, fine"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜まま",
+      "explanation": "Unchanged state: 小さいままでした = \"stayed small (as he was)\".",
+      "example": "体は小さいままでした。",
+      "exampleEn": "His body stayed small."
+    }
+  ]
+}

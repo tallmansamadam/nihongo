@@ -1,0 +1,49 @@
+{
+  "id": "last-train",
+  "title": "終電",
+  "titleReading": "しゅうでん",
+  "titleEn": "The Last Train",
+  "level": "N3",
+  "category": "story",
+  "summary": "Almost missing the last train home — and the stranger who helped.",
+  "paragraphs": [
+    "金曜日の夜、仕事が長引いて、気がつくと十一時半でした。終電まであと十分しかありません。",
+    "駅まで走りました。改札の前で、定期券が見つかりません。かばんの中をひっくり返していると、駅員さんが「先に乗ってください。着いた駅で払えばいいですよ」と言ってくれました。",
+    "ぎりぎりで間に合いました。電車の窓に、疲れた顔がうつっています。でも、親切のおかげで、悪くない夜だったと思えました。"
+  ],
+  "vocab": [
+    {
+      "word": "終電",
+      "reading": "しゅうでん",
+      "meaning": "last train"
+    },
+    {
+      "word": "長引く",
+      "reading": "ながびく",
+      "meaning": "to drag on, run late"
+    },
+    {
+      "word": "改札",
+      "reading": "かいさつ",
+      "meaning": "ticket gate"
+    },
+    {
+      "word": "定期券",
+      "reading": "ていきけん",
+      "meaning": "commuter pass"
+    },
+    {
+      "word": "間に合う",
+      "reading": "まにあう",
+      "meaning": "to be in time"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜おかげで",
+      "explanation": "\"Thanks to…\": 親切のおかげで = \"thanks to (his) kindness\".",
+      "example": "親切のおかげで間に合いました。",
+      "exampleEn": "Thanks to his kindness, I made it."
+    }
+  ]
+}

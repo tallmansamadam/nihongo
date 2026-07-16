@@ -1,0 +1,49 @@
+{
+  "id": "japanese-houses",
+  "title": "日本の家",
+  "titleReading": "にほんのいえ",
+  "titleEn": "Japanese Houses",
+  "level": "N4",
+  "category": "article",
+  "summary": "Genkan, tatami, and doors that slide instead of swing.",
+  "paragraphs": [
+    "日本の家に入る時は、まず玄関でくつをぬぎます。家の中と外を、はっきり分ける文化です。",
+    "伝統的な部屋には、たたみがしいてあります。たたみの部屋では、ふとんをしいて寝ます。朝になると、ふとんをたたんで、押し入れにしまいます。",
+    "ドアのかわりに、横にすべる「ふすま」や「しょうじ」もあります。部屋の形を自由に変えられるのが、日本の家のおもしろいところです。"
+  ],
+  "vocab": [
+    {
+      "word": "玄関",
+      "reading": "げんかん",
+      "meaning": "entryway"
+    },
+    {
+      "word": "脱ぐ",
+      "reading": "ぬぐ",
+      "meaning": "to take off (shoes/clothes)"
+    },
+    {
+      "word": "畳",
+      "reading": "たたみ",
+      "meaning": "tatami mat"
+    },
+    {
+      "word": "押し入れ",
+      "reading": "おしいれ",
+      "meaning": "closet"
+    },
+    {
+      "word": "障子",
+      "reading": "しょうじ",
+      "meaning": "paper sliding door"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜かわりに",
+      "explanation": "\"Instead of\": ドアのかわりに、ふすまがあります.",
+      "example": "ドアのかわりに、ふすまがあります。",
+      "exampleEn": "Instead of doors, there are fusuma."
+    }
+  ]
+}

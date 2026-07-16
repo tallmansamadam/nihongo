@@ -1,0 +1,49 @@
+{
+  "id": "hundred-yen-shops",
+  "title": "百円ショップ",
+  "titleReading": "ひゃくえんショップ",
+  "titleEn": "The 100-Yen Shop",
+  "level": "N4",
+  "category": "article",
+  "summary": "Japan’s wonderland of surprisingly good cheap things.",
+  "paragraphs": [
+    "百円ショップは、店の中のほとんどの物が百円で買える店です。",
+    "食器、文房具、そうじ道具、化粧品、おもちゃ。品物の種類は数万点もあります。「これが百円？」とおどろく物も多いです。",
+    "旅行者にも人気で、お土産をここでそろえる人もいます。安くても品質がいいのが、日本らしいところです。"
+  ],
+  "vocab": [
+    {
+      "word": "食器",
+      "reading": "しょっき",
+      "meaning": "tableware"
+    },
+    {
+      "word": "文房具",
+      "reading": "ぶんぼうぐ",
+      "meaning": "stationery"
+    },
+    {
+      "word": "品物",
+      "reading": "しなもの",
+      "meaning": "goods, items"
+    },
+    {
+      "word": "揃える",
+      "reading": "そろえる",
+      "meaning": "to gather, buy a full set"
+    },
+    {
+      "word": "品質",
+      "reading": "ひんしつ",
+      "meaning": "quality"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜ても (concession)",
+      "explanation": "安くても品質がいい = \"even though cheap, the quality is good\".",
+      "example": "安くても品質がいいです。",
+      "exampleEn": "Even though it's cheap, the quality is good."
+    }
+  ]
+}

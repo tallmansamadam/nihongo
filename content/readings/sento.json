@@ -1,0 +1,49 @@
+{
+  "id": "sento",
+  "title": "銭湯",
+  "titleReading": "せんとう",
+  "titleEn": "The Public Bath",
+  "level": "N4",
+  "category": "article",
+  "summary": "Neighborhood bathhouses and their painted Mt. Fuji walls.",
+  "paragraphs": [
+    "銭湯は、町のみんなが使うお風呂です。昔は家にお風呂がない家が多く、銭湯は生活に欠かせない場所でした。",
+    "入る前に、体をよく洗います。湯船にタオルを入れてはいけません。かべには、大きな富士山の絵がかいてあることが多いです。",
+    "今は数が減りましたが、広いお風呂でゆっくり温まる気持ちよさは、家のお風呂では味わえません。"
+  ],
+  "vocab": [
+    {
+      "word": "銭湯",
+      "reading": "せんとう",
+      "meaning": "public bath"
+    },
+    {
+      "word": "風呂",
+      "reading": "ふろ",
+      "meaning": "bath"
+    },
+    {
+      "word": "湯船",
+      "reading": "ゆぶね",
+      "meaning": "bathtub"
+    },
+    {
+      "word": "減る",
+      "reading": "へる",
+      "meaning": "to decrease"
+    },
+    {
+      "word": "味わう",
+      "reading": "あじわう",
+      "meaning": "to savor, experience"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜てはいけません (rule)",
+      "explanation": "Bath rule: タオルを入れてはいけません = \"you must not put towels in the water\".",
+      "example": "湯船にタオルを入れてはいけません。",
+      "exampleEn": "You must not put your towel in the tub."
+    }
+  ]
+}

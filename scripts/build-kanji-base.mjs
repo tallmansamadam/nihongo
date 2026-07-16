@@ -23,6 +23,14 @@ for (const f of contentFiles) {
   const text = await readFile(join(dataDir, f), 'utf8')
   for (const m of text.matchAll(KANJI_RE)) used.add(m[0])
 }
+// …plus every kanji in the remote-library readings (bundled as a snapshot),
+// so their hover data and stroke SVGs ship offline too.
+const libDir = join(root, 'content', 'readings')
+for (const f of await readdir(libDir)) {
+  if (!f.endsWith('.json')) continue
+  const text = await readFile(join(libDir, f), 'utf8')
+  for (const m of text.matchAll(KANJI_RE)) used.add(m[0])
+}
 
 // curated chars already have full entries — pull them from kanji.ts
 const kanjiSrc = await readFile(join(dataDir, 'kanji.ts'), 'utf8')

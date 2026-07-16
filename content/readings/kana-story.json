@@ -1,0 +1,49 @@
+{
+  "id": "kana-story",
+  "title": "ひらがなとカタカナ",
+  "titleReading": "ひらがなとカタカナ",
+  "titleEn": "Hiragana and Katakana",
+  "level": "N5",
+  "category": "article",
+  "summary": "Why Japanese has two alphabets — and where they came from.",
+  "paragraphs": [
+    "日本語には、ひらがなとカタカナという二つのかな文字があります。どちらも、漢字から生まれました。",
+    "ひらがなは、漢字をやわらかくくずした形です。カタカナは、漢字の一部分を取った形です。",
+    "ひらがなは日本語のことばに、カタカナは外国から来たことばに使います。だから「コーヒー」はカタカナで書きます。"
+  ],
+  "vocab": [
+    {
+      "word": "文字",
+      "reading": "もじ",
+      "meaning": "letter, character"
+    },
+    {
+      "word": "生まれる",
+      "reading": "うまれる",
+      "meaning": "to be born"
+    },
+    {
+      "word": "崩す",
+      "reading": "くずす",
+      "meaning": "to simplify, break down (a form)"
+    },
+    {
+      "word": "一部分",
+      "reading": "いちぶぶん",
+      "meaning": "a part, portion"
+    },
+    {
+      "word": "外国",
+      "reading": "がいこく",
+      "meaning": "foreign country"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜から生まれた",
+      "explanation": "\"Born from / derived from\": 漢字から生まれました.",
+      "example": "かなは漢字から生まれました。",
+      "exampleEn": "Kana were born from kanji."
+    }
+  ]
+}

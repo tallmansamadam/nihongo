@@ -1,0 +1,49 @@
+{
+  "id": "moon-viewing",
+  "title": "お月見",
+  "titleReading": "おつきみ",
+  "titleEn": "Moon Viewing",
+  "level": "N5",
+  "category": "article",
+  "summary": "Autumn’s quiet festival of dumplings and the full moon.",
+  "paragraphs": [
+    "秋、月が一番きれいな夜に、日本では「お月見」をします。",
+    "まるい月に、まるいだんごとすすきをそなえます。月の中には、うさぎがいると言われています。",
+    "静かに月を見る。それだけの行事ですが、とても日本らしい夜です。"
+  ],
+  "vocab": [
+    {
+      "word": "月見",
+      "reading": "つきみ",
+      "meaning": "moon viewing"
+    },
+    {
+      "word": "団子",
+      "reading": "だんご",
+      "meaning": "dumpling"
+    },
+    {
+      "word": "芒",
+      "reading": "すすき",
+      "meaning": "pampas grass"
+    },
+    {
+      "word": "供える",
+      "reading": "そなえる",
+      "meaning": "to offer (to gods/spirits)"
+    },
+    {
+      "word": "行事",
+      "reading": "ぎょうじ",
+      "meaning": "event, observance"
+    }
+  ],
+  "grammar": [
+    {
+      "point": "〜らしい",
+      "explanation": "\"Typical of / just like\": 日本らしい夜 = \"a very Japanese night\".",
+      "example": "とても日本らしい夜です。",
+      "exampleEn": "It is a very Japanese sort of night."
+    }
+  ]
+}
