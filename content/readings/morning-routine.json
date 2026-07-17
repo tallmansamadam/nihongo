@@ -50,5 +50,10 @@
       "example": "まず顔を洗って、それから食べます。",
       "exampleEn": "First I wash my face, then I eat."
     }
+  ],
+  "paragraphsEn": [
+    "I get up at six every morning. First I wash my face and brush my teeth.",
+    "Then, in the kitchen, I have bread and eggs. I drink coffee too.",
+    "At seven thirty I leave the house and walk to the station. On the train, I read a book."
   ]
 }

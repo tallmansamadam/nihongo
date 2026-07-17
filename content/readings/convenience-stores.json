@@ -12,14 +12,49 @@
     "忙しい生活の中で、コンビニは多くの人にとって、なくてはならない場所になりました。便利すぎて、つい毎日行ってしまう人も少なくありません。"
   ],
   "vocab": [
-    { "word": "目に入る", "reading": "めにはいる", "meaning": "to catch one's eye" },
-    { "word": "雑誌", "reading": "ざっし", "meaning": "magazine" },
-    { "word": "日用品", "reading": "にちようひん", "meaning": "daily necessities" },
-    { "word": "払う", "reading": "はらう", "meaning": "to pay" },
-    { "word": "便利", "reading": "べんり", "meaning": "convenient" }
+    {
+      "word": "目に入る",
+      "reading": "めにはいる",
+      "meaning": "to catch one's eye"
+    },
+    {
+      "word": "雑誌",
+      "reading": "ざっし",
+      "meaning": "magazine"
+    },
+    {
+      "word": "日用品",
+      "reading": "にちようひん",
+      "meaning": "daily necessities"
+    },
+    {
+      "word": "払う",
+      "reading": "はらう",
+      "meaning": "to pay"
+    },
+    {
+      "word": "便利",
+      "reading": "べんり",
+      "meaning": "convenient"
+    }
   ],
   "grammar": [
-    { "point": "〜だけでなく", "explanation": "'Not only ~ (but also)'. Adds an additional element.", "example": "食べ物だけでなく雑誌も売っています。", "exampleEn": "They sell not only food but also magazines." },
-    { "point": "〜なくてはならない", "explanation": "'Indispensable / must'. Something you cannot do without.", "example": "なくてはならない場所です。", "exampleEn": "It is an indispensable place." }
+    {
+      "point": "〜だけでなく",
+      "explanation": "'Not only ~ (but also)'. Adds an additional element.",
+      "example": "食べ物だけでなく雑誌も売っています。",
+      "exampleEn": "They sell not only food but also magazines."
+    },
+    {
+      "point": "〜なくてはならない",
+      "explanation": "'Indispensable / must'. Something you cannot do without.",
+      "example": "なくてはならない場所です。",
+      "exampleEn": "It is an indispensable place."
+    }
+  ],
+  "paragraphsEn": [
+    "Walk through any Japanese town and convenience stores catch your eye everywhere. A konbini is a small shop open twenty-four hours a day.",
+    "They sell not just food and drinks but magazines and daily necessities. You can also pay bills and send packages there.",
+    "In the middle of busy lives, the konbini has become indispensable to many people. It is so convenient that plenty of people find themselves going every single day."
   ]
 }

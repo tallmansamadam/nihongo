@@ -6,6 +6,7 @@ import type { Reading } from './types'
 export const READINGS: Reading[] = [
   {
     id: 'cat-tama',
+    /*en:cat-tama*/ paragraphsEn: ["At my house there is a cat named Tama. Tama is a small white cat.","Every morning, Tama sleeps on my bed. When I come home from school, Tama is waiting by the door.","Tama loves fish. At night she goes out, and in the morning she comes home again. I love Tama."],
     title: 'ねこのたま',
     titleReading: 'ねこのたま',
     titleEn: 'My Cat Tama',
@@ -32,6 +33,7 @@ export const READINGS: Reading[] = [
   },
   {
     id: 'rainy-day',
+    /*en:rainy-day*/ paragraphsEn: ["It has been raining since this morning. I stayed home and read a book.","My mother made me warm tea.","In the afternoon, the rain stopped and a rainbow appeared in the sky. It was beautiful."],
     title: '雨の日',
     titleReading: 'あめのひ',
     titleEn: 'A Rainy Day',
@@ -58,6 +60,7 @@ export const READINGS: Reading[] = [
   },
   {
     id: 'kyoto-trip',
+    /*en:kyoto-trip*/ paragraphsEn: ["Last week, my family went to Kyoto. Kyoto is an old Japanese city with many temples.","We took an early-morning train. We saw famous temples and took lots of photos.","At noon, we ate delicious soba. Before going home, we bought souvenirs. It was a very fun day."],
     title: '京都へ行く',
     titleReading: 'きょうとへいく',
     titleEn: 'A Trip to Kyoto',
@@ -85,6 +88,7 @@ export const READINGS: Reading[] = [
   },
   {
     id: 'four-seasons',
+    /*en:four-seasons*/ paragraphsEn: ["Japan has four seasons: spring, summer, autumn, and winter.","In spring, the cherry blossoms bloom. Many people hold hanami parties in the parks. Summer is hot, and many people go to the sea or the pool.","In autumn, the leaves turn red and yellow. Winter is cold, and in the north a great deal of snow falls.","With each season, the food and the festivals change too."],
     title: '日本の四季',
     titleReading: 'にほんのしき',
     titleEn: "Japan's Four Seasons",
@@ -114,6 +118,7 @@ export const READINGS: Reading[] = [
   },
   {
     id: 'about-sushi',
+    /*en:about-sushi*/ paragraphsEn: ["Sushi is one of the most famous foods of Japan.","Long ago, sushi was a way of preserving fish. Today's sushi is made by placing fresh fish on top of rice.","Sushi is very popular abroad as well. You can eat it at a restaurant, or make it at home."],
     title: 'おすしの話',
     titleReading: 'おすしのはなし',
     titleEn: 'About Sushi',
@@ -139,6 +144,7 @@ export const READINGS: Reading[] = [
   },
   {
     id: 'momotaro',
+    /*en:momotaro*/ paragraphsEn: ["Long, long ago, in a certain place, there lived an old man and an old woman.","One day, the old woman found a huge peach in the river. When they took it home and cut it open, out came a healthy baby boy. They named him Momotarō — the Peach Boy.","When Momotarō grew up, he set out on a journey to defeat the oni. Along the road, a dog, a monkey, and a pheasant joined him.","Together they defeated the oni. Momotarō returned home with the treasure."],
     title: '桃太郎',
     titleReading: 'ももたろう',
     titleEn: 'Momotarō (The Peach Boy)',

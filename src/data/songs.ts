@@ -8,6 +8,7 @@ import type { Song } from './types'
 export const SONGS: Song[] = [
   {
     id: 'real-folk-blues',
+    /*cr:real-folk-blues*/ credits: "Music: 菅野よう子 (Yoko Kanno) · Lyrics: 岩里祐穂 (Yūho Iwasato) · Vocals: 山根麻衣 (Mai Yamane)",
     title: 'Real Folk Blues',
     titleRomaji: 'Real Folk Blues',
     titleEn: 'Real Folk Blues',
@@ -57,6 +58,7 @@ export const SONGS: Song[] = [
   },
   {
     id: 'cruel-angel-thesis',
+    /*cr:cruel-angel-thesis*/ credits: "Music: 佐藤英敏 (Hidetoshi Satō) · Lyrics: 及川眠子 (Neko Oikawa) · Vocals: 高橋洋子 (Yoko Takahashi)",
     title: '残酷な天使のテーゼ',
     titleReading: 'ざんこくなてんしのテーゼ',
     titleRomaji: 'Zankoku na Tenshi no Tēze',
@@ -108,6 +110,7 @@ export const SONGS: Song[] = [
   },
   {
     id: 'my-will',
+    /*cr:my-will*/ credits: "Lyrics: 松室麻衣 (Mai Matsumuro) · Music: BOUNCEBACK · Vocals: dream",
     title: 'My Will',
     titleRomaji: 'My Will',
     titleEn: 'My Will',
@@ -159,6 +162,8 @@ export const SONGS: Song[] = [
   // --- Public-domain traditional songs: lyrics are out of copyright and bundled ---
   {
     id: 'sakura-sakura',
+    /*cr:sakura-sakura*/ credits: "Traditional — author unknown (Edo period)",
+    lyricsEn: "Cherry blossoms, cherry blossoms\nAcross the hills and villages\nAs far as the eye can see\nLike mist, like clouds\nFragrant in the morning sun\nCherry blossoms, cherry blossoms\nIn full bloom",
     title: 'さくらさくら',
     titleReading: 'さくらさくら',
     titleRomaji: 'Sakura Sakura',
@@ -196,6 +201,8 @@ export const SONGS: Song[] = [
   },
   {
     id: 'furusato',
+    /*cr:furusato*/ credits: "Lyrics: 高野辰之 (Tatsuyuki Takano) · Music: 岡野貞一 (Teiichi Okano)",
+    lyricsEn: "Those hills where I chased rabbits\nThat river where I fished for minnows\nEven now they return in my dreams\nMy unforgettable home",
     title: '故郷',
     titleReading: 'ふるさと',
     titleRomaji: 'Furusato',
@@ -231,6 +238,8 @@ export const SONGS: Song[] = [
   },
   {
     id: 'haru-ga-kita',
+    /*cr:haru-ga-kita*/ credits: "Lyrics: 高野辰之 (Tatsuyuki Takano) · Music: 岡野貞一 (Teiichi Okano)",
+    lyricsEn: "Spring has come, spring has come — where has it come?\nTo the hills, to the village, and to the fields",
     title: '春が来た',
     titleReading: 'はるがきた',
     titleRomaji: 'Haru ga Kita',
@@ -261,6 +270,8 @@ export const SONGS: Song[] = [
   },
   {
     id: 'oborozukiyo',
+    /*cr:oborozukiyo*/ credits: "Lyrics: 高野辰之 (Tatsuyuki Takano) · Music: 岡野貞一 (Teiichi Okano)",
+    lyricsEn: "Over the field of rapeseed flowers, the setting sun fades\nThe mountain rims I gaze upon lie deep in haze\nWhen I look at the sky where the spring breeze stirs\nThe evening moon hangs there, faint in its glow",
     title: '朧月夜',
     titleReading: 'おぼろづきよ',
     titleRomaji: 'Oborozukiyo',
@@ -295,6 +306,8 @@ export const SONGS: Song[] = [
   },
   {
     id: 'kojo-no-tsuki',
+    /*cr:kojo-no-tsuki*/ credits: "Lyrics: 土井晩翠 (Bansui Doi) · Music: 滝廉太郎 (Rentarō Taki)",
+    lyricsEn: "Spring: a flower banquet at the high castle tower\nThe passing cups catching the light\nThrough branches of thousand-year pines it shone\nThat light of old — where is it now?",
     title: '荒城の月',
     titleReading: 'こうじょうのつき',
     titleRomaji: 'Kōjō no Tsuki',
@@ -329,6 +342,8 @@ export const SONGS: Song[] = [
   },
   {
     id: 'hamabe-no-uta',
+    /*cr:hamabe-no-uta*/ credits: "Lyrics: 林古渓 (Kokei Hayashi) · Music: 成田為三 (Tamezō Narita)",
+    lyricsEn: "Wandering the beach at morning\nMemories of long ago come back to me\nThe sound of the wind, the shapes of the clouds\nThe lapping waves, the colors of the shells",
     title: '浜辺の歌',
     titleReading: 'はまべのうた',
     titleRomaji: 'Hamabe no Uta',

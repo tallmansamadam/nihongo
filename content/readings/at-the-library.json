@@ -12,14 +12,49 @@
     "帰る前に、日本の歴史の本を三冊借りました。試験のために、家でもがんばるつもりです。"
   ],
   "vocab": [
-    { "word": "試験", "reading": "しけん", "meaning": "exam, test" },
-    { "word": "集中", "reading": "しゅうちゅう", "meaning": "concentration" },
-    { "word": "調べる", "reading": "しらべる", "meaning": "to look up, investigate" },
-    { "word": "歴史", "reading": "れきし", "meaning": "history" },
-    { "word": "借りる", "reading": "かりる", "meaning": "to borrow" }
+    {
+      "word": "試験",
+      "reading": "しけん",
+      "meaning": "exam, test"
+    },
+    {
+      "word": "集中",
+      "reading": "しゅうちゅう",
+      "meaning": "concentration"
+    },
+    {
+      "word": "調べる",
+      "reading": "しらべる",
+      "meaning": "to look up, investigate"
+    },
+    {
+      "word": "歴史",
+      "reading": "れきし",
+      "meaning": "history"
+    },
+    {
+      "word": "借りる",
+      "reading": "かりる",
+      "meaning": "to borrow"
+    }
   ],
   "grammar": [
-    { "point": "〜つもりです", "explanation": "States an intention: 'I plan to ~'. Dictionary verb + つもり.", "example": "がんばるつもりです。", "exampleEn": "I intend to do my best." },
-    { "point": "〜ために", "explanation": "'For the purpose of ~'. Noun の / dictionary verb + ために.", "example": "試験のために勉強します。", "exampleEn": "I study for the exam." }
+    {
+      "point": "〜つもりです",
+      "explanation": "States an intention: 'I plan to ~'. Dictionary verb + つもり.",
+      "example": "がんばるつもりです。",
+      "exampleEn": "I intend to do my best."
+    },
+    {
+      "point": "〜ために",
+      "explanation": "'For the purpose of ~'. Noun の / dictionary verb + ために.",
+      "example": "試験のために勉強します。",
+      "exampleEn": "I study for the exam."
+    }
+  ],
+  "paragraphsEn": [
+    "Next week there is an important exam. So today, I studied at the library.",
+    "The library is very quiet, and I can concentrate. Whatever I did not understand, I looked up in books I borrowed from my teacher.",
+    "Before going home, I borrowed three books on Japanese history. For the exam, I intend to work hard at home too."
   ]
 }

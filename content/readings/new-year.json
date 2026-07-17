@@ -12,14 +12,49 @@
     "お正月には、おせち料理という特別な食べ物を食べます。子供たちは家族から「お年玉」というお金をもらって、とても喜びます。"
   ],
   "vocab": [
-    { "word": "行事", "reading": "ぎょうじ", "meaning": "event, observance" },
-    { "word": "過ごす", "reading": "すごす", "meaning": "to spend (time)" },
-    { "word": "神社", "reading": "じんじゃ", "meaning": "Shinto shrine" },
-    { "word": "特別", "reading": "とくべつ", "meaning": "special" },
-    { "word": "喜ぶ", "reading": "よろこぶ", "meaning": "to be glad, rejoice" }
+    {
+      "word": "行事",
+      "reading": "ぎょうじ",
+      "meaning": "event, observance"
+    },
+    {
+      "word": "過ごす",
+      "reading": "すごす",
+      "meaning": "to spend (time)"
+    },
+    {
+      "word": "神社",
+      "reading": "じんじゃ",
+      "meaning": "Shinto shrine"
+    },
+    {
+      "word": "特別",
+      "reading": "とくべつ",
+      "meaning": "special"
+    },
+    {
+      "word": "喜ぶ",
+      "reading": "よろこぶ",
+      "meaning": "to be glad, rejoice"
+    }
   ],
   "grammar": [
-    { "point": "〜という 〜", "explanation": "'A thing called ~'. Introduces a name or term.", "example": "初詣という行事。", "exampleEn": "an event called hatsumōde" },
-    { "point": "〜からもらう", "explanation": "'To receive from ~'. から marks the giver.", "example": "家族からお年玉をもらう。", "exampleEn": "to receive New Year money from family" }
+    {
+      "point": "〜という 〜",
+      "explanation": "'A thing called ~'. Introduces a name or term.",
+      "example": "初詣という行事。",
+      "exampleEn": "an event called hatsumōde"
+    },
+    {
+      "point": "〜からもらう",
+      "explanation": "'To receive from ~'. から marks the giver.",
+      "example": "家族からお年玉をもらう。",
+      "exampleEn": "to receive New Year money from family"
+    }
+  ],
+  "paragraphsEn": [
+    "New Year is one of the most important holidays in Japan. Most people spend it with family.",
+    "On January first, people visit shrines and temples. This is called \"hatsumōde\" — the first visit of the year.",
+    "At New Year, people eat special food called osechi. Children receive gifts of money called \"otoshidama\" from their families, to their great delight."
   ]
 }

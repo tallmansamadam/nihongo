@@ -61,6 +61,8 @@ export interface Song {
   artist: string
   anime: string
   year: number
+  /** Creator credits — composer/lyricist (and vocalist), not just performer. */
+  credits?: string
   level: 'N5' | 'N4' | 'N3' | 'N2'
   /** Short factual description of the song and what it's good for studying */
   about: string
@@ -70,6 +72,8 @@ export interface Song {
   /** Actual lyrics — only for public-domain songs. Plain text, one line per
    *  line; rendered with auto-furigana. */
   lyrics?: string
+  /** English translation of the lyrics, line-for-line with `lyrics`. */
+  lyricsEn?: string
   /** True when the song is in the public domain (lyrics may be bundled). */
   publicDomain?: boolean
   /** Attribution line shown with public-domain lyrics. */
@@ -104,6 +108,8 @@ export interface Reading {
   credit?: string
   /** Paragraphs of plain Japanese text. */
   paragraphs: string[]
+  /** English translations, one per paragraph (side-by-side view). */
+  paragraphsEn?: string[]
   vocab: VocabEntry[]
   grammar?: GrammarNote[]
 }
@@ -117,6 +123,8 @@ export interface Story {
   summary: string
   /** Paragraphs, each an array of sentences, each an array of tokens */
   paragraphs: Token[][][]
+  /** English translations, one per paragraph (side-by-side view). */
+  paragraphsEn?: string[]
   vocab: VocabEntry[]
   grammar: GrammarNote[]
 }

@@ -13,7 +13,8 @@ import {
   isDownloaded,
   type CatalogEntry,
 } from './lib/library'
-import type { Reading, Song, Story, Token } from './data/types'
+import type { GrammarNote, Reading, Song, Story, Token } from './data/types'
+import GrammarModal from './components/GrammarModal'
 import { LEVELS, type Level } from './data/quizzes'
 import {
   getJapaneseVoices,
@@ -23,6 +24,7 @@ import {
   speak,
   stopSpeaking,
   ttsSupported,
+  usingNativeTts,
 } from './lib/tts'
 import KanjiPopover from './components/KanjiCard'
 import TestView from './components/TestView'
@@ -79,6 +81,22 @@ export default function App() {
     }
     window.addEventListener('nihongo:practice-draw', onDraw)
     return () => window.removeEventListener('nihongo:practice-draw', onDraw)
+  }, [])
+
+  // Grammar chips open the lesson modal; its cross-references navigate.
+  const [grammarNote, setGrammarNote] = useState<GrammarNote | null>(null)
+  useEffect(() => {
+    const onGrammar = (e: Event) => setGrammarNote((e as CustomEvent<GrammarNote>).detail)
+    const onGoto = (e: Event) => {
+      const d = (e as CustomEvent<{ kind: 'story' | 'reading' | 'song'; id: string }>).detail
+      setSel(d)
+    }
+    window.addEventListener('nihongo:grammar', onGrammar)
+    window.addEventListener('nihongo:goto', onGoto)
+    return () => {
+      window.removeEventListener('nihongo:grammar', onGrammar)
+      window.removeEventListener('nihongo:goto', onGoto)
+    }
   }, [])
   const select = (s: Selection) => {
     setSel(s)
@@ -333,6 +351,8 @@ export default function App() {
           {sel.kind === 'report' && <ReportCard />}
         </main>
 
+        {grammarNote && <GrammarModal note={grammarNote} onClose={() => setGrammarNote(null)} />}
+
         {hover && isHoverableKanji(hover.char) && (
           <Popover rect={hover.rect} innerRef={popoverRef}>
             <KanjiPopover token={hover.token} char={hover.char} compound={altDown || touchCompound} />
@@ -463,6 +483,8 @@ function Popover({
 
 function StoryView({ story }: { story: Story }) {
   const [furigana, setFurigana] = useState(true)
+  const [showEn, setShowEn] = useShowEn()
+  const hasEn = !!story.paragraphsEn?.length
   return (
     <>
       <header className="reader-head">
@@ -477,23 +499,30 @@ function StoryView({ story }: { story: Story }) {
         </div>
         <div className="head-controls">
           <VoiceMenu />
+          {hasEn && <EnToggle on={showEn} set={setShowEn} />}
           <FuriToggle on={furigana} set={setFurigana} />
         </div>
       </header>
 
       <article className="story-body">
-        {story.paragraphs.map((para, pi) => (
-          <p className="para" key={pi}>
-            {para.map((sentence, si) => (
-              <span className="sentence" key={si}>
-                <Line tokens={sentence} furigana={furigana} />
-              </span>
-            ))}
-            <SpeakButton
-              text={para.map((s) => s.map((t) => t.w).join('')).join('')}
-            />
-          </p>
-        ))}
+        {story.paragraphs.map((para, pi) => {
+          const en = showEn ? story.paragraphsEn?.[pi] : undefined
+          return (
+            <div className={'para' + (en ? ' bilingual' : '')} key={pi}>
+              <p className="para-jp">
+                {para.map((sentence, si) => (
+                  <span className="sentence" key={si}>
+                    <Line tokens={sentence} furigana={furigana} />
+                  </span>
+                ))}
+                <SpeakButton
+                  text={para.map((s) => s.map((t) => t.w).join('')).join('')}
+                />
+              </p>
+              {en && <div className="para-en">{en}</div>}
+            </div>
+          )
+        })}
       </article>
 
       <Panels vocab={story.vocab} grammar={story.grammar} />
@@ -505,6 +534,8 @@ function StoryView({ story }: { story: Story }) {
 
 function SongView({ song }: { song: Song }) {
   const [furigana, setFurigana] = useState(true)
+  const [showEn, setShowEn] = useShowEn()
+  const hasEn = !!song.lyricsEn
   return (
     <>
       <header className="reader-head">
@@ -530,17 +561,38 @@ function SongView({ song }: { song: Song }) {
             <span className="meta-pill">{song.anime}</span>
             <span className="meta-pill">{song.year}</span>
           </div>
+          {song.credits && <div className="song-credits">{song.credits}</div>}
           <p className="story-summary">{song.about}</p>
         </div>
-        <FuriToggle on={furigana} set={setFurigana} />
+        <div className="head-controls">
+          {hasEn && <EnToggle on={showEn} set={setShowEn} />}
+          <FuriToggle on={furigana} set={setFurigana} />
+        </div>
       </header>
 
       {song.lyrics && (
         <section className="phrase-block">
           <h2 className="block-title">Lyrics <span className="block-sub">— public domain</span></h2>
-          <div className="lyrics-render bundled">
-            <FuriganaText text={song.lyrics} furigana={furigana} />
-          </div>
+          {showEn && song.lyricsEn ? (
+            <div className="lyrics-render bundled">
+              {song.lyrics.split('\n').map((line, i) => {
+                const en = song.lyricsEn!.split('\n')[i]
+                if (!line.trim()) return <div className="lyric-gap" key={i} />
+                return (
+                  <div className="para bilingual lyric-row" key={i}>
+                    <div className="para-jp">
+                      <FuriganaText text={line} furigana={furigana} />
+                    </div>
+                    {en?.trim() && <div className="para-en">{en}</div>}
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="lyrics-render bundled">
+              <FuriganaText text={song.lyrics} furigana={furigana} />
+            </div>
+          )}
           {song.credit && <p className="lyrics-credit">{song.credit}</p>}
         </section>
       )}
@@ -564,7 +616,8 @@ function SongView({ song }: { song: Song }) {
 
       <Panels vocab={song.vocab} grammar={song.grammar} />
 
-      <LyricsBox songId={song.id} furigana={furigana} />
+      {/* keyed by song so pasted lyrics can never bleed into another entry */}
+      <LyricsBox key={song.id} songId={song.id} furigana={furigana} />
 
       {!song.publicDomain && (
         <p className="copyright-note">
@@ -582,6 +635,8 @@ function SongView({ song }: { song: Song }) {
 
 function ReadingView({ reading }: { reading: Reading }) {
   const [furigana, setFurigana] = useState(true)
+  const [showEn, setShowEn] = useShowEn()
+  const hasEn = !!reading.paragraphsEn?.length
   return (
     <>
       <header className="reader-head">
@@ -602,17 +657,24 @@ function ReadingView({ reading }: { reading: Reading }) {
         </div>
         <div className="head-controls">
           <VoiceMenu />
+          {hasEn && <EnToggle on={showEn} set={setShowEn} />}
           <FuriToggle on={furigana} set={setFurigana} />
         </div>
       </header>
 
       <article className="story-body reading-body">
-        {reading.paragraphs.map((para, i) => (
-          <div className="para" key={i}>
-            <FuriganaText text={para} furigana={furigana} />
-            <SpeakButton text={para} />
-          </div>
-        ))}
+        {reading.paragraphs.map((para, i) => {
+          const en = showEn ? reading.paragraphsEn?.[i] : undefined
+          return (
+            <div className={'para' + (en ? ' bilingual' : '')} key={i}>
+              <div className="para-jp">
+                <FuriganaText text={para} furigana={furigana} />
+                <SpeakButton text={para} />
+              </div>
+              {en && <div className="para-en">{en}</div>}
+            </div>
+          )
+        })}
       </article>
 
       {reading.credit && <p className="lyrics-credit">{reading.credit}</p>}
@@ -627,6 +689,36 @@ function FuriToggle({ on, set }: { on: boolean; set: (v: boolean) => void }) {
     <label className="furi-toggle">
       <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} />
       Furigana
+    </label>
+  )
+}
+
+/* Side-by-side English: one persistent preference across all reader views. */
+const SHOW_EN_KEY = 'nihongo:show-en'
+function useShowEn(): [boolean, (v: boolean) => void] {
+  const [on, setOn] = useState(() => {
+    try {
+      return localStorage.getItem(SHOW_EN_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+  const set = (v: boolean) => {
+    setOn(v)
+    try {
+      localStorage.setItem(SHOW_EN_KEY, v ? '1' : '0')
+    } catch {
+      /* ignore */
+    }
+  }
+  return [on, set]
+}
+
+function EnToggle({ on, set }: { on: boolean; set: (v: boolean) => void }) {
+  return (
+    <label className="furi-toggle">
+      <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} />
+      English
     </label>
   )
 }
@@ -684,7 +776,13 @@ function VoiceMenu() {
         <div className="voice-menu">
           <div className="voice-menu-title">Japanese voices on this device</div>
           {voices === null && <div className="lib-note">Loading voices…</div>}
-          {voices !== null && voices.length === 0 && (
+          {voices !== null && voices.length === 0 && usingNativeTts() && (
+            <div className="lib-note">
+              Using Android's system Japanese voice. The speed setting below still applies; change
+              the voice itself in Settings → System → Text-to-speech.
+            </div>
+          )}
+          {voices !== null && voices.length === 0 && !usingNativeTts() && (
             <div className="lib-note">
               No Japanese voices found. Install one via your system's text-to-speech settings
               (on Android: Settings → System → Text-to-speech), then reopen this menu.
@@ -1023,11 +1121,27 @@ function Panels({
         </ul>
       </section>
       <section className="panel">
-        <h2>Grammar</h2>
+        <h2>
+          Grammar <span className="panel-hint">— tap a point for the full lesson</span>
+        </h2>
         <ul className="grammar">
           {grammar.map((g, i) => (
-            <li key={i}>
-              <div className="g-point">{g.point}</div>
+            <li
+              key={i}
+              className="g-item"
+              role="button"
+              tabIndex={0}
+              onClick={() =>
+                window.dispatchEvent(new CustomEvent('nihongo:grammar', { detail: g }))
+              }
+              onKeyDown={(e) =>
+                e.key === 'Enter' &&
+                window.dispatchEvent(new CustomEvent('nihongo:grammar', { detail: g }))
+              }
+            >
+              <div className="g-point">
+                {g.point} <span className="g-more">lesson ›</span>
+              </div>
               <div className="g-exp">{g.explanation}</div>
               <div className="g-ex">
                 <span className="g-jp">{g.example}</span>

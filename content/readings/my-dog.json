@@ -12,14 +12,49 @@
     "夜、ポチは私のそばで寝ます。ポチは私の大切な友達です。"
   ],
   "vocab": [
-    { "word": "犬", "reading": "いぬ", "meaning": "dog" },
-    { "word": "元気", "reading": "げんき", "meaning": "lively, energetic" },
-    { "word": "散歩", "reading": "さんぽ", "meaning": "a walk, stroll" },
-    { "word": "走る", "reading": "はしる", "meaning": "to run" },
-    { "word": "大切", "reading": "たいせつ", "meaning": "important, precious" }
+    {
+      "word": "犬",
+      "reading": "いぬ",
+      "meaning": "dog"
+    },
+    {
+      "word": "元気",
+      "reading": "げんき",
+      "meaning": "lively, energetic"
+    },
+    {
+      "word": "散歩",
+      "reading": "さんぽ",
+      "meaning": "a walk, stroll"
+    },
+    {
+      "word": "走る",
+      "reading": "はしる",
+      "meaning": "to run"
+    },
+    {
+      "word": "大切",
+      "reading": "たいせつ",
+      "meaning": "important, precious"
+    }
   ],
   "grammar": [
-    { "point": "〜がいます", "explanation": "います states the existence of living things (animals, people).", "example": "家に犬がいます。", "exampleEn": "There is a dog at home." },
-    { "point": "〜と 〜します", "explanation": "と marks a companion: 'with'. ポチと散歩します = walk with Pochi.", "example": "ポチと散歩します。", "exampleEn": "I take a walk with Pochi." }
+    {
+      "point": "〜がいます",
+      "explanation": "います states the existence of living things (animals, people).",
+      "example": "家に犬がいます。",
+      "exampleEn": "There is a dog at home."
+    },
+    {
+      "point": "〜と 〜します",
+      "explanation": "と marks a companion: 'with'. ポチと散歩します = walk with Pochi.",
+      "example": "ポチと散歩します。",
+      "exampleEn": "I take a walk with Pochi."
+    }
+  ],
+  "paragraphsEn": [
+    "There is a dog at my house. His name is Pochi. Pochi is white and full of energy.",
+    "Every morning, I walk Pochi in the park. He loves his ball and is always running.",
+    "At night, Pochi sleeps beside me. He is my precious friend."
   ]
 }

@@ -45,5 +45,10 @@
       "example": "かなは漢字から生まれました。",
       "exampleEn": "Kana were born from kanji."
     }
+  ],
+  "paragraphsEn": [
+    "Japanese has two kana scripts, hiragana and katakana. Both were born from kanji.",
+    "Hiragana are whole kanji written in a soft, flowing hand. Katakana are pieces taken from parts of kanji.",
+    "Hiragana is used for Japanese words, katakana for words that came from abroad. That is why \"kōhī\" — coffee — is written in katakana."
   ]
 }

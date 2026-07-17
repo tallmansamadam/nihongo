@@ -7,6 +7,7 @@ import type { Story } from './types'
 export const STORIES: Story[] = [
   {
     id: 'my-day',
+    /*en:my-day*/ paragraphsEn: ["I am a student of Japanese. Every morning, I go to school. At school, I study Japanese.","My teacher is a very kind person. I read books together with my friends. At noon, I eat lunch. These days, I love Japanese."],
     title: '私の一日',
     titleReading: 'わたしのいちにち',
     titleEn: 'My Day',
@@ -44,6 +45,7 @@ export const STORIES: Story[] = [
   },
   {
     id: 'breakfast',
+    /*en:breakfast*/ paragraphsEn: ["The weather is lovely today. My mother makes breakfast.","I eat fish and rice. My father drinks tea. It is all delicious.","Every morning, our family talks together. I love the morning hours."],
     title: '朝ご飯',
     titleReading: 'あさごはん',
     titleEn: 'Breakfast',
@@ -81,6 +83,7 @@ export const STORIES: Story[] = [
   },
   {
     id: 'mountain-and-sea',
+    /*en:mountain-and-sea*/ paragraphsEn: ["During summer vacation, I went to the mountains with my friends. The mountains were tall and beautiful. The river water was cold.","At noon, we went to the sea. We saw fish in the water. The sky was very beautiful. It was a wonderful day."],
     title: '山と海',
     titleReading: 'やまとうみ',
     titleEn: 'The Mountain and the Sea',
@@ -116,6 +119,7 @@ export const STORIES: Story[] = [
   },
   {
     id: 'shop-in-town',
+    /*en:shop-in-town*/ paragraphsEn: ["There is a new shop in my town. It is my friend's mother's shop.","I buy books there. Yesterday, I bought a Japanese book. Everyone at the shop is kind.","I go by train from the station. I love this shop."],
     title: '町の店',
     titleReading: 'まちのみせ',
     titleEn: 'The Shop in Town',

@@ -12,14 +12,49 @@
     "温泉に入る前に、体をよく洗います。それから、ゆっくりお湯に入ります。温泉に入ると、疲れが取れて、心も体も元気になります。"
   ],
   "vocab": [
-    { "word": "温泉", "reading": "おんせん", "meaning": "hot spring" },
-    { "word": "地面", "reading": "じめん", "meaning": "ground" },
-    { "word": "火山", "reading": "かざん", "meaning": "volcano" },
-    { "word": "洗う", "reading": "あらう", "meaning": "to wash" },
-    { "word": "疲れ", "reading": "つかれ", "meaning": "tiredness, fatigue" }
+    {
+      "word": "温泉",
+      "reading": "おんせん",
+      "meaning": "hot spring"
+    },
+    {
+      "word": "地面",
+      "reading": "じめん",
+      "meaning": "ground"
+    },
+    {
+      "word": "火山",
+      "reading": "かざん",
+      "meaning": "volcano"
+    },
+    {
+      "word": "洗う",
+      "reading": "あらう",
+      "meaning": "to wash"
+    },
+    {
+      "word": "疲れ",
+      "reading": "つかれ",
+      "meaning": "tiredness, fatigue"
+    }
   ],
   "grammar": [
-    { "point": "〜こと", "explanation": "Nominalizer that turns a clause into a noun ('the fact/thing that ~').", "example": "温かいお湯のことです。", "exampleEn": "It refers to warm water." },
-    { "point": "〜と (natural result)", "explanation": "'When/whenever ~, (result)'. Dictionary verb + と.", "example": "温泉に入ると元気になります。", "exampleEn": "When you enter an onsen, you feel refreshed." }
+    {
+      "point": "〜こと",
+      "explanation": "Nominalizer that turns a clause into a noun ('the fact/thing that ~').",
+      "example": "温かいお湯のことです。",
+      "exampleEn": "It refers to warm water."
+    },
+    {
+      "point": "〜と (natural result)",
+      "explanation": "'When/whenever ~, (result)'. Dictionary verb + と.",
+      "example": "温泉に入ると元気になります。",
+      "exampleEn": "When you enter an onsen, you feel refreshed."
+    }
+  ],
+  "paragraphsEn": [
+    "Japan has many onsen — hot springs. An onsen is warm water that rises from the ground.",
+    "With so many mountains and volcanoes, hot springs can be found all over Japan.",
+    "Before entering, you wash yourself well. Then you sink slowly into the water. A hot spring melts your tiredness away and restores both body and heart."
   ]
 }

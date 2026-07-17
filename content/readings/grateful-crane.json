@@ -14,15 +14,55 @@
     "正体を見られた鶴は、「私は助けていただいた鶴です」と言って、空へ飛んで行きました。おじいさんは、約束を守らなかったことを深く後悔しました。"
   ],
   "vocab": [
-    { "word": "貧しい", "reading": "まずしい", "meaning": "poor" },
-    { "word": "助ける", "reading": "たすける", "meaning": "to help, rescue" },
-    { "word": "布", "reading": "ぬの", "meaning": "cloth" },
-    { "word": "織る", "reading": "おる", "meaning": "to weave" },
-    { "word": "約束", "reading": "やくそく", "meaning": "promise" },
-    { "word": "後悔", "reading": "こうかい", "meaning": "regret" }
+    {
+      "word": "貧しい",
+      "reading": "まずしい",
+      "meaning": "poor"
+    },
+    {
+      "word": "助ける",
+      "reading": "たすける",
+      "meaning": "to help, rescue"
+    },
+    {
+      "word": "布",
+      "reading": "ぬの",
+      "meaning": "cloth"
+    },
+    {
+      "word": "織る",
+      "reading": "おる",
+      "meaning": "to weave"
+    },
+    {
+      "word": "約束",
+      "reading": "やくそく",
+      "meaning": "promise"
+    },
+    {
+      "word": "後悔",
+      "reading": "こうかい",
+      "meaning": "regret"
+    }
   ],
   "grammar": [
-    { "point": "〜てやる / 〜てくれる", "explanation": "Giving/receiving an action as a favor. 助けてやる = do the favor of helping.", "example": "鶴を助けてやりました。", "exampleEn": "He kindly rescued the crane." },
-    { "point": "〜ないでください", "explanation": "A polite request not to do something.", "example": "部屋を見ないでください。", "exampleEn": "Please do not look in the room." }
+    {
+      "point": "〜てやる / 〜てくれる",
+      "explanation": "Giving/receiving an action as a favor. 助けてやる = do the favor of helping.",
+      "example": "鶴を助けてやりました。",
+      "exampleEn": "He kindly rescued the crane."
+    },
+    {
+      "point": "〜ないでください",
+      "explanation": "A polite request not to do something.",
+      "example": "部屋を見ないでください。",
+      "exampleEn": "Please do not look in the room."
+    }
+  ],
+  "paragraphsEn": [
+    "Long ago, there was a poor but kind-hearted old man. One cold day, he freed a crane that had been caught in a trap.",
+    "That night, a young woman came to his house. She stayed, and wove him beautiful cloth. \"While I am weaving, please do not look into the room,\" she said.",
+    "The cloth sold well, but at last the old man broke his promise and peeked into the room. There stood a crane, weaving cloth from its own feathers.",
+    "Discovered, the crane said, \"I am the crane you saved,\" and flew away into the sky. The old man deeply regretted not keeping his promise."
   ]
 }

@@ -12,14 +12,49 @@
     "冬には、みんなで鍋を囲むことが多いです。温かい料理を家族で一緒に食べる時間は、とても楽しいものです。"
   ],
   "vocab": [
-    { "word": "食事", "reading": "しょくじ", "meaning": "meal" },
-    { "word": "中心", "reading": "ちゅうしん", "meaning": "center" },
-    { "word": "刺身", "reading": "さしみ", "meaning": "sashimi (sliced raw fish)" },
-    { "word": "世界", "reading": "せかい", "meaning": "world" },
-    { "word": "料理", "reading": "りょうり", "meaning": "cooking, dish" }
+    {
+      "word": "食事",
+      "reading": "しょくじ",
+      "meaning": "meal"
+    },
+    {
+      "word": "中心",
+      "reading": "ちゅうしん",
+      "meaning": "center"
+    },
+    {
+      "word": "刺身",
+      "reading": "さしみ",
+      "meaning": "sashimi (sliced raw fish)"
+    },
+    {
+      "word": "世界",
+      "reading": "せかい",
+      "meaning": "world"
+    },
+    {
+      "word": "料理",
+      "reading": "りょうり",
+      "meaning": "cooking, dish"
+    }
   ],
   "grammar": [
-    { "point": "〜ので", "explanation": "States a reason, softer and more objective than から.", "example": "海が近いので魚を食べます。", "exampleEn": "Because the sea is near, people eat fish." },
-    { "point": "〜ことが多い", "explanation": "'It often happens that ~'. Dictionary verb + ことが多い.", "example": "鍋を囲むことが多いです。", "exampleEn": "People often gather around a hot pot." }
+    {
+      "point": "〜ので",
+      "explanation": "States a reason, softer and more objective than から.",
+      "example": "海が近いので魚を食べます。",
+      "exampleEn": "Because the sea is near, people eat fish."
+    },
+    {
+      "point": "〜ことが多い",
+      "explanation": "'It often happens that ~'. Dictionary verb + ことが多い.",
+      "example": "鍋を囲むことが多いです。",
+      "exampleEn": "People often gather around a hot pot."
+    }
+  ],
+  "paragraphsEn": [
+    "Rice is the heart of the Japanese meal. Most people eat rice every day.",
+    "With the sea so near, fish is eaten often too. Sushi and sashimi are famous around the world.",
+    "In winter, families often gather around a hot pot. Sharing warm food together is one of the great pleasures of the table."
   ]
 }

@@ -12,14 +12,49 @@
     "桜の花は一週間ぐらいで散ってしまいます。短い間だけ咲くので、みんなその美しさを大切にします。"
   ],
   "vocab": [
-    { "word": "咲く", "reading": "さく", "meaning": "to bloom" },
-    { "word": "集まる", "reading": "あつまる", "meaning": "to gather" },
-    { "word": "弁当", "reading": "べんとう", "meaning": "boxed lunch" },
-    { "word": "散る", "reading": "ちる", "meaning": "to fall, scatter (petals)" },
-    { "word": "美しさ", "reading": "うつくしさ", "meaning": "beauty" }
+    {
+      "word": "咲く",
+      "reading": "さく",
+      "meaning": "to bloom"
+    },
+    {
+      "word": "集まる",
+      "reading": "あつまる",
+      "meaning": "to gather"
+    },
+    {
+      "word": "弁当",
+      "reading": "べんとう",
+      "meaning": "boxed lunch"
+    },
+    {
+      "word": "散る",
+      "reading": "ちる",
+      "meaning": "to fall, scatter (petals)"
+    },
+    {
+      "word": "美しさ",
+      "reading": "うつくしさ",
+      "meaning": "beauty"
+    }
   ],
   "grammar": [
-    { "point": "〜になると", "explanation": "'When it becomes ~ / once ~ comes'. Marks a condition and its natural result.", "example": "春になると桜が咲きます。", "exampleEn": "When spring comes, the cherry trees bloom." },
-    { "point": "〜てしまう", "explanation": "Shows completion, often with a nuance of regret or finality.", "example": "桜が散ってしまいます。", "exampleEn": "The blossoms fall (all too soon)." }
+    {
+      "point": "〜になると",
+      "explanation": "'When it becomes ~ / once ~ comes'. Marks a condition and its natural result.",
+      "example": "春になると桜が咲きます。",
+      "exampleEn": "When spring comes, the cherry trees bloom."
+    },
+    {
+      "point": "〜てしまう",
+      "explanation": "Shows completion, often with a nuance of regret or finality.",
+      "example": "桜が散ってしまいます。",
+      "exampleEn": "The blossoms fall (all too soon)."
+    }
+  ],
+  "paragraphsEn": [
+    "When spring comes, cherry blossoms bloom all over Japan. They are pink and very beautiful.",
+    "People gather in parks and eat boxed lunches under the cherry trees. This is called \"hanami\" — flower viewing.",
+    "The blossoms scatter after only a week or so. Because they bloom for such a short time, everyone treasures their beauty."
   ]
 }

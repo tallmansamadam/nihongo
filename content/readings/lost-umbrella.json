@@ -45,5 +45,10 @@
       "example": "かさを忘れてしまいました。",
       "exampleEn": "I (unfortunately) forgot my umbrella."
     }
+  ],
+  "paragraphsEn": [
+    "On a rainy day, I left my umbrella on the train. I only noticed after I got home.",
+    "The next day, I went to the lost-and-found at the station and asked.",
+    "What a relief — my umbrella was there. I told the station attendant, \"Thank you so much.\""
   ]
 }
