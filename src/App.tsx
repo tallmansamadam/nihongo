@@ -387,6 +387,7 @@ function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
         lpTimer.current = window.setTimeout(() => {
           lpFired.current = true
           open(ch, tok, el, true) // long-press → compound view
+          speak(tok.r ?? tok.w) // …and pronounce the whole word
         }, 500)
       }}
       onPointerMove={(e) => {
@@ -405,9 +406,15 @@ function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
           return // long-press already opened the compound view
         }
         open(ch, tok, e.currentTarget)
-        // Clicking/tapping a kanji pronounces it (kun reading, else on).
-        const g = getGlyph(ch)
-        pronounceReading(g.kun, g.on, ch)
+        if (e.altKey) {
+          // Alt+click: the card shows the surrounding compound — say the
+          // whole word (its furigana reading beats per-kanji guesses).
+          speak(tok.r ?? tok.w)
+        } else {
+          // Plain click/tap pronounces the single kanji (kun, else on).
+          const g = getGlyph(ch)
+          pronounceReading(g.kun, g.on, ch)
+        }
       }}
     >
       {ch}
