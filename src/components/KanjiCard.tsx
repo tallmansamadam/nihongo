@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getGlyph, glyphMeaning } from '../data/components'
 import { decompose } from '../lib/kvgDecompose'
 import { ensureKanjiForText } from '../lib/kanjiLookup'
+import { pronounceReading } from '../lib/tts'
 import type { Component, Token } from '../data/types'
 import StrokeOrder from './StrokeOrder'
 
@@ -52,7 +53,13 @@ export default function KanjiPopover({
   const view = stack[stack.length - 1]
   const push = (v: View) => setStack((s) => [...s, v])
   const back = () => setStack((s) => s.slice(0, -1))
-  const pickGlyph = (c: string, meaning?: string) => push({ type: 'glyph', char: c, meaning })
+  /** Drill into a grapheme/radical/compound character — and pronounce it, the
+   *  same way clicking that character in the body text would. */
+  const pickGlyph = (c: string, meaning?: string) => {
+    push({ type: 'glyph', char: c, meaning })
+    const g = getGlyph(c, meaning)
+    pronounceReading(g.kun, g.on, c)
+  }
 
   return (
     <div className="kanji-card">

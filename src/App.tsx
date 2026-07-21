@@ -340,10 +340,11 @@ export default function App() {
         </aside>
 
         <main className="reader">
-          {story && <StoryView story={story} />}
-          {reading && <ReadingView reading={reading} />}
+          {/* keyed so per-item view state (read-aloud, toggles) resets on switch */}
+          {story && <StoryView key={story.id} story={story} />}
+          {reading && <ReadingView key={reading.id} reading={reading} />}
           {sel.kind === 'remote' && <RemoteReadingView id={sel.id} meta={remoteMeta} />}
-          {song && <SongView song={song} />}
+          {song && <SongView key={song.id} song={song} />}
           {sel.kind === 'test' && <TestView level={sel.level} />}
           {sel.kind === 'exam' && <ExamView level={sel.level} />}
           {sel.kind === 'flashcards' && <FlashcardView />}
@@ -492,6 +493,10 @@ function StoryView({ story }: { story: Story }) {
   const [furigana, setFurigana] = useState(true)
   const [showEn, setShowEn] = useShowEn()
   const hasEn = !!story.paragraphsEn?.length
+  const paraTexts = story.paragraphs.map((p) =>
+    p.map((s) => s.map((t) => t.w).join('')).join(''),
+  )
+  const read = useReadAloud(paraTexts)
   return (
     <>
       <header className="reader-head">
@@ -505,6 +510,7 @@ function StoryView({ story }: { story: Story }) {
           <p className="story-summary">{story.summary}</p>
         </div>
         <div className="head-controls">
+          <ReadAllButton playing={read.playing} start={read.start} stop={read.stop} />
           <VoiceMenu />
           {hasEn && <EnToggle on={showEn} set={setShowEn} />}
           <FuriToggle on={furigana} set={setFurigana} />
@@ -515,16 +521,17 @@ function StoryView({ story }: { story: Story }) {
         {story.paragraphs.map((para, pi) => {
           const en = showEn ? story.paragraphsEn?.[pi] : undefined
           return (
-            <div className={'para' + (en ? ' bilingual' : '')} key={pi}>
+            <div
+              className={
+                'para' + (en ? ' bilingual' : '') + (read.idx === pi ? ' reading' : '')
+              }
+              key={pi}
+            >
               <p className="para-jp">
                 {para.map((sentence, si) => (
-                  <span className="sentence" key={si}>
-                    <Line tokens={sentence} furigana={furigana} />
-                  </span>
+                  <SentenceSpan key={si} tokens={sentence} furigana={furigana} />
                 ))}
-                <SpeakButton
-                  text={para.map((s) => s.map((t) => t.w).join('')).join('')}
-                />
+                <SpeakButton text={paraTexts[pi]} />
               </p>
               {en && <div className="para-en">{en}</div>}
             </div>
@@ -543,6 +550,11 @@ function SongView({ song }: { song: Song }) {
   const [furigana, setFurigana] = useState(true)
   const [showEn, setShowEn] = useShowEn()
   const hasEn = !!song.lyricsEn
+  // Read the bundled lyrics when we have them, otherwise the teaching phrases.
+  const readParts = song.lyrics
+    ? song.lyrics.split('\n').filter((l) => l.trim())
+    : (song.phrases ?? []).map((p) => p.line.map((t) => t.w).join(''))
+  const read = useReadAloud(readParts)
   return (
     <>
       <header className="reader-head">
@@ -572,6 +584,10 @@ function SongView({ song }: { song: Song }) {
           <p className="story-summary">{song.about}</p>
         </div>
         <div className="head-controls">
+          {readParts.length > 0 && (
+            <ReadAllButton playing={read.playing} start={read.start} stop={read.stop} />
+          )}
+          <VoiceMenu />
           {hasEn && <EnToggle on={showEn} set={setShowEn} />}
           <FuriToggle on={furigana} set={setFurigana} />
         </div>
@@ -644,6 +660,7 @@ function ReadingView({ reading }: { reading: Reading }) {
   const [furigana, setFurigana] = useState(true)
   const [showEn, setShowEn] = useShowEn()
   const hasEn = !!reading.paragraphsEn?.length
+  const read = useReadAloud(reading.paragraphs)
   return (
     <>
       <header className="reader-head">
@@ -663,6 +680,7 @@ function ReadingView({ reading }: { reading: Reading }) {
           <p className="story-summary">{reading.summary}</p>
         </div>
         <div className="head-controls">
+          <ReadAllButton playing={read.playing} start={read.start} stop={read.stop} />
           <VoiceMenu />
           {hasEn && <EnToggle on={showEn} set={setShowEn} />}
           <FuriToggle on={furigana} set={setFurigana} />
@@ -673,7 +691,12 @@ function ReadingView({ reading }: { reading: Reading }) {
         {reading.paragraphs.map((para, i) => {
           const en = showEn ? reading.paragraphsEn?.[i] : undefined
           return (
-            <div className={'para' + (en ? ' bilingual' : '')} key={i}>
+            <div
+              className={
+                'para' + (en ? ' bilingual' : '') + (read.idx === i ? ' reading' : '')
+              }
+              key={i}
+            >
               <div className="para-jp">
                 <FuriganaText text={para} furigana={furigana} />
                 <SpeakButton text={para} />
@@ -731,6 +754,142 @@ function EnToggle({ on, set }: { on: boolean; set: (v: boolean) => void }) {
 }
 
 /* ---------------- Voice reader ---------------- */
+
+/* ---------------- Read-aloud: whole text + per-sentence ---------------- */
+
+const SENT_END = /[。！？!?]/
+
+/** Split a run of tokens into sentences (the ending punctuation stays with the
+ *  sentence it closes). */
+function groupSentences(tokens: Token[]): Token[][] {
+  const out: Token[][] = []
+  let cur: Token[] = []
+  for (const t of tokens) {
+    cur.push(t)
+    if (SENT_END.test(t.w)) {
+      out.push(cur)
+      cur = []
+    }
+  }
+  if (cur.length) out.push(cur)
+  return out
+}
+
+/** Split plain text into sentences, keeping the punctuation. */
+function splitSentences(text: string): string[] {
+  const parts = text.match(/[^。！？!?]*[。！？!?]|[^。！？!?]+/g)
+  return parts ? parts.filter((s) => s.trim()) : [text]
+}
+
+/** Reads a list of blocks in order, exposing which one is currently playing so
+ *  the view can highlight it. */
+function useReadAloud(parts: string[]) {
+  const [idx, setIdx] = useState<number | null>(null)
+  const cancelled = useRef(false)
+  useEffect(
+    () => () => {
+      cancelled.current = true
+      stopSpeaking()
+    },
+    [],
+  )
+  const stop = () => {
+    cancelled.current = true
+    stopSpeaking()
+    setIdx(null)
+  }
+  const start = (from = 0) => {
+    cancelled.current = false
+    const run = (i: number) => {
+      if (cancelled.current) return
+      if (i >= parts.length) {
+        setIdx(null)
+        return
+      }
+      setIdx(i)
+      speak(parts[i], () => run(i + 1))
+    }
+    run(from)
+  }
+  return { idx, playing: idx !== null, start, stop }
+}
+
+/** Header button that reads the whole story / article / song aloud. */
+function ReadAllButton({
+  playing,
+  start,
+  stop,
+}: {
+  playing: boolean
+  start: () => void
+  stop: () => void
+}) {
+  if (!ttsSupported()) return null
+  return (
+    <button
+      className={'read-all' + (playing ? ' playing' : '')}
+      onClick={() => (playing ? stop() : start())}
+      title={playing ? 'Stop reading' : 'Read the whole text aloud'}
+    >
+      {playing ? '⏹ Stop' : '▶ Read all'}
+    </button>
+  )
+}
+
+// Hold a sentence longer than the kanji long-press (which opens the compound
+// card at 500ms) to escalate: tap = kanji, hold = word, hold longer = sentence.
+const SENTENCE_HOLD_MS = 1100
+
+function useSentenceHold(text: string) {
+  const timer = useRef<number | null>(null)
+  const origin = useRef<{ x: number; y: number } | null>(null)
+  const [speaking, setSpeaking] = useState(false)
+  const clear = () => {
+    if (timer.current) window.clearTimeout(timer.current)
+    timer.current = null
+    origin.current = null
+  }
+  useEffect(() => () => clear(), [])
+
+  return {
+    speaking,
+    holdProps: {
+      onPointerDown: (e: React.PointerEvent) => {
+        clear()
+        origin.current = { x: e.clientX, y: e.clientY }
+        timer.current = window.setTimeout(() => {
+          timer.current = null
+          setSpeaking(true)
+          speak(text, () => setSpeaking(false))
+        }, SENTENCE_HOLD_MS)
+      },
+      onPointerMove: (e: React.PointerEvent) => {
+        if (!origin.current) return
+        if (
+          Math.abs(e.clientX - origin.current.x) > 10 ||
+          Math.abs(e.clientY - origin.current.y) > 10
+        ) {
+          clear() // scrolling / dragging, not holding
+        }
+      },
+      onPointerUp: clear,
+      onPointerLeave: clear,
+      onPointerCancel: clear,
+    },
+  }
+}
+
+/** One sentence of body text: renders its tokens and reads itself aloud when
+ *  held down (anywhere in it). */
+function SentenceSpan({ tokens, furigana }: { tokens: Token[]; furigana: boolean }) {
+  const text = tokens.map((t) => t.w).join('')
+  const { holdProps, speaking } = useSentenceHold(text)
+  return (
+    <span className={'sentence' + (speaking ? ' speaking' : '')} {...holdProps}>
+      <Line tokens={tokens} furigana={furigana} />
+    </span>
+  )
+}
 
 /** Play/stop button that reads one block of Japanese text aloud. */
 function SpeakButton({ text }: { text: string }) {
@@ -1086,7 +1245,9 @@ function FuriganaText({ text, furigana }: { text: string; furigana: boolean }) {
   }, [text, furigana])
 
   const useFuri = furigana && tokenized && status === 'idle'
-  const plain = text.split('\n').map((l) => (l.trim() ? [{ w: l }] : []))
+  const plain = text
+    .split('\n')
+    .map((l) => (l.trim() ? splitSentences(l).map((s) => ({ w: s })) : []))
   const lines = useFuri ? tokenized! : plain
 
   return (
@@ -1097,7 +1258,11 @@ function FuriganaText({ text, furigana }: { text: string; furigana: boolean }) {
       )}
       {lines.map((tokens, i) => (
         <p className="lyric-line" key={i}>
-          {tokens.length === 0 ? ' ' : <Line tokens={tokens} furigana={furigana} />}
+          {tokens.length === 0
+            ? ' '
+            : groupSentences(tokens).map((sent, si) => (
+                <SentenceSpan key={si} tokens={sent} furigana={furigana} />
+              ))}
         </p>
       ))}
     </>

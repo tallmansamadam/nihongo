@@ -897,3 +897,29 @@ button.kc-radical { background: var(--paper); border: 1px solid var(--line); bor
   margin-top: 8px; font-size: 13px; color: var(--ink-soft);
   border-left: 3px solid var(--gold); padding-left: 10px;
 }
+
+/* ===== Read aloud: whole text + per-sentence hold ===== */
+.read-all {
+  font: inherit; font-size: 13px; white-space: nowrap;
+  color: #fff; background: var(--indigo); border: 1px solid var(--indigo);
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  transition: filter 0.15s;
+}
+.read-all:hover { filter: brightness(1.15); }
+.read-all.playing { background: var(--accent); border-color: var(--accent); }
+/* the paragraph currently being read by "Read all" */
+.para.reading {
+  background: #fdf6e6;
+  box-shadow: 0 0 0 6px #fdf6e6;
+  border-radius: 4px;
+}
+/* a sentence reading itself aloud after an extra-long hold */
+.sentence {
+  /* holding must not be hijacked by text selection on touch */
+  -webkit-tap-highlight-color: transparent;
+}
+.sentence.speaking {
+  background: #fdeccd;
+  box-shadow: 0 0 0 3px #fdeccd;
+  border-radius: 3px;
+}
