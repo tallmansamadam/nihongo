@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getGlyph, glyphMeaning } from '../data/components'
 import { decompose } from '../lib/kvgDecompose'
-import { ensureKanjiForText } from '../lib/kanjiLookup'
+import { ensureKanjiForText, isKanjiChar } from '../lib/kanjiLookup'
 import { pronounceReading } from '../lib/tts'
 import type { Component, Token } from '../data/types'
 import StrokeOrder from './StrokeOrder'
@@ -123,6 +123,21 @@ function GlyphView({
   replay?: number
 }) {
   const g = getGlyph(char, fallbackMeaning)
+
+  // A kanji with no bundled/cached data (e.g. in uploaded lyrics) yields an
+  // "unknown" glyph. Fetch its dictionary entry on demand, then re-render so the
+  // card fills in — matching the behavior of pre-bundled kanji.
+  const [, bump] = useState(0)
+  useEffect(() => {
+    if (g.isKanji || !isKanjiChar(char)) return
+    let cancelled = false
+    ensureKanjiForText(char).then((added) => {
+      if (added && !cancelled) bump((n) => n + 1)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [char, g.isKanji])
 
   // Curated kanji have hand-authored graphemes. For everything else, derive the
   // component breakdown from the KanjiVG stroke file so EVERY kanji can be

@@ -3,8 +3,8 @@ import { tokenizeText } from './lib/furigana'
 import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
 import { READINGS } from './data/readings'
-import { getGlyph, isHoverableKanji } from './data/components'
-import { ensureKanjiForText } from './lib/kanjiLookup'
+import { getGlyph } from './data/components'
+import { ensureKanjiForText, isKanjiChar } from './lib/kanjiLookup'
 import {
   cachedCatalog,
   cachedReading,
@@ -66,6 +66,28 @@ type Selection =
 export default function App() {
   const [splash, setSplash] = useState(true)
   const [sel, setSel] = useState<Selection>({ kind: 'story', id: STORIES[0].id })
+  // Navigation history so a Back button can return to the previous view. Kept
+  // in a ref (mutated synchronously) so rapid successive navigations/backs stay
+  // consistent regardless of React batching; a counter forces re-render so the
+  // Back button's visibility tracks the ref.
+  const historyRef = useRef<Selection[]>([])
+  const [, forceNav] = useState(0)
+  const selRef = useRef(sel)
+  selRef.current = sel
+  const go = (next: Selection) => {
+    historyRef.current = [...historyRef.current, selRef.current]
+    setSel(next)
+    setNavOpen(false)
+    forceNav((n) => n + 1)
+  }
+  const goBack = () => {
+    const h = historyRef.current
+    if (h.length === 0) return
+    historyRef.current = h.slice(0, -1)
+    setSel(h[h.length - 1])
+    forceNav((n) => n + 1)
+  }
+  const canGoBack = historyRef.current.length > 0
   // Mobile navigation drawer (the sidebar is a slide-over on small screens).
   const [navOpen, setNavOpen] = useState(false)
   // Points badge in the sidebar, live-updated on any progress write.
@@ -76,7 +98,7 @@ export default function App() {
   useEffect(() => {
     const onDraw = (e: Event) => {
       const char = (e as CustomEvent<string>).detail
-      setSel({ kind: 'draw', char })
+      go({ kind: 'draw', char })
       setHover(null)
     }
     window.addEventListener('nihongo:practice-draw', onDraw)
@@ -89,7 +111,7 @@ export default function App() {
     const onGrammar = (e: Event) => setGrammarNote((e as CustomEvent<GrammarNote>).detail)
     const onGoto = (e: Event) => {
       const d = (e as CustomEvent<{ kind: 'story' | 'reading' | 'song'; id: string }>).detail
-      setSel(d)
+      go(d)
     }
     window.addEventListener('nihongo:grammar', onGrammar)
     window.addEventListener('nihongo:goto', onGoto)
@@ -98,10 +120,7 @@ export default function App() {
       window.removeEventListener('nihongo:goto', onGoto)
     }
   }, [])
-  const select = (s: Selection) => {
-    setSel(s)
-    setNavOpen(false)
-  }
+  const select = (s: Selection) => go(s)
   const [hover, setHover] = useState<Hover | null>(null)
   const [altDown, setAltDown] = useState(false)
   // Compound view triggered without a keyboard (long-press on touch).
@@ -187,6 +206,11 @@ export default function App() {
         >
           ☰
         </button>
+        {canGoBack && (
+          <button className="nav-back" aria-label="Back" onClick={goBack}>
+            ← Back
+          </button>
+        )}
         {navOpen && <div className="nav-backdrop" onClick={() => setNavOpen(false)} />}
         <aside className={'sidebar' + (navOpen ? ' open' : '')}>
           <div className="brand">
@@ -354,7 +378,7 @@ export default function App() {
 
         {grammarNote && <GrammarModal note={grammarNote} onClose={() => setGrammarNote(null)} />}
 
-        {hover && isHoverableKanji(hover.char) && (
+        {hover && isKanjiChar(hover.char) && (
           <Popover rect={hover.rect} innerRef={popoverRef}>
             <KanjiPopover token={hover.token} char={hover.char} compound={altDown || touchCompound} />
           </Popover>
@@ -427,7 +451,9 @@ function TokenView({ tok, furigana }: { tok: Token; furigana: boolean }) {
   const base = (
     <span className="word" title={tok.g}>
       {[...tok.w].map((ch, i) =>
-        isHoverableKanji(ch) ? (
+        // Every kanji is interactive; its card data is fetched on open if not
+        // already bundled/cached (so kanji in uploaded lyrics respond too).
+        isKanjiChar(ch) ? (
           <KanjiSpan key={i} ch={ch} tok={tok} />
         ) : (
           <span key={i}>{ch}</span>
@@ -1127,6 +1153,22 @@ function LyricsBox({ songId, furigana }: { songId: string; furigana: boolean }) 
     setDraft(next)
     setEditing(false)
   }
+
+  // Read the pasted lyrics aloud, line by line (whole-song playback).
+  const read = useReadAloud(saved.split('\n').filter((l) => l.trim()))
+  useEffect(() => () => read.stop(), [songId]) // stop when switching songs
+  // Warm kanji data for pasted lyrics so their cards fill in instantly.
+  const [, bumpLyricKanji] = useState(0)
+  useEffect(() => {
+    if (!saved) return
+    let cancelled = false
+    ensureKanjiForText(saved).then((added) => {
+      if (added && !cancelled) bumpLyricKanji((n) => n + 1)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [saved])
   function save() {
     try {
       localStorage.setItem(lyricsKey(songId), draft)
@@ -1160,6 +1202,9 @@ function LyricsBox({ songId, furigana }: { songId: string; furigana: boolean }) 
       <div className="lyrics-head">
         <h2 className="block-title">My lyrics</h2>
         <div className="lyrics-head-actions">
+          {saved && !editing && (
+            <ReadAllButton playing={read.playing} start={read.start} stop={read.stop} />
+          )}
           {saved && !editing && (
             <button className="lyrics-edit" onClick={() => setEditing(true)}>Edit</button>
           )}
