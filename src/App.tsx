@@ -34,6 +34,7 @@ import DrawPractice from './components/DrawPractice'
 import ReportCard from './components/ReportCard'
 import Splash from './components/Splash'
 import { loadProgress, onProgressChange } from './lib/progress'
+import { loadPrefs, onPrefsChange, setPref } from './lib/prefs'
 
 const CATEGORY_LABEL: Record<Reading['category'], string> = {
   story: 'Story',
@@ -62,6 +63,7 @@ type Selection =
   | { kind: 'flashcards' }
   | { kind: 'draw'; char?: string }
   | { kind: 'report' }
+  | { kind: 'prefs' }
 
 export default function App() {
   const [splash, setSplash] = useState(true)
@@ -328,6 +330,13 @@ export default function App() {
                 {points} points · progress &amp; grades
               </span>
             </button>
+            <button
+              className={'story-item' + (sel.kind === 'prefs' ? ' active' : '')}
+              onClick={() => select({ kind: 'prefs' })}
+            >
+              <span className="si-title">⚙ Preferences</span>
+              <span className="si-en">Reading &amp; display options</span>
+            </button>
             <div className="lib-note">Quick practice tests — 100 variations each</div>
             <div className="test-levels">
               {LEVELS.map((lvl) => (
@@ -374,6 +383,7 @@ export default function App() {
           {sel.kind === 'flashcards' && <FlashcardView />}
           {sel.kind === 'draw' && <DrawPractice key={sel.char ?? 'free'} initialChar={sel.char} />}
           {sel.kind === 'report' && <ReportCard />}
+          {sel.kind === 'prefs' && <PreferencesView />}
         </main>
 
         {grammarNote && <GrammarModal note={grammarNote} onClose={() => setGrammarNote(null)} />}
@@ -388,47 +398,25 @@ export default function App() {
   )
 }
 
-// One hoverable/tappable kanji. Mouse: opens on hover (Alt = compound view).
-// Touch: opens on tap; a long-press opens the surrounding-compound view.
+// One hoverable/tappable kanji.
+//  - Tap (or mouse click) → open the card + pronounce the single kanji.
+//  - Mouse hover → open the card; Alt+click → pronounce the whole word/compound.
+//  - Touch long-press ANYWHERE in a sentence reads the whole sentence; that is
+//    handled at the sentence level (useSentenceHold), so a hold that starts on a
+//    kanji must not also fire this tap — `sentenceJustRead` guards it.
 function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
   const { open } = useContext(HoverCtx)
-  const lpTimer = useRef<number | undefined>(undefined)
-  const lpFired = useRef(false)
-  const start = useRef<{ x: number; y: number } | null>(null)
-  const clearLP = () => window.clearTimeout(lpTimer.current)
-
   return (
     <span
       className="kanji"
       onPointerEnter={(e) => {
         if (e.pointerType === 'mouse') open(ch, tok, e.currentTarget)
       }}
-      onPointerDown={(e) => {
-        lpFired.current = false
-        if (e.pointerType === 'mouse') return // desktop uses Alt for compound
-        start.current = { x: e.clientX, y: e.clientY }
-        const el = e.currentTarget
-        clearLP()
-        lpTimer.current = window.setTimeout(() => {
-          lpFired.current = true
-          open(ch, tok, el, true) // long-press → compound view
-          speak(tok.r ?? tok.w) // …and pronounce the whole word
-        }, 500)
-      }}
-      onPointerMove={(e) => {
-        if (!start.current) return
-        if (Math.abs(e.clientX - start.current.x) > 10 || Math.abs(e.clientY - start.current.y) > 10) {
-          clearLP() // finger is scrolling, not long-pressing
-        }
-      }}
-      onPointerUp={clearLP}
-      onPointerLeave={clearLP}
-      onPointerCancel={clearLP}
       onContextMenu={(e) => e.preventDefault()} // suppress the long-press menu on touch
       onClick={(e) => {
-        if (lpFired.current) {
-          lpFired.current = false
-          return // long-press already opened the compound view
+        if (sentenceJustRead) {
+          sentenceJustRead = false
+          return // this "tap" was the end of a sentence long-press
         }
         open(ch, tok, e.currentTarget)
         if (e.altKey) {
@@ -518,6 +506,7 @@ function Popover({
 function StoryView({ story }: { story: Story }) {
   const [furigana, setFurigana] = useState(true)
   const [showEn, setShowEn] = useShowEn()
+  const colorCode = useColorCode()
   const hasEn = !!story.paragraphsEn?.length
   const paraTexts = story.paragraphs.map((p) =>
     p.map((s) => s.map((t) => t.w).join('')).join(''),
@@ -546,6 +535,8 @@ function StoryView({ story }: { story: Story }) {
       <article className="story-body">
         {story.paragraphs.map((para, pi) => {
           const en = showEn ? story.paragraphsEn?.[pi] : undefined
+          const enSents = en && colorCode ? splitEnSentences(en) : null
+          const colored = !!enSents && enSents.length === para.length
           return (
             <div
               className={
@@ -555,11 +546,16 @@ function StoryView({ story }: { story: Story }) {
             >
               <p className="para-jp">
                 {para.map((sentence, si) => (
-                  <SentenceSpan key={si} tokens={sentence} furigana={furigana} />
+                  <SentenceSpan
+                    key={si}
+                    tokens={sentence}
+                    furigana={furigana}
+                    colorIndex={colored ? si : undefined}
+                  />
                 ))}
                 <SpeakButton text={paraTexts[pi]} />
               </p>
-              {en && <div className="para-en">{en}</div>}
+              {en && <EnglishSide en={en} jpCount={para.length} colorize={colorCode} />}
             </div>
           )
         })}
@@ -685,6 +681,7 @@ function SongView({ song }: { song: Song }) {
 function ReadingView({ reading }: { reading: Reading }) {
   const [furigana, setFurigana] = useState(true)
   const [showEn, setShowEn] = useShowEn()
+  const colorCode = useColorCode()
   const hasEn = !!reading.paragraphsEn?.length
   const read = useReadAloud(reading.paragraphs)
   return (
@@ -716,6 +713,9 @@ function ReadingView({ reading }: { reading: Reading }) {
       <article className="story-body reading-body">
         {reading.paragraphs.map((para, i) => {
           const en = showEn ? reading.paragraphsEn?.[i] : undefined
+          const jpSents = en && colorCode ? splitSentences(para) : null
+          const enSents = en && colorCode ? splitEnSentences(en) : null
+          const colored = !!jpSents && !!enSents && jpSents.length === enSents.length
           return (
             <div
               className={
@@ -724,10 +724,21 @@ function ReadingView({ reading }: { reading: Reading }) {
               key={i}
             >
               <div className="para-jp">
-                <FuriganaText text={para} furigana={furigana} />
+                {colored ? (
+                  jpSents!.map((s, si) => (
+                    <SentenceSpan key={si} text={s} furigana={furigana} colorIndex={si} />
+                  ))
+                ) : (
+                  <FuriganaText text={para} furigana={furigana} />
+                )}
                 <SpeakButton text={para} />
               </div>
-              {en && <div className="para-en">{en}</div>}
+              {en &&
+                (colored ? (
+                  <EnglishSide en={en} jpCount={jpSents!.length} colorize={colorCode} />
+                ) : (
+                  <div className="para-en">{en}</div>
+                ))}
             </div>
           )
         })}
@@ -862,9 +873,12 @@ function ReadAllButton({
   )
 }
 
-// Hold a sentence longer than the kanji long-press (which opens the compound
-// card at 500ms) to escalate: tap = kanji, hold = word, hold longer = sentence.
-const SENTENCE_HOLD_MS = 1100
+// A long-press anywhere in a sentence reads the whole sentence aloud. Tap is
+// ~<300ms, so this threshold is a comfortable "press and hold". When it fires,
+// `sentenceJustRead` suppresses the kanji tap-click that the release would
+// otherwise trigger (the press may have started on a kanji).
+const SENTENCE_HOLD_MS = 500
+let sentenceJustRead = false
 
 function useSentenceHold(text: string) {
   const timer = useRef<number | null>(null)
@@ -882,9 +896,11 @@ function useSentenceHold(text: string) {
     holdProps: {
       onPointerDown: (e: React.PointerEvent) => {
         clear()
+        sentenceJustRead = false // new gesture — reset stale suppression
         origin.current = { x: e.clientX, y: e.clientY }
         timer.current = window.setTimeout(() => {
           timer.current = null
+          sentenceJustRead = true
           setSpeaking(true)
           speak(text, () => setSpeaking(false))
         }, SENTENCE_HOLD_MS)
@@ -905,16 +921,85 @@ function useSentenceHold(text: string) {
   }
 }
 
-/** One sentence of body text: renders its tokens and reads itself aloud when
- *  held down (anywhere in it). */
-function SentenceSpan({ tokens, furigana }: { tokens: Token[]; furigana: boolean }) {
-  const text = tokens.map((t) => t.w).join('')
-  const { holdProps, speaking } = useSentenceHold(text)
+// Rotating palette for pairing each sentence with its translation.
+const SENTENCE_COLORS = 8
+
+/** True when sentence↔translation color-coding is enabled (preference). */
+function useColorCode(): boolean {
+  const [on, setOn] = useState(() => loadPrefs().colorCodeTranslations)
+  useEffect(() => onPrefsChange(() => setOn(loadPrefs().colorCodeTranslations)), [])
+  return on
+}
+
+/** Split an English paragraph into sentences (keeping terminal punctuation). */
+function splitEnSentences(text: string): string[] {
+  const parts = text.match(/[^.!?]*[.!?]+["')\]]*|[^.!?]+/g)
+  return parts ? parts.map((s) => s.trim()).filter(Boolean) : [text]
+}
+
+/** One sentence of body text: renders its tokens (or tokenizes a raw string for
+ *  readings) and reads itself aloud when held down anywhere in it. An optional
+ *  colorIndex tints it to match its translation. */
+function SentenceSpan({
+  tokens,
+  text,
+  furigana,
+  colorIndex,
+}: {
+  tokens?: Token[]
+  text?: string
+  furigana: boolean
+  colorIndex?: number
+}) {
+  const [tok, setTok] = useState<Token[] | null>(tokens ?? null)
+  useEffect(() => {
+    if (tokens) {
+      setTok(tokens)
+      return
+    }
+    if (text == null) return
+    if (!furigana) {
+      setTok([{ w: text }])
+      return
+    }
+    let cancelled = false
+    tokenizeText(text)
+      .then((lines) => !cancelled && setTok(lines.flat()))
+      .catch(() => !cancelled && setTok([{ w: text }]))
+    return () => {
+      cancelled = true
+    }
+  }, [tokens, text, furigana])
+
+  const holdText = tokens ? tokens.map((t) => t.w).join('') : text ?? ''
+  const { holdProps, speaking } = useSentenceHold(holdText)
+  const cls =
+    'sentence' +
+    (speaking ? ' speaking' : '') +
+    (colorIndex != null ? ` sc-${colorIndex % SENTENCE_COLORS}` : '')
   return (
-    <span className={'sentence' + (speaking ? ' speaking' : '')} {...holdProps}>
-      <Line tokens={tokens} furigana={furigana} />
+    <span className={cls} {...holdProps}>
+      {tok ? <Line tokens={tok} furigana={furigana} /> : holdText}
     </span>
   )
+}
+
+/** The English side of a bilingual paragraph, color-paired to the JP sentences
+ *  when `colorize` and the sentence counts line up. */
+function EnglishSide({ en, jpCount, colorize }: { en: string; jpCount: number; colorize: boolean }) {
+  const sents = colorize ? splitEnSentences(en) : null
+  if (sents && sents.length === jpCount) {
+    return (
+      <div className="para-en">
+        {sents.map((s, i) => (
+          <span key={i} className={`sc-${i % SENTENCE_COLORS}`}>
+            {s}{' '}
+          </span>
+        ))}
+      </div>
+    )
+  }
+  return <div className="para-en">{en}</div>
 }
 
 /** Play/stop button that reads one block of Japanese text aloud. */
@@ -1311,6 +1396,80 @@ function FuriganaText({ text, furigana }: { text: string; furigana: boolean }) {
         </p>
       ))}
     </>
+  )
+}
+
+/* ---------------- Preferences ---------------- */
+
+function PreferencesView() {
+  const [prefs, setPrefsState] = useState(() => loadPrefs())
+  useEffect(() => onPrefsChange(() => setPrefsState(loadPrefs())), [])
+  return (
+    <div className="prefs">
+      <header className="reader-head">
+        <div>
+          <h1 className="story-title">Preferences 設定</h1>
+          <div className="story-sub">
+            <span>Saved on this device</span>
+          </div>
+        </div>
+      </header>
+
+      <section className="prefs-section">
+        <h2>Reading</h2>
+        <label className="pref-row">
+          <input
+            type="checkbox"
+            checked={prefs.colorCodeTranslations}
+            onChange={() => setPref('colorCodeTranslations', !prefs.colorCodeTranslations)}
+          />
+          <span className="pref-label">
+            <span className="pref-name">Color-code sentences to their translation</span>
+            <span className="pref-desc">
+              When English is shown, each Japanese sentence and its English translation share a
+              color so you can pair them at a glance. On by default.
+            </span>
+          </span>
+        </label>
+
+        <div className="pref-preview" aria-hidden>
+          <div className="para bilingual">
+            <p className="para-jp">
+              <span className={'sentence' + (prefs.colorCodeTranslations ? ' sc-0' : '')}>
+                今日は良い天気です。
+              </span>{' '}
+              <span className={'sentence' + (prefs.colorCodeTranslations ? ' sc-1' : '')}>
+                海へ行きました。
+              </span>
+            </p>
+            <div className="para-en">
+              <span className={prefs.colorCodeTranslations ? 'sc-0' : ''}>
+                The weather is nice today.{' '}
+              </span>
+              <span className={prefs.colorCodeTranslations ? 'sc-1' : ''}>
+                We went to the sea.{' '}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="prefs-section">
+        <h2>Gestures &amp; tips</h2>
+        <ul className="prefs-tips">
+          <li>
+            <b>Long-press anywhere on a sentence</b> to hear the whole sentence read aloud.
+          </li>
+          <li>
+            <b>Tap a kanji</b> for its reading and card. On desktop, <b>Alt-click</b> reads the whole
+            word.
+          </li>
+          <li>
+            Toggle <b>English</b> in a story or article header to show the translation side by side.
+          </li>
+        </ul>
+      </section>
+    </div>
   )
 }
 

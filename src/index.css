@@ -949,3 +949,38 @@ button.kc-radical { background: var(--paper); border: 1px solid var(--line); bor
   box-shadow: 0 0 0 3px #fdeccd;
   border-radius: 3px;
 }
+
+/* ===== Sentence ↔ translation color-coding ===== */
+/* Applied to both the JP sentence span and its EN counterpart span. Kanji
+   inherit the color; their hover state still wins momentarily. */
+.sc-0 { color: #0f766e; }
+.sc-1 { color: #b1402f; }
+.sc-2 { color: #3a4bbf; }
+.sc-3 { color: #8a6a1e; }
+.sc-4 { color: #8b3aa6; }
+.sc-5 { color: #b5581c; }
+.sc-6 { color: #2e7d3f; }
+.sc-7 { color: #47566b; }
+.para-en .sc-0, .para-en .sc-1, .para-en .sc-2, .para-en .sc-3,
+.para-en .sc-4, .para-en .sc-5, .para-en .sc-6, .para-en .sc-7 { font-weight: 500; }
+
+/* ===== Preferences page ===== */
+.prefs-section { margin-top: 26px; max-width: 660px; }
+.prefs-section h2 { font-size: 17px; margin-bottom: 12px; }
+.pref-row {
+  display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
+}
+.pref-row input[type='checkbox'] {
+  margin-top: 3px; width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--accent);
+}
+.pref-label { display: flex; flex-direction: column; gap: 3px; }
+.pref-name { font-size: 16px; font-weight: 600; }
+.pref-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+.pref-preview {
+  margin-top: 16px; background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 12px; padding: 16px 18px;
+}
+.pref-preview .para.bilingual { margin: 0; border-left: none; padding-left: 0; }
+.pref-preview .para-jp { font-family: var(--jp); font-size: 20px; margin: 0 0 6px; }
+.prefs-tips { line-height: 1.7; padding-left: 20px; }
+.prefs-tips li { margin-bottom: 6px; }
