@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { tokenizeText } from './lib/furigana'
 import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
@@ -35,6 +35,7 @@ import ReportCard from './components/ReportCard'
 import Splash from './components/Splash'
 import { loadProgress, onProgressChange } from './lib/progress'
 import { loadPrefs, onPrefsChange, setPref } from './lib/prefs'
+import { alignSentence, type VocabItem } from './lib/wordAlign'
 
 const CATEGORY_LABEL: Record<Reading['category'], string> = {
   story: 'Story',
@@ -435,9 +436,9 @@ function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
   )
 }
 
-function TokenView({ tok, furigana }: { tok: Token; furigana: boolean }) {
+function TokenView({ tok, furigana, color }: { tok: Token; furigana: boolean; color?: number }) {
   const base = (
-    <span className="word" title={tok.g}>
+    <span className={'word' + (color != null ? ` sc-${color}` : '')} title={tok.g}>
       {[...tok.w].map((ch, i) =>
         // Every kanji is interactive; its card data is fetched on open if not
         // already bundled/cached (so kanji in uploaded lyrics respond too).
@@ -536,7 +537,7 @@ function StoryView({ story }: { story: Story }) {
         {story.paragraphs.map((para, pi) => {
           const en = showEn ? story.paragraphsEn?.[pi] : undefined
           const enSents = en && colorCode ? splitEnSentences(en) : null
-          const colored = !!enSents && enSents.length === para.length
+          const wordColor = !!enSents && enSents.length === para.length
           return (
             <div
               className={
@@ -544,18 +545,25 @@ function StoryView({ story }: { story: Story }) {
               }
               key={pi}
             >
-              <p className="para-jp">
-                {para.map((sentence, si) => (
-                  <SentenceSpan
-                    key={si}
-                    tokens={sentence}
-                    furigana={furigana}
-                    colorIndex={colored ? si : undefined}
-                  />
-                ))}
-                <SpeakButton text={paraTexts[pi]} />
-              </p>
-              {en && <EnglishSide en={en} jpCount={para.length} colorize={colorCode} />}
+              {wordColor ? (
+                <BilingualParagraph
+                  jpTokens={para}
+                  enSentences={enSents!}
+                  paraText={paraTexts[pi]}
+                  furigana={furigana}
+                  vocab={story.vocab}
+                />
+              ) : (
+                <>
+                  <p className="para-jp">
+                    {para.map((sentence, si) => (
+                      <SentenceSpan key={si} tokens={sentence} furigana={furigana} />
+                    ))}
+                    <SpeakButton text={paraTexts[pi]} />
+                  </p>
+                  {en && <div className="para-en">{en}</div>}
+                </>
+              )}
             </div>
           )
         })}
@@ -715,7 +723,7 @@ function ReadingView({ reading }: { reading: Reading }) {
           const en = showEn ? reading.paragraphsEn?.[i] : undefined
           const jpSents = en && colorCode ? splitSentences(para) : null
           const enSents = en && colorCode ? splitEnSentences(en) : null
-          const colored = !!jpSents && !!enSents && jpSents.length === enSents.length
+          const wordColor = !!jpSents && !!enSents && jpSents.length === enSents.length
           return (
             <div
               className={
@@ -723,22 +731,23 @@ function ReadingView({ reading }: { reading: Reading }) {
               }
               key={i}
             >
-              <div className="para-jp">
-                {colored ? (
-                  jpSents!.map((s, si) => (
-                    <SentenceSpan key={si} text={s} furigana={furigana} colorIndex={si} />
-                  ))
-                ) : (
-                  <FuriganaText text={para} furigana={furigana} />
-                )}
-                <SpeakButton text={para} />
-              </div>
-              {en &&
-                (colored ? (
-                  <EnglishSide en={en} jpCount={jpSents!.length} colorize={colorCode} />
-                ) : (
-                  <div className="para-en">{en}</div>
-                ))}
+              {wordColor ? (
+                <BilingualParagraph
+                  jpStrings={jpSents!}
+                  enSentences={enSents!}
+                  paraText={para}
+                  furigana={furigana}
+                  vocab={reading.vocab}
+                />
+              ) : (
+                <>
+                  <div className="para-jp">
+                    <FuriganaText text={para} furigana={furigana} />
+                    <SpeakButton text={para} />
+                  </div>
+                  {en && <div className="para-en">{en}</div>}
+                </>
+              )}
             </div>
           )
         })}
@@ -984,22 +993,114 @@ function SentenceSpan({
   )
 }
 
-/** The English side of a bilingual paragraph, color-paired to the JP sentences
- *  when `colorize` and the sentence counts line up. */
-function EnglishSide({ en, jpCount, colorize }: { en: string; jpCount: number; colorize: boolean }) {
-  const sents = colorize ? splitEnSentences(en) : null
-  if (sents && sents.length === jpCount) {
-    return (
-      <div className="para-en">
-        {sents.map((s, i) => (
-          <span key={i} className={`sc-${i % SENTENCE_COLORS}`}>
-            {s}{' '}
-          </span>
-        ))}
+/** One JP sentence rendered with per-word colors, still readable aloud on a
+ *  long-press anywhere in it. */
+function HoldSentence({
+  tokens,
+  colors,
+  furigana,
+}: {
+  tokens: Token[]
+  colors?: (number | undefined)[]
+  furigana: boolean
+}) {
+  const text = tokens.map((t) => t.w).join('')
+  const { holdProps, speaking } = useSentenceHold(text)
+  return (
+    <span className={'sentence' + (speaking ? ' speaking' : '')} {...holdProps}>
+      {tokens.map((t, i) => (
+        <TokenView key={i} tok={t} furigana={furigana} color={colors?.[i]} />
+      ))}
+    </span>
+  )
+}
+
+// Word-level bilingual paragraph: aligns each JP sentence's key words (vocab +
+// standalone kanji) to their English counterparts and colors the matched pairs.
+// Stories arrive pre-tokenized; readings are tokenized here.
+function BilingualParagraph({
+  jpTokens,
+  jpStrings,
+  enSentences,
+  paraText,
+  furigana,
+  vocab,
+}: {
+  jpTokens?: Token[][]
+  jpStrings?: string[]
+  enSentences: string[]
+  paraText: string
+  furigana: boolean
+  vocab: VocabItem[]
+}) {
+  const [toks, setToks] = useState<(Token[] | null)[]>(
+    () => jpTokens ?? (jpStrings ? jpStrings.map(() => null) : []),
+  )
+  const stringsKey = jpStrings?.join('␟')
+  useEffect(() => {
+    if (jpTokens) {
+      setToks(jpTokens)
+      return
+    }
+    if (!jpStrings) return
+    let cancelled = false
+    Promise.all(
+      jpStrings.map(async (s) => {
+        if (!furigana) return [{ w: s }]
+        try {
+          return (await tokenizeText(s)).flat()
+        } catch {
+          return [{ w: s }]
+        }
+      }),
+    ).then((res) => !cancelled && setToks(res))
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stringsKey, furigana, jpTokens])
+
+  const aligned = useMemo(() => {
+    let color = 0
+    return toks.map((t, i) => {
+      if (!t) return null
+      const a = alignSentence(t, enSentences[i] ?? '', vocab, color, SENTENCE_COLORS)
+      color += a.used
+      return a
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toks, enSentences])
+
+  return (
+    <>
+      <div className="para-jp">
+        {toks.map((t, i) =>
+          t ? (
+            <HoldSentence key={i} tokens={t} colors={aligned[i]?.jpColors} furigana={furigana} />
+          ) : (
+            <span key={i}>{jpStrings?.[i]} </span>
+          ),
+        )}
+        <SpeakButton text={paraText} />
       </div>
-    )
-  }
-  return <div className="para-en">{en}</div>
+      <div className="para-en">
+        {enSentences.map((en, i) => {
+          const parts = aligned[i]?.enParts
+          return (
+            <span key={i}>
+              {parts
+                ? parts.map((p, j) => (
+                    <span key={j} className={p.color != null ? `sc-${p.color}` : undefined}>
+                      {p.text}
+                    </span>
+                  ))
+                : en}{' '}
+            </span>
+          )
+        })}
+      </div>
+    </>
+  )
 }
 
 /** Play/stop button that reads one block of Japanese text aloud. */
@@ -1424,33 +1525,34 @@ function PreferencesView() {
             onChange={() => setPref('colorCodeTranslations', !prefs.colorCodeTranslations)}
           />
           <span className="pref-label">
-            <span className="pref-name">Color-code sentences to their translation</span>
+            <span className="pref-name">Color-code words to their translation</span>
             <span className="pref-desc">
-              When English is shown, each Japanese sentence and its English translation share a
-              color so you can pair them at a glance. On by default.
+              When English is shown, each key Japanese word (vocabulary and standalone kanji) and
+              its English counterpart share a color, so you can see which word means which. Words we
+              can't map with confidence are left uncolored. On by default.
             </span>
           </span>
         </label>
 
         <div className="pref-preview" aria-hidden>
-          <div className="para bilingual">
-            <p className="para-jp">
-              <span className={'sentence' + (prefs.colorCodeTranslations ? ' sc-0' : '')}>
-                今日は良い天気です。
-              </span>{' '}
-              <span className={'sentence' + (prefs.colorCodeTranslations ? ' sc-1' : '')}>
-                海へ行きました。
-              </span>
-            </p>
-            <div className="para-en">
-              <span className={prefs.colorCodeTranslations ? 'sc-0' : ''}>
-                The weather is nice today.{' '}
-              </span>
-              <span className={prefs.colorCodeTranslations ? 'sc-1' : ''}>
-                We went to the sea.{' '}
-              </span>
-            </div>
-          </div>
+          {(() => {
+            const on = prefs.colorCodeTranslations
+            const c = (i: number) => (on ? `sc-${i}` : undefined)
+            return (
+              <div className="para bilingual">
+                <p className="para-jp">
+                  <span className="word">わたしは</span>
+                  <span className={'word ' + (c(0) ?? '')}>魚</span>
+                  <span className="word">を</span>
+                  <span className={'word ' + (c(1) ?? '')}>食べます</span>
+                  <span className="word">。</span>
+                </p>
+                <div className="para-en">
+                  I <span className={c(1)}>eat</span> <span className={c(0)}>fish</span>.
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </section>
 

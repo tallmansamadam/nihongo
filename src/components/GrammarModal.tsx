@@ -1,8 +1,14 @@
-import { useEffect, useMemo } from 'react'
-import { findLesson, normalizePoint } from '../data/grammarLessons'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  buildReinforcement,
+  findLesson,
+  normalizePoint,
+  type GrammarLesson,
+} from '../data/grammarLessons'
 import { STORIES } from '../data/stories'
 import { READINGS } from '../data/readings'
 import { SONGS } from '../data/songs'
+import { addPoints } from '../lib/progress'
 import type { GrammarNote } from '../data/types'
 
 interface Props {
@@ -109,6 +115,8 @@ export default function GrammarModal({ note, onClose }: Props) {
           </>
         )}
 
+        {lesson && <GrammarQuiz lesson={lesson} />}
+
         {!lesson && (
           <p className="gm-note">
             A full lesson for this point isn't written yet — the notes above come from this
@@ -116,6 +124,72 @@ export default function GrammarModal({ note, onClose }: Props) {
           </p>
         )}
       </div>
+    </div>
+  )
+}
+
+/** Reinforcement quiz shown under a grammar lesson. Immediate feedback per
+ *  question; points are awarded once when all questions are answered. */
+function GrammarQuiz({ lesson }: { lesson: GrammarLesson }) {
+  const questions = useMemo(() => buildReinforcement(lesson), [lesson])
+  const [answers, setAnswers] = useState<(number | null)[]>(() => questions.map(() => null))
+  const awarded = useRef(false)
+
+  const answeredAll = questions.length > 0 && answers.every((a) => a !== null)
+  const score = questions.reduce((s, q, i) => s + (answers[i] === q.answer ? 1 : 0), 0)
+
+  useEffect(() => {
+    if (answeredAll && !awarded.current) {
+      awarded.current = true
+      addPoints('grammar', `${lesson.title.split('—')[0].trim()} quiz ${score}/${questions.length}`, score * 2)
+    }
+  }, [answeredAll, score, questions.length, lesson.title])
+
+  if (questions.length === 0) return null
+
+  return (
+    <div className="gm-quiz">
+      <div className="gm-label">Reinforce — choose the answer</div>
+      {questions.map((q, qi) => {
+        const chosen = answers[qi]
+        const done = chosen !== null
+        return (
+          <div className="gq-item" key={qi}>
+            <div className="gq-prompt">{q.prompt}</div>
+            <div className="gq-choices">
+              {q.choices.map((c, ci) => {
+                let cls = 'gq-choice'
+                if (done) {
+                  if (ci === q.answer) cls += ' correct'
+                  else if (ci === chosen) cls += ' wrong'
+                }
+                return (
+                  <button
+                    key={ci}
+                    className={cls}
+                    disabled={done}
+                    onClick={() =>
+                      setAnswers((a) => {
+                        const n = [...a]
+                        n[qi] = ci
+                        return n
+                      })
+                    }
+                  >
+                    {c}
+                  </button>
+                )
+              })}
+            </div>
+            {done && <div className="gq-explain">{q.explanation}</div>}
+          </div>
+        )
+      })}
+      {answeredAll && (
+        <div className="gq-score">
+          Score: {score}/{questions.length} · +{score * 2} points
+        </div>
+      )}
     </div>
   )
 }

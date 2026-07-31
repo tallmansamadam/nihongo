@@ -31,6 +31,80 @@ export function normalizePoint(point: string): string {
     .trim()
 }
 
+export interface GrammarQuestion {
+  prompt: string
+  choices: string[]
+  answer: number
+  explanation: string
+}
+
+// Deterministic small RNG so a lesson's quiz is stable across opens.
+function seeded(str: string): () => number {
+  let h = 2166136261
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i)
+    h = Math.imul(h, 16777619)
+  }
+  return () => {
+    h += 0x6d2b79f5
+    let t = Math.imul(h ^ (h >>> 15), 1 | h)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+function shuffle<T>(arr: T[], rng: () => number): T[] {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+function pickN<T>(arr: T[], n: number, rng: () => number): T[] {
+  return shuffle(arr, rng).slice(0, n)
+}
+
+const shortTitle = (l: GrammarLesson) => l.title.split('—')[0].trim()
+
+/** Build a few reinforcement questions for a lesson: cloze (choose the pattern
+ *  that fits) plus a usage question (which sentence uses this grammar). */
+export function buildReinforcement(lesson: GrammarLesson): GrammarQuestion[] {
+  const rng = seeded(lesson.key)
+  const others = LESSONS.filter((l) => l.key !== lesson.key)
+  const patterns = [lesson.key, ...(lesson.aliases ?? [])]
+  const qs: GrammarQuestion[] = []
+
+  // Cloze: blank the grammar pattern in an example; distractors are other
+  // grammar patterns, so the learner picks the one that fits the meaning.
+  for (const ex of lesson.examples) {
+    const pat = patterns.find((p) => ex.jp.includes(p))
+    if (!pat) continue
+    const distractors = pickN(others, 3, rng).map((l) => l.key)
+    if (distractors.includes(pat)) continue
+    const choices = shuffle([pat, ...distractors], rng)
+    qs.push({
+      prompt: ex.jp.replace(pat, '＿＿'),
+      choices,
+      answer: choices.indexOf(pat),
+      explanation: `${ex.jp} — ${ex.en}`,
+    })
+    if (qs.length >= 2) break
+  }
+
+  // Usage: which sentence actually uses this grammar point?
+  const correct = lesson.examples[0]
+  const wrong = pickN(others, 3, rng).map((l) => l.examples[0].jp)
+  const choices = shuffle([correct.jp, ...wrong], rng)
+  qs.push({
+    prompt: `Which sentence uses ${shortTitle(lesson)}?`,
+    choices,
+    answer: choices.indexOf(correct.jp),
+    explanation: `${correct.jp} — ${correct.en}`,
+  })
+
+  return qs.slice(0, 3)
+}
+
 export function findLesson(point: string): GrammarLesson | null {
   const n = normalizePoint(point)
   if (!n) return null
