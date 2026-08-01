@@ -7,7 +7,7 @@ export const READINGS: Reading[] = [
   {
     id: 'cat-tama',
     /*en:cat-tama*/ paragraphsEn: ["At my house there is a cat named Tama. Tama is a small white cat.","Every morning, Tama sleeps on my bed. When I come home from school, Tama is waiting by the door.","Tama loves fish. At night she goes out, and in the morning she comes home again. I love Tama."],
-    title: 'ねこのたま',
+    title: '猫のたま',
     titleReading: 'ねこのたま',
     titleEn: 'My Cat Tama',
     level: 'N5',
@@ -41,7 +41,7 @@ export const READINGS: Reading[] = [
     category: 'story',
     summary: 'A quiet day indoors that ends with a rainbow.',
     paragraphs: [
-      '今日は朝から雨がふっています。私は家で本を読みました。',
+      '今日は朝から雨が降っています。私は家で本を読みました。',
       'お母さんは、あたたかいお茶を作ってくれました。',
       '午後、雨が止んで、空に虹が出ました。とてもきれいでした。',
     ],
@@ -97,8 +97,8 @@ export const READINGS: Reading[] = [
     summary: 'A short informational piece on spring, summer, autumn, and winter in Japan.',
     paragraphs: [
       '日本には四つの季節があります。春、夏、秋、冬です。',
-      '春には、さくらの花がさきます。多くの人が公園で花見をします。夏はあつくて、海やプールへ行く人が多いです。',
-      '秋には、木の葉が赤や黄色になります。冬はさむくて、北の方では雪がたくさんふります。',
+      '春には、桜の花がさきます。多くの人が公園で花見をします。夏はあつくて、海やプールへ行く人が多いです。',
+      '秋には、木の葉が赤や黄色になります。冬はさむくて、北の方では雪がたくさん降ります。',
       '季節によって、食べ物やお祭りも変わります。',
     ],
     vocab: [

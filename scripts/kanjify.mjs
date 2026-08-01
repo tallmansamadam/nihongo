@@ -70,7 +70,16 @@ const MAP = [
   // more verbs (guard 動詞 自立). Note: 買う/書く/描く all share euphonic stems
   // (かい/かっ) that POS can't separate, so those are deliberately excluded.
   ['つくり', '作り', '動詞'], ['つくっ', '作っ', '動詞'], ['つくる', '作る', '動詞'],
-].map(([kana, kanji, pos]) => ({ kana, kanji, pos }))
+  // additional unambiguous words that have a standard kanji
+  ['さくら', '桜', '名詞'], ['となり', '隣', '名詞'], ['いっしょ', '一緒', '名詞'],
+  ['あいさつ', '挨拶', '名詞'], ['ていねい', '丁寧', '名詞'], ['やさしい', '優しい'],
+  ['はじめて', '初めて', '副詞'],
+  // weather 降る: ctx guard so it only fires when the text mentions 雨/雪, keeping
+  // it apart from 振る ("wave/shake").
+  ['ふりました', '降りました', '動詞', '雨雪'], ['ふり', '降り', '動詞', '雨雪'],
+  ['ふっ', '降っ', '動詞', '雨雪'], ['ふる', '降る', '動詞', '雨雪'],
+  ['ふら', '降ら', '動詞', '雨雪'],
+].map(([kana, kanji, pos, ctx]) => ({ kana, kanji, pos, ctx }))
 
 MAP.sort((a, b) => b.kana.length - a.kana.length)
 const maxRun = 4 // max tokens to try concatenating for one map entry
@@ -96,6 +105,9 @@ function kanjify(tok, text) {
       const surface = tokens.slice(i, i + run).map((t) => t.surface_form).join('')
       const entry = MAP.find((m) => m.kana === surface)
       if (!entry) continue
+      // Context guard: only convert when the text has one of the required chars
+      // (e.g. 降る only near 雨/雪, never 振る).
+      if (entry.ctx && ![...entry.ctx].some((c) => text.includes(c))) continue
       // POS guard: require the (single) token's POS to match when specified
       if (entry.pos && run > 1) continue // pos-guarded entries only match single tokens
       if (entry.pos && run === 1) {
@@ -127,9 +139,9 @@ for (const f of await readdir(readingsDir)) {
   const path = join(readingsDir, f)
   const r = JSON.parse(await readFile(path, 'utf8'))
   if (!Array.isArray(r.paragraphs)) continue
-  const before = r.paragraphs.join('')
+  const before = r.paragraphs.join('') + (r.title ?? '')
   r.paragraphs = r.paragraphs.map((p) => kanjify(tok, p))
-  const after = r.paragraphs.join('')
+  const after = r.paragraphs.join('') + (r.title ?? '')
   if (before !== after) {
     if (samples.length < 6) samples.push(`${f}:\n  - ${before.split('')[0].slice(0, 60)}\n  + ${after.split('')[0].slice(0, 60)}`)
     if (!CHECK) await writeFile(path, JSON.stringify(r, null, 2) + '\n', 'utf8')
@@ -154,6 +166,7 @@ rts = rts.replace(/paragraphs: \[([\s\S]*?)\n(\s*)\],/g, (_m, body, indent) => {
   })
   return `paragraphs: [${nb}\n${indent}],`
 })
+rts = rts.replace(/(?<![A-Za-z])title: '([^'\n]*)'/g, (m, t) => new RegExp('[぀-ゟ]').test(t) ? "title: '" + kanjify(tok, t) + "'" : m)
 if (!CHECK && rtsChanges) await writeFile(rtsPath, rts, 'utf8')
 
 console.log(`${CHECK ? '[check] would convert' : 'converted'} ${converted} word occurrences in JSON readings.`)
