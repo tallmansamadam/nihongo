@@ -14,9 +14,9 @@ export const READINGS: Reading[] = [
     category: 'story',
     summary: 'A short, gentle story about a small white cat and its daily routine.',
     paragraphs: [
-      'わたしの家には、たまという名前のねこがいます。たまは白くて小さいねこです。',
-      '毎朝、たまはわたしのベッドの上で寝ています。わたしが学校から帰ると、たまはドアの前で待っています。',
-      'たまは魚が大好きです。夜になると外に出て、また朝、帰ってきます。わたしはたまが大好きです。',
+      '私の家には、たまという名前の猫がいます。たまは白くて小さい猫です。',
+      '毎朝、たまは私のベッドの上で寝ています。私が学校から帰ると、たまはドアの前で待っています。',
+      'たまは魚が大好きです。夜になると外に出て、また朝、帰ってきます。私はたまが大好きです。',
     ],
     vocab: [
       { word: '名前', reading: 'なまえ', meaning: 'name' },
@@ -41,7 +41,7 @@ export const READINGS: Reading[] = [
     category: 'story',
     summary: 'A quiet day indoors that ends with a rainbow.',
     paragraphs: [
-      '今日は朝から雨がふっています。わたしは家で本を読みました。',
+      '今日は朝から雨がふっています。私は家で本を読みました。',
       'お母さんは、あたたかいお茶を作ってくれました。',
       '午後、雨が止んで、空に虹が出ました。とてもきれいでした。',
     ],
@@ -69,7 +69,7 @@ export const READINGS: Reading[] = [
     summary: 'A family day trip to the old capital — temples, soba, and souvenirs.',
     paragraphs: [
       '先週、家族で京都へ行きました。京都は日本の古い町で、お寺がたくさんあります。',
-      'わたしたちは朝早く電車に乗りました。有名なお寺を見て、写真をたくさんとりました。',
+      '私たちは朝早く電車に乗りました。有名なお寺を見て、写真をたくさんとりました。',
       'お昼に、おいしいそばを食べました。帰る前に、おみやげを買いました。とても楽しい一日でした。',
     ],
     vocab: [
@@ -127,7 +127,7 @@ export const READINGS: Reading[] = [
     summary: 'Where sushi came from and how it is made today.',
     paragraphs: [
       'すしは、日本でいちばん有名な食べ物の一つです。',
-      '昔、すしは魚を長く保存するための方法でした。今のすしは、ごはんの上に新しい魚をのせて作ります。',
+      '昔、すしは魚を長く保存するための方法でした。今のすしは、ご飯の上に新しい魚をのせて作ります。',
       '外国でも、すしはとても人気があります。店で食べることもできますし、家で作ることもできます。',
     ],
     vocab: [
