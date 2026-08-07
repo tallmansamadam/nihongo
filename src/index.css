@@ -1008,3 +1008,60 @@ button.kc-radical { background: var(--paper); border: 1px solid var(--line); bor
   background: var(--paper); border: 1px solid var(--line-2);
   border-radius: 10px; padding: 10px 14px; display: inline-block;
 }
+
+/* Compound tiles show each kanji drawn in stroke order */
+.cmp-tile .stroke-order { pointer-events: none; }
+.cmp-tile .cmp-tile-char { font-size: 18px; }
+.cmp-tiles { align-items: stretch; }
+
+/* ===== Camera OCR ===== */
+.ocr-controls { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin: 16px 0 10px; }
+.ocr-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ocr-actions button {
+  font: inherit; font-size: 14px; padding: 8px 14px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--paper-2); cursor: pointer;
+}
+.ocr-actions .test-submit { border-color: var(--accent); }
+.ocr-actions button:disabled { opacity: 0.5; cursor: default; }
+.ocr-note { font-size: 14px; color: var(--ink-soft); max-width: 62ch; margin: 4px 0 12px; }
+.ocr-error {
+  font-size: 14px; background: #fdeeea; color: #a03a2a;
+  border-radius: 10px; padding: 10px 14px; margin-bottom: 12px;
+}
+.ocr-camera {
+  border-radius: 14px; overflow: hidden; background: #000;
+  max-width: 520px; box-shadow: var(--shadow);
+}
+.ocr-camera video { width: 100%; display: block; }
+.ocr-status { font-size: 14px; color: var(--ink-soft); margin: 12px 0; }
+.ocr-results { margin-top: 12px; }
+.ocr-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ocr-chip {
+  font-family: var(--jp); font-size: 30px; line-height: 1;
+  padding: 10px 14px; border-radius: 12px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--paper-2);
+  -webkit-tap-highlight-color: transparent;
+}
+.ocr-chip:hover { border-color: var(--accent); }
+.ocr-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ocr-raw {
+  margin-top: 12px; font-size: 13px; color: var(--ink-soft);
+  font-family: var(--jp); background: var(--panel, #f2ede4);
+  border-radius: 10px; padding: 10px 14px; max-height: 6em; overflow-y: auto;
+}
+.ocr-detail {
+  margin-top: 20px; background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 14px; padding: 18px;
+}
+.ocr-detail-top { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+.ocr-pinyin { font-size: 24px; font-weight: 600; color: var(--accent); }
+.ocr-detail-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.ocr-detail-actions button {
+  font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--paper); cursor: pointer;
+}
+.ocr-cross {
+  margin-top: 14px; font-size: 14px; color: var(--ink-soft);
+  border-top: 1px solid var(--line-2); padding-top: 12px;
+}
+@media (max-width: 720px) { .ocr-camera { max-width: 100%; } }

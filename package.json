@@ -11,7 +11,7 @@
     "build-kanji": "node scripts/build-kanji-base.mjs",
     "build-content": "node scripts/build-content.mjs",
     "prepare-dict": "node scripts/prepare-dict.mjs",
-    "postinstall": "node scripts/prepare-dict.mjs",
+    "postinstall": "node scripts/prepare-dict.mjs && node scripts/prepare-ocr.mjs",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build"
@@ -19,7 +19,8 @@
   "dependencies": {
     "@sglkc/kuromoji": "^1.1.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.11.3",

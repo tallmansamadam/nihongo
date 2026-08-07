@@ -30,6 +30,8 @@ export interface Token {
   r?: string
   /** Optional gloss shown on hover for the whole word */
   g?: string
+  /** Dictionary (basic) form when the surface is conjugated — 行き → 行く. */
+  b?: string
 }
 
 export interface VocabEntry {

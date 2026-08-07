@@ -90,13 +90,15 @@ function CompoundView({
         {token.r && <div className="cmp-reading">{token.r}</div>}
         {token.g && <div className="cmp-gloss">{token.g}</div>}
       </div>
-      <div className="cmp-label">Tap a character to break it down</div>
+      <div className="cmp-label">Stroke order — tap a character to break it down</div>
       <div className="cmp-tiles">
         {chars.map((c, i) => {
           const isKanji = KANJI_RE.test(c)
           const meaning = isKanji ? getGlyph(c).meaning : undefined
           return isKanji ? (
             <button className="cmp-tile" key={i} onClick={() => onPick(c, meaning)}>
+              {/* every kanji of the compound draws itself in stroke order */}
+              <StrokeOrder char={c} size={72} compact />
               <span className="cmp-tile-char">{c}</span>
               {meaning && <span className="cmp-tile-meaning">{meaning}</span>}
             </button>

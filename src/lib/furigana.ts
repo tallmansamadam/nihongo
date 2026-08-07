@@ -5,7 +5,12 @@ import type { Token } from '../data/types'
 // served from /dict. The first call downloads ~17MB of dictionary data, so it
 // is cached for the lifetime of the page.
 type Tokenizer = {
-  tokenize: (text: string) => Array<{ surface_form: string; reading?: string }>
+  tokenize: (text: string) => Array<{
+    surface_form: string
+    reading?: string
+    basic_form?: string
+    pos?: string
+  }>
 }
 
 let tokenizerPromise: Promise<Tokenizer> | null = null
@@ -40,7 +45,14 @@ export async function tokenizeLine(line: string): Promise<Token[]> {
     const w = tok.surface_form
     const reading =
       tok.reading && tok.reading !== '*' ? kataToHira(tok.reading) : undefined
-    return HAS_KANJI.test(w) && reading ? { w, r: reading } : { w }
+    // `b` (dictionary form) lets the word-aligner gloss conjugated verbs and
+    // adjectives: 行き → 行く, 楽しかった → 楽しい.
+    const b = tok.basic_form && tok.basic_form !== '*' && tok.basic_form !== w
+      ? tok.basic_form
+      : undefined
+    const out: Token = HAS_KANJI.test(w) && reading ? { w, r: reading } : { w }
+    if (b) out.b = b
+    return out
   })
 }
 

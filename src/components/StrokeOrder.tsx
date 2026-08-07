@@ -6,11 +6,14 @@ interface Props {
   size?: number
   /** Bump this number to replay the stroke animation from the start. */
   replay?: number
+  /** Hide the replay button — required when rendered inside another button
+   *  (e.g. the compound tiles), since nested buttons are invalid. */
+  compact?: boolean
 }
 
 // Loads a KanjiVG SVG and re-draws the strokes one at a time with a
 // dash-offset animation so the stroke order is visible.
-export default function StrokeOrder({ char, size = 120, replay }: Props) {
+export default function StrokeOrder({ char, size = 120, replay, compact }: Props) {
   const [paths, setPaths] = useState<string[] | null>(null)
   const [error, setError] = useState(false)
   const [playToken, setPlayToken] = useState(0)
@@ -99,9 +102,11 @@ export default function StrokeOrder({ char, size = 120, replay }: Props) {
           ))}
         </svg>
       </div>
-      <button className="replay" onClick={() => setPlayToken((t) => t + 1)} disabled={!paths}>
-        ↻ Replay
-      </button>
+      {!compact && (
+        <button className="replay" onClick={() => setPlayToken((t) => t + 1)} disabled={!paths}>
+          ↻ Replay
+        </button>
+      )}
     </div>
   )
 }

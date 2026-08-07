@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { createContext, lazy, Suspense, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { tokenizeText } from './lib/furigana'
 import { STORIES } from './data/stories'
 import { SONGS } from './data/songs'
@@ -32,6 +32,9 @@ import ExamView from './components/ExamView'
 import FlashcardView from './components/FlashcardView'
 import DrawPractice from './components/DrawPractice'
 import ReportCard from './components/ReportCard'
+// Camera OCR pulls in the recognizer and the 44k-character hanzi table, so it
+// is code-split and only downloaded when the view is opened.
+const OcrView = lazy(() => import('./components/OcrView'))
 import Splash from './components/Splash'
 import { loadProgress, onProgressChange } from './lib/progress'
 import { loadPrefs, onPrefsChange, setPref } from './lib/prefs'
@@ -65,6 +68,7 @@ type Selection =
   | { kind: 'draw'; char?: string }
   | { kind: 'report' }
   | { kind: 'prefs' }
+  | { kind: 'ocr' }
 
 export default function App() {
   const [splash, setSplash] = useState(true)
@@ -332,6 +336,14 @@ export default function App() {
               </span>
             </button>
             <button
+              className={'story-item' + (sel.kind === 'ocr' ? ' active' : '')}
+              onClick={() => select({ kind: 'ocr' })}
+              >
+                <span className="si-title">📷 Camera Lookup</span>
+                <span className="si-en">Identify kanji with your camera</span>
+              </button>
+
+            <button
               className={'story-item' + (sel.kind === 'prefs' ? ' active' : '')}
               onClick={() => select({ kind: 'prefs' })}
             >
@@ -385,6 +397,11 @@ export default function App() {
           {sel.kind === 'draw' && <DrawPractice key={sel.char ?? 'free'} initialChar={sel.char} />}
           {sel.kind === 'report' && <ReportCard />}
           {sel.kind === 'prefs' && <PreferencesView />}
+          {sel.kind === 'ocr' && (
+            <Suspense fallback={<div className="ocr-status">Loading camera lookup…</div>}>
+              <OcrView />
+            </Suspense>
+          )}
         </main>
 
         {grammarNote && <GrammarModal note={grammarNote} onClose={() => setGrammarNote(null)} />}
@@ -399,14 +416,28 @@ export default function App() {
   )
 }
 
+// Window in which a second tap counts as a double-tap.
+const DOUBLE_TAP_MS = 280
+// Tracks the pending first tap so a second one can upgrade it to the compound.
+const tapState: { el: EventTarget | null; t: number; timer: number } = {
+  el: null,
+  t: 0,
+  timer: 0,
+}
+
 // One hoverable/tappable kanji.
-//  - Tap (or mouse click) → open the card + pronounce the single kanji.
-//  - Mouse hover → open the card; Alt+click → pronounce the whole word/compound.
-//  - Touch long-press ANYWHERE in a sentence reads the whole sentence; that is
-//    handled at the sentence level (useSentenceHold), so a hold that starts on a
-//    kanji must not also fire this tap — `sentenceJustRead` guards it.
+//  - Single tap/click → card + pronounce that kanji.
+//  - Double tap/click (or Alt+click) → surrounding-compound card + read the
+//    whole word. The single-kanji reading is deferred by DOUBLE_TAP_MS so a
+//    double tap replaces it instead of both firing.
+//  - Long-press anywhere in a sentence reads the sentence (useSentenceHold);
+//    `sentenceJustRead` stops that gesture's release from also firing a tap.
 function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
   const { open } = useContext(HoverCtx)
+  const readCompound = (el: HTMLElement) => {
+    open(ch, tok, el, true)
+    speak(tok.r ?? tok.w)
+  }
   return (
     <span
       className="kanji"
@@ -419,16 +450,32 @@ function KanjiSpan({ ch, tok }: { ch: string; tok: Token }) {
           sentenceJustRead = false
           return // this "tap" was the end of a sentence long-press
         }
-        open(ch, tok, e.currentTarget)
+        const el = e.currentTarget
+        // Alt+click goes straight to the compound.
         if (e.altKey) {
-          // Alt+click: the card shows the surrounding compound — say the
-          // whole word (its furigana reading beats per-kanji guesses).
-          speak(tok.r ?? tok.w)
-        } else {
-          // Plain click/tap pronounces the single kanji (kun, else on).
+          window.clearTimeout(tapState.timer)
+          tapState.el = null
+          readCompound(el)
+          return
+        }
+        const now = Date.now()
+        if (tapState.el === el && now - tapState.t < DOUBLE_TAP_MS) {
+          // second tap: cancel the pending single-kanji reading, show compound
+          window.clearTimeout(tapState.timer)
+          tapState.el = null
+          readCompound(el)
+          return
+        }
+        // first tap: show the card at once, defer the reading briefly
+        tapState.el = el
+        tapState.t = now
+        open(ch, tok, el)
+        window.clearTimeout(tapState.timer)
+        tapState.timer = window.setTimeout(() => {
+          tapState.el = null
           const g = getGlyph(ch)
           pronounceReading(g.kun, g.on, ch)
-        }
+        }, DOUBLE_TAP_MS)
       }}
     >
       {ch}
@@ -882,11 +929,13 @@ function ReadAllButton({
   )
 }
 
-// A long-press anywhere in a sentence reads the whole sentence aloud. Tap is
-// ~<300ms, so this threshold is a comfortable "press and hold". When it fires,
+// A deliberate long-press anywhere in a sentence reads the whole sentence.
+// It must clearly outlast a tap and a double-tap (280ms) and must not fire
+// while the finger is really scrolling, so the threshold is generous and the
+// hold is cancelled by any movement or page scroll. When it fires,
 // `sentenceJustRead` suppresses the kanji tap-click that the release would
 // otherwise trigger (the press may have started on a kanji).
-const SENTENCE_HOLD_MS = 500
+const SENTENCE_HOLD_MS = 750
 let sentenceJustRead = false
 
 function useSentenceHold(text: string) {
@@ -897,6 +946,11 @@ function useSentenceHold(text: string) {
     if (timer.current) window.clearTimeout(timer.current)
     timer.current = null
     origin.current = null
+    window.removeEventListener('scroll', clearOnScroll, true)
+  }
+  // A hold that turns into a scroll must not read aloud.
+  function clearOnScroll() {
+    clear()
   }
   useEffect(() => () => clear(), [])
 
@@ -907,8 +961,10 @@ function useSentenceHold(text: string) {
         clear()
         sentenceJustRead = false // new gesture — reset stale suppression
         origin.current = { x: e.clientX, y: e.clientY }
+        window.addEventListener('scroll', clearOnScroll, true)
         timer.current = window.setTimeout(() => {
           timer.current = null
+          window.removeEventListener('scroll', clearOnScroll, true)
           sentenceJustRead = true
           setSpeaking(true)
           speak(text, () => setSpeaking(false))

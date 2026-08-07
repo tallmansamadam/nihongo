@@ -1,0 +1,82 @@
+// High-frequency Japanese words with English glosses, for word-level JP↔EN
+// color alignment. The authored vocabulary lists cover topic words; this covers
+// the everyday words that appear in every text but are too basic to list
+// (pronouns, common verbs, time words, counters). Keyed by the token's
+// dictionary form (kuromoji basic_form) or surface.
+export const COMMON_WORDS: Record<string, string> = {
+  // pronouns / people
+  私: 'I, me', 私たち: 'we', 僕: 'I, me', 俺: 'I, me', あなた: 'you', 彼: 'he',
+  彼女: 'she', 彼ら: 'they', 誰: 'who', 人: 'person, people', 人々: 'people',
+  子供: 'child', 大人: 'adult', 男: 'man', 女: 'woman', 男の子: 'boy', 女の子: 'girl',
+  友達: 'friend', 家族: 'family', 母: 'mother', 父: 'father', 兄: 'older brother',
+  姉: 'older sister', 弟: 'younger brother', 妹: 'younger sister', 祖母: 'grandmother',
+  祖父: 'grandfather', 先生: 'teacher', 学生: 'student', 客: 'customer, guest',
+  // places / things
+  日本: 'Japan', 日本語: 'Japanese language', 英語: 'English language', 国: 'country',
+  家: 'house, home', 学校: 'school', 会社: 'company', 店: 'shop, store', 駅: 'station',
+  町: 'town', 都市: 'city', 部屋: 'room', 窓: 'window', 戸: 'door',
+  道: 'road, street', 公園: 'park', 図書館: 'library', 病院: 'hospital', 銀行: 'bank',
+  電車: 'train', 車: 'car', 自転車: 'bicycle', 飛行機: 'airplane', 船: 'ship',
+  本: 'book', 手紙: 'letter', 写真: 'photograph', 音楽: 'music', 映画: 'movie',
+  絵: 'picture', 紙: 'paper', 机: 'desk', 椅子: 'chair', 服: 'clothes', 靴: 'shoes',
+  鞄: 'bag', 財布: 'wallet', 電話: 'telephone', 名前: 'name', 言葉: 'word, language',
+  // food
+  ご飯: 'rice, meal', 朝ご飯: 'breakfast', 昼ご飯: 'lunch', 晩ご飯: 'dinner',
+  食べ物: 'food', 飲み物: 'drink', 水: 'water', お茶: 'tea', 牛乳: 'milk',
+  魚: 'fish', 肉: 'meat', 野菜: 'vegetable', 果物: 'fruit', 卵: 'egg', 米: 'rice',
+  パン: 'bread', 弁当: 'lunch box', 料理: 'cooking, dish', 味: 'taste, flavor',
+  // nature
+  山: 'mountain', 川: 'river', 海: 'sea', 空: 'sky', 星: 'star', 月: 'moon',
+  太陽: 'sun', 花: 'flower', 木: 'tree', 草: 'grass', 雨: 'rain', 雪: 'snow',
+  風: 'wind', 雲: 'cloud', 天気: 'weather', 犬: 'dog', 猫: 'cat', 鳥: 'bird',
+  虫: 'insect', 桜: 'cherry blossom',
+  // time
+  今日: 'today', 明日: 'tomorrow', 昨日: 'yesterday', 今: 'now', 朝: 'morning',
+  昼: 'noon, daytime', 夜: 'night', 夕方: 'evening', 毎日: 'every day',
+  毎朝: 'every morning', 毎晩: 'every night', 今年: 'this year', 去年: 'last year',
+  来年: 'next year', 年: 'year', 月曜日: 'Monday', 週末: 'weekend', 時間: 'time',
+  時: 'time, hour', 分: 'minute', 春: 'spring', 夏: 'summer', 秋: 'autumn',
+  冬: 'winter', 季節: 'season', 休み: 'holiday, rest', 誕生日: 'birthday',
+  // verbs (dictionary form)
+  行く: 'to go', 来る: 'to come', 帰る: 'to return home', 入る: 'to enter',
+  出る: 'to leave, exit', 歩く: 'to walk', 走る: 'to run', 乗る: 'to ride',
+  降りる: 'to get off', 食べる: 'to eat', 飲む: 'to drink', 見る: 'to see, watch',
+  聞く: 'to listen, ask', 話す: 'to speak', 言う: 'to say', 読む: 'to read',
+  書く: 'to write', 買う: 'to buy', 売る: 'to sell', 作る: 'to make', 使う: 'to use',
+  持つ: 'to hold, have', 待つ: 'to wait', 会う: 'to meet', 遊ぶ: 'to play',
+  働く: 'to work', 休む: 'to rest', 寝る: 'to sleep', 起きる: 'to get up',
+  勉強: 'study', 教える: 'to teach', 習う: 'to learn', 学ぶ: 'to learn, study',
+  覚える: 'to remember',
+  忘れる: 'to forget', 知る: 'to know', 思う: 'to think', 考える: 'to think, consider', 住む: 'to live, reside', 生まれる: 'to be born', 死ぬ: 'to die',
+  開ける: 'to open', 閉める: 'to close', 始まる: 'to begin', 終わる: 'to end',
+  出す: 'to take out, send', 入れる: 'to put in', 取る: 'to take', 置く: 'to put',
+  立つ: 'to stand', 座る: 'to sit', 泣く: 'to cry', 笑う: 'to laugh',
+  歌う: 'to sing', 踊る: 'to dance', 泳ぐ: 'to swim', 洗う: 'to wash',
+  着る: 'to wear', 履く: 'to wear (shoes)', 送る: 'to send', 受ける: 'to receive',
+  探す: 'to search', 見つける: 'to find', 助ける: 'to help', 手伝う: 'to help', 集まる: 'to gather', 続く: 'to continue', 変わる: 'to change',
+  降る: 'to fall (rain/snow)', 咲く: 'to bloom', 光る: 'to shine',
+  // adjectives
+  大きい: 'big, large', 小さい: 'small', 新しい: 'new', 古い: 'old', 良い: 'good',
+  悪い: 'bad', 高い: 'expensive, tall', 安い: 'cheap', 長い: 'long', 短い: 'short',
+  早い: 'early, fast', 遅い: 'late, slow', 暑い: 'hot', 寒い: 'cold',
+  暖かい: 'warm', 涼しい: 'cool', 温かい: 'warm', 楽しい: 'fun, enjoyable',
+  嬉しい: 'happy, glad', 悲しい: 'sad', 面白い: 'interesting', 難しい: 'difficult',
+  易しい: 'easy', 忙しい: 'busy', 静か: 'quiet', 綺麗: 'beautiful, clean',
+  有名: 'famous', 大切: 'important', 大変: 'tough, serious', 元気: 'healthy, lively',
+  好き: 'like, favorite', 嫌い: 'dislike', 上手: 'skillful', 下手: 'unskillful',
+  美味しい: 'delicious', 優しい: 'kind, gentle', 強い: 'strong', 弱い: 'weak',
+  白い: 'white', 黒い: 'black', 赤い: 'red', 青い: 'blue', 明るい: 'bright',
+  暗い: 'dark', 近い: 'near', 遠い: 'far', 多い: 'many', 少ない: 'few',
+  // misc / adverbs
+  一番: 'the most, number one', 少し: 'a little', 全部: 'all', 半分: 'half',
+  一緒: 'together', 隣: 'next to, neighbor', 前: 'before, front', 後: 'after, behind',
+  上: 'above, on', 下: 'below, under', 中: 'inside, middle', 外: 'outside',
+  右: 'right', 左: 'left', 初めて: 'for the first time', 挨拶: 'greeting',
+  丁寧: 'polite', 文化: 'culture', 伝統: 'tradition', 仕事: 'work, job',
+  お金: 'money', 世界: 'world', 体: 'body', 頭: 'head', 顔: 'face', 手: 'hand',
+  足: 'foot, leg', 目: 'eye', 耳: 'ear', 口: 'mouth', 声: 'voice', 色: 'color',
+  音: 'sound', 話: 'story, talk', 質問: 'question', 答え: 'answer', 意味: 'meaning',
+  問題: 'problem', 理由: 'reason', 方法: 'method, way', 場所: 'place',
+  気持ち: 'feeling', 心: 'heart, mind', 夢: 'dream', 生活: 'life, living',
+  人気: 'popularity', 種類: 'kind, type', 数: 'number', 全て: 'all', 皆: 'everyone',
+}
